@@ -12,6 +12,7 @@ class QrScan extends Controller
 {
 
     public function index(){
+        /**/
         return view('scanQr.index');
     }
 
