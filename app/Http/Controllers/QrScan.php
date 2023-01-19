@@ -13,7 +13,7 @@ class QrScan extends Controller
     }
 
     public function handleScan(Request $request){
-        /*$code = $request->code;
+        /*$code = $request->code.;
         $order = Order::query()->where('order_number' ,'=',$code)->get()->first();
         $code = $request->code;
         $order = Order::query()->where('order_number' ,'=',$code)->get()->first();
@@ -28,7 +28,7 @@ class QrScan extends Controller
         }
       */
       dd('scan done'.$request->code);
-        
+
 
     }
 }
