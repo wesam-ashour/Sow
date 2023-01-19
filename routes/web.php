@@ -33,9 +33,13 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 Route::group(['middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath'], 'prefix' => LaravelLocalization::setLocale()], function () {
     /** ADD ALL LOCALIZED ROUTES INSIDE THIS GROUP **/
     Route::get('/', function () {
-        return redirect(route('new-request'));
+        return redirect(route('login'));
     });
     require __DIR__ . '/auth.php';
+
+});
+
+Route::group(['middleware' => ['auth', 'verified', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath'], 'prefix' => LaravelLocalization::setLocale()], function () {
 
     Route::get('/new-request/{order_number}', [NewRequest::class, 'index'])->name('new-request');
     Route::post('/new-request/add', [NewRequest::class, 'store'])->name('new-request.store');
@@ -43,9 +47,6 @@ Route::group(['middleware' => [ 'localeSessionRedirect', 'localizationRedirect',
     Route::get('/scanner/handle-scan', [QrScan::class, 'handleScan'])->name('ScanQR.handleScan');
     Route::get('/receive/response/{id}', [NewRequest::class, 'response']);
 
-
-});
-Route::group(['middleware' => ['auth', 'verified', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath'], 'prefix' => LaravelLocalization::setLocale()], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
     Route::get('/admins', [AdminController::class, 'index'])->name('admins.index');
     Route::post('/admin/store', [AdminController::class, 'store'])->name('admin.store');
@@ -80,7 +81,6 @@ Route::group(['middleware' => ['auth', 'verified', 'localeSessionRedirect', 'loc
         session()->put('locale', $locale);
         return redirect()->back();
     });
-
 });
 
 
