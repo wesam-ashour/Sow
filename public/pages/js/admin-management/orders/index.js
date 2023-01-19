@@ -18,7 +18,7 @@ $(function () {
                     (t = document.querySelector("#kt_orders_table")) && ((e = $(t).DataTable({
                         searchable: true,
                         ajax: {
-                            "url": app_url + "/" + language + "/transportations",
+                            "url": app_url + "/" + language + "/orders",
                             "type": 'GET',
                         },
                         columns: [

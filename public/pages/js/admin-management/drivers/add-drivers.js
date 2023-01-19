@@ -10,19 +10,18 @@ $(function () {
         "use strict";
         var KTUsersAddPermission = function () {
             const t = document.getElementById("kt_modal_add_driver"),
-                e = t.querySelector("#kt_modal_add_drivers_form"),
+                e = t.querySelector("#kt_modal_add_driver_form"),
                 n = new bootstrap.Modal(t);
             return {
                 init: function () {
                     (() => {
                         var o = FormValidation.formValidation(e, {
                             fields: {
-                                permission_name_create: {
-                                    validators:
-                                        {
+                                full_name: {validators: {notEmpty: {message: "Name is required"}}},
+                                email: {validators: {notEmpty: {message: "Email is required"}}},
+                                phone_number: {validators: {notEmpty: {message: "Phone Number is required"}}},
+                                address: {validators: {notEmpty: {message: "Address is required"}}},
 
-                                        }
-                                }
                             },
                             plugins: {
                                 trigger: new FormValidation.plugins.Trigger,
@@ -68,11 +67,7 @@ $(function () {
                         i.addEventListener("click", (function (t) {
                             $(':input[type="submit"]').prop('disabled', true);
                             $(".errors").html("");
-                            var formData = new FormData(document.getElementById("kt_modal_add_drivers_form"));
-                            var featured_image = $('#fileupload')[0].files[0];
-                            formData.append("fileupload", featured_image);
-                            var featured_images = $('#fileuploadsss')[0].files[0];
-                            formData.append("fileuploadsss", featured_images);
+                            var formData = new FormData(document.getElementById("kt_modal_add_driver_form"));
 
                             t.preventDefault(), o && o.validate().then((function (t) {
                                 "Valid" == t ? $.ajax({
@@ -96,15 +91,14 @@ $(function () {
                                                             customClass: {confirmButton: "btn btn-primary"}
                                                         }).then((function (t) {
                                                             t.isConfirmed && n.hide()
+                                                            $(':input[type="submit"]').prop('disabled', false);
                                                         }))
                                                 }), 2e3));
-                                                $("#file-chosen-input").html(language === "en" ? "No file chosen" : " لم يتم اختيار ملف");
-                                                $("#file-chosensss").html(language === "en" ? "No file chosen" : " لم يتم اختيار ملف");
                                                 $("input").val("");
                                                 $("textarea").val("");
                                                 $(".errors").html("");
                                                 /*table.DataTable().ajax.reload();*/
-                                                $('#kt_drivers_table').DataTable().ajax.reload();
+                                                $('#kt_driver_table').DataTable().ajax.reload();
 
                                             } else {
                                                 Swal.fire({
@@ -126,7 +120,9 @@ $(function () {
                                         buttonsStyling: !1,
                                         confirmButtonText: language === "en" ? "Ok, got it!" : "حسنًا ، فهمت!",
                                         customClass: {confirmButton: "btn btn-primary"}
-                                    })
+                                    }).then((function (t) {
+                                        $(':input[type="submit"]').prop('disabled', false);
+                                    }))
                             }))
                         }))
                     })()
