@@ -163,5 +163,12 @@ return [
     'regexPrice' => 'The price format is invalid, the correct format (12.1)',
     'minPrice' => 'This field must be at least 1 characters',
 
+    /*driver*/
+
+    'address' => 'address',
+    'Add_driver' => 'Add driver',
+    'drivers' => 'drivers',
+
+
 
 ];

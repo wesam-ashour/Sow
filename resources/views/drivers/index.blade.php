@@ -61,29 +61,44 @@
                     </div>
                     <!--end::Card title-->
                     <!--begin::Card toolbar-->
+                    <div class="card-toolbar">
+                        <!--begin::Toolbar-->
+                        <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
+                            <!--end::Filter-->
+                            <!--begin:Add user-->
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add_driver">
+                                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
+                                    <span class="svg-icon svg-icon-2">
+														<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+															<rect opacity="0.5" x="11.364" y="20.364" width="16" height="2" rx="1" transform="rotate(-90 11.364 20.364)" fill="currentColor" />
+															<rect x="4.36396" y="11.364" width="16" height="2" rx="1" fill="currentColor" />
+														</svg>
+													</span>
+                                    <!--end::Svg Icon-->
+                                    @lang('web.Add_driver')
+                                </button>
+                        <!--end::Add user-->
+                        </div>
+                        <!--end::Toolbar-->
+                        <!--begin::Group actions-->
+
+                        <!--end::Group actions-->
+                    </div>
+                    <!--end::Card toolbar-->
                 </div>
                 <!--end::Card header-->
                 <!--begin::Card body-->
                 <div class="card-body pt-0">
                     <!--begin::Table-->
-                    <table class="table align-middle table-row-dashed fs-6 gy-5 mb-0" id="kt_orders_table">
+                    <table class="table align-middle table-row-dashed fs-6 gy-5 mb-0" id="kt_driver_table">
                         <!--begin::Table head-->
                         <thead>
                         <!--begin::Table row-->
                         <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
-                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") min-w-125px @else text-start @endif">@lang('web.order_number')</th>
-                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") min-w-125px @else text-start @endif">@lang('web.name')</th>
-                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") min-w-125px @else text-start @endif">@lang('web.phone_number')</th>
+                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") min-w-125px @else text-start @endif">@lang('web.Full Name')</th>
                             <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") min-w-125px @else text-start @endif">@lang('web.email')</th>
-                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") min-w-125px @else text-start @endif">@lang('web.governorate')</th>
-                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") min-w-125px @else text-start @endif">@lang('web.city')</th>
-                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") min-w-125px @else text-start @endif">@lang('web.pieces_number')</th>
-                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") min-w-125px @else text-start @endif">@lang('web.avenue')</th>
-                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") min-w-125px @else text-start @endif">@lang('web.street')</th>
-                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") min-w-125px @else text-start @endif">@lang('web.building_number')</th>
-                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") min-w-125px @else text-start @endif">@lang('web.floor')</th>
-                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") min-w-125px @else text-start @endif">@lang('web.status')</th>
-                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") min-w-125px @else text-start @endif">@lang('web.payment_status')</th>
+                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") min-w-125px @else text-start @endif">@lang('web.phone_number')</th>
+                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") min-w-125px @else text-start @endif">@lang('web.address')</th>
                         </tr>
                         <!--end::Table row-->
                         </thead>
@@ -99,20 +114,20 @@
             </div>
             <!--end::Card-->
             <!--begin::Modals-->
-            <!--begin::Modal - Update permissions-->
-            <div class="modal fade" id="kt_modal_show_news" tabindex="-1" aria-hidden="true">
+            <!--begin::Modal - add  driver-->
+            <div class="modal fade" id="kt_modal_add_driver" tabindex="-1" aria-hidden="true">
                 <!--begin::Modal dialog-->
-                <div class="modal-dialog modal-dialog-centered modal-xl">
+                <div class="modal-dialog modal-dialog-centered modal-ml">
                     <!--begin::Modal content-->
                     <div class="modal-content">
                         <!--begin::Modal header-->
                         <div class="modal-header">
                             <!--begin::Modal title-->
-                            <h2 class="fw-bold">@lang('web.News_Details')</h2>
+                            <h2 class="fw-bold">@lang('web.Add_driver')</h2>
                             <!--end::Modal title-->
                             <!--begin::Close-->
                             <div class="btn btn-icon btn-sm btn-active-icon-primary"
-                                 id="cancel_modal">
+                                 data-kt-permissions-modal-action="close">
                                 <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
                                 <span class="svg-icon svg-icon-1">
 															<svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -133,10 +148,8 @@
                         <!--end::Modal header-->
                         <!--begin::Modal body-->
                         <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
-                            <!--begin::Notice-->
-                            <!--end::Notice-->
                             <!--begin::Form-->
-                            <form id="kt_modal_detail_car_form" class="form" action="#" style="font-size: 15px;">
+                            <form id="kt_modal_add_driver_form" class="form" action="#" enctype="multipart/form-data">
                                 @csrf
                                 <div class="d-flex flex-column scroll-y me-n7 pe-7"
                                      id="kt_modal_detail_car_scroll" data-kt-scroll="true"
@@ -145,144 +158,91 @@
                                      data-kt-scroll-dependencies="#kt_modal_detail_car_header"
                                      data-kt-scroll-wrappers="#kt_modal_detail_car_scroll"
                                      data-kt-scroll-offset="300px">
-                                    <input type="hidden" name="news_edit_id" id="news_edit_id">
                                     <!--begin::Input group-->
                                     <div class="row">
-                                        <div class="fv-row col-md-6 mb-7">
+                                        <div class="fv-row col-12 mb-7">
                                             <!--begin::Label-->
                                             <label class="fs-6 fw-semibold form-label mb-2">
-                                                <span style="font-weight: bold">@lang('web.title') (@lang('web.english')) :</span>
+                                                <span class="required">@lang('web.Full Name')</span>
+                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="popover"
+                                                   data-bs-trigger="hover" data-bs-html="true"
+                                                   data-bs-content="@lang('web.required')"></i>
                                             </label>
-                                            <br>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <span id="title_en_show"></span>
+                                            <input id="full_name" type="text" class="form-control form-control-solid"
+                                                      placeholder="@lang('web.Enter Here')" name="full_name">
+                                            <strong id="full_name_error" class="errors text-danger"
+                                                    role="alert"></strong>
                                             <!--end::Input-->
                                         </div>
-
-                                        <div class="fv-row col-md-6 mb-7">
+                                        <div class="fv-row col-12 mb-7">
                                             <!--begin::Label-->
                                             <label class="fs-6 fw-semibold form-label mb-2">
-                                                <span style="font-weight: bold">@lang('web.title') (@lang('web.arabic')) :</span>
+                                                <span class="required">@lang('web.email')</span>
+                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="popover"
+                                                   data-bs-trigger="hover" data-bs-html="true"
+                                                   data-bs-content="@lang('web.required')"></i>
                                             </label>
-                                            <br>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <span id="title_ar_show"></span>
+                                            <input id="email" type="email" class="form-control form-control-solid"
+                                                   placeholder="@lang('web.Enter Here')" name="email">
+                                            <strong id="email_error" class="errors text-danger"
+                                                    role="alert"></strong>
                                             <!--end::Input-->
                                         </div>
-                                    </div>
-                                    <hr>
-
-                                    <div class="row">
-                                        <div class="fv-row col-md-6 mb-7">
+                                        <div class="fv-row col-12 mb-7">
                                             <!--begin::Label-->
                                             <label class="fs-6 fw-semibold form-label mb-2">
-                                                <span style="font-weight: bold">@lang('web.article') (@lang('web.english')) :</span>
+                                                <span class="required">@lang('web.phone_number')</span>
+                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="popover"
+                                                   data-bs-trigger="hover" data-bs-html="true"
+                                                   data-bs-content="@lang('web.required')"></i>
                                             </label>
-                                            <br>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <span id="article_en_show"></span>
+                                            <input id="phone_number" type="number" class="form-control form-control-solid"
+                                                   placeholder="@lang('web.Enter Here')" name="phone_number">
+                                            <strong id="phone_number_error" class="errors text-danger"
+                                                    role="alert"></strong>
                                             <!--end::Input-->
                                         </div>
-
-                                        <div class="fv-row col-md-6 mb-7">
+                                        <div class="fv-row col-12 mb-7">
                                             <!--begin::Label-->
                                             <label class="fs-6 fw-semibold form-label mb-2">
-                                                <span style="font-weight: bold">@lang('web.article') (@lang('web.arabic')) :</span>
+                                                <span class="required">@lang('web.address')</span>
+                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="popover"
+                                                   data-bs-trigger="hover" data-bs-html="true"
+                                                   data-bs-content="@lang('web.required')"></i>
                                             </label>
-                                            <br>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <span id="article_ar_show"></span>
-                                            <!--end::Input-->
-                                        </div>
-
-                                    </div>
-                                    <hr>
-
-                                    <div class="row">
-                                        <div class="fv-row col-md-6 mb-7">
-                                            <!--begin::Label-->
-                                            <label class="fs-6 fw-semibold form-label mb-2">
-                                                <span style="font-weight: bold">@lang('web.description') (@lang('web.english')) :</span>
-                                            </label>
-                                            <br>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <span id="description_en_show"></span>
-                                            <!--end::Input-->
-                                        </div>
-
-                                        <div class="fv-row col-md-6 mb-7">
-                                            <!--begin::Label-->
-                                            <label class="fs-6 fw-semibold form-label mb-2">
-                                                <span style="font-weight: bold">@lang('web.description') (@lang('web.arabic')) :</span>
-                                            </label>
-                                            <br>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <span id="description_ar_show"></span>
+                                            <textarea id="address" type="number" class="form-control form-control-solid"
+                                                      placeholder="@lang('web.Enter Here')" name="address"></textarea>
+                                            <strong id="address_error" class="errors text-danger"
+                                                    role="alert"></strong>
                                             <!--end::Input-->
                                         </div>
 
                                     </div>
-                                    <hr>
 
-                                    <div class="row">
-                                        <div class="fv-row col-md-6 mb-7">
-                                            <!--begin::Label-->
-                                            <label class="fs-6 fw-semibold form-label mb-2">
-                                                <span style="font-weight: bold">@lang('web.type') :</span>
-                                            </label>
-                                            <br>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <span id="type_show"></span>
-                                            <!--end::Input-->
-                                        </div>
-
-                                        <div class="fv-row col-md-6 mb-7">
-                                            <!--begin::Label-->
-                                            <label class="fs-6 fw-semibold form-label mb-2">
-                                                <span style="font-weight: bold">@lang('web.status') :</span>
-                                            </label>
-                                            <br>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <span id="status_show"></span>
-                                            <!--end::Input-->
-                                        </div>
-                                    </div>
-                                    <hr>
-
-                                    <div class="row">
-
-                                        <!--begin::Label-->
-                                        <label class="fs-6 fw-semibold form-label mb-2">
-                                            <span style="font-weight: bold">@lang('web.PhotosNews') :</span>
-                                        </label>
-                                        <br>
-                                        <br>
-                                        <!--end::Label-->
-                                        <!--begin::Input-->
-
-
-                                        <!--begin::Input-->
-                                        <div id="show_image_div">
-                                            <span id="image_show"></span>
-
-                                        </div>
-                                        <!--end::Input-->
-                                    </div>
                                 </div>
+
+                                <!--end::Input group-->
+                                <!--begin::Actions-->
                                 <div class="text-center pt-15">
-                                    <button type="button" class="btn btn-light me-3"
-                                            id="close_modal">@lang('web.Discard')</button>
+                                    <button type="reset" class="btn btn-light me-3"
+                                            data-kt-permissions-modal-action="cancel">@lang('web.Discard')</button>
+                                    <button type="submit" class="btn btn-primary"
+                                            data-kt-permissions-modal-action="submit">
+                                        <span class="indicator-label">@lang('web.Submit')</span>
+                                        <span class="indicator-progress">@lang('web.Please wait...')
+																<span
+                                                                    class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                    </button>
                                 </div>
                                 <!--end::Actions-->
-
                             </form>
                             <!--end::Form-->
                         </div>
@@ -293,7 +253,6 @@
                 <!--end::Modal dialog-->
             </div>
             <!--end::Modal - Update permissions-->
-            <!--end::Modals-->
         </div>
         <!--end::Content container-->
         <input type="hidden" id="trans" value="{{trans('web.Selected')}}">
@@ -301,34 +260,13 @@
     <!--end::Content-->
 @endsection
 @section('js')
-    <script>
-        function getStatusNews(el)
-        {
-            var id = el.id;
-            var isChecked = el.checked;
-            $.ajax({
-                type: "GET",
-                dataType: "json",
-                url: '/changeStatus/news/',
-                data: {id:id,isChecked:isChecked},
-                success: function(data){
-                    Swal.fire(
-                        '@lang('web.Status changed successfully')',
-                        '',
-                        'success'
-                    )
-                }
-            });
-        }
-    </script>
-
 
     <!--begin::Vendors Javascript(used for this page only)-->
     <script src="{{asset('assets/plugins/custom/datatables/datatables.bundle.js')}}" defer></script>
     <!--end::Vendors Javascript-->
     <!--begin::Custom Javascript(used for this page only)-->
-    <script src="{{asset('pages/js/admin-management/orders/list.js')}}" defer></script>
-    <script src="{{asset('pages/js/admin-management/orders/index.js')}}" defer></script>
+    <script src="{{asset('pages/js/admin-management/drivers/add-drivers.js')}}" defer></script>
+    <script src="{{asset('pages/js/admin-management/drivers/index.js')}}" defer></script>
     <script src="{{asset('assets/js/widgets.bundle.js')}}" defer></script>
     <script src="{{asset('assets/js/custom/widgets.js')}}" defer></script>
     <script src="{{asset('assets/js/custom/apps/chat/chat.js')}}" defer></script>

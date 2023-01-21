@@ -1179,6 +1179,7 @@
                 </header>
             </nav>
         </div>
+        @if($order_number)
         <main data-v-d2325c8a="" class="v-main bg" data-booted="true" style="padding: 0px;">
             <div class="v-main__wrap">
                 <div data-v-71b52688="" data-v-d2325c8a="">
@@ -1420,6 +1421,7 @@
                 </div>
             </div>
         </main>
+        @endif
     </div>
 
     {{--

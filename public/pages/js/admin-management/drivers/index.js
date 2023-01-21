@@ -15,7 +15,7 @@ $(function () {
             };
             return {
                 init: function () {
-                    (t = document.querySelector("#kt_drivers_table")) && ((e = $(t).DataTable({
+                    (t = document.querySelector("#kt_driver_table")) && ((e = $(t).DataTable({
                         searchable: true,
                         ajax: {
                             "url": app_url + "/" + language + "/drivers",
@@ -38,14 +38,7 @@ $(function () {
                                 data: 'address',
                                 name: 'address'
                             },
-                            {
-                                data: 'status',
-                                name: 'status'
-                            },
-                            {
-                                data: 'others',
-                                name: 'others'
-                            }
+
                         ], language: {
                             url: language === "en" ? "//cdn.datatables.net/plug-ins/1.13.1/i18n/en-GB.json" : "//cdn.datatables.net/plug-ins/1.13.1/i18n/ar.json",
                         },

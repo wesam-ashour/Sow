@@ -19,6 +19,10 @@ class NewRequest extends Controller
         $city = request()->input('city');
         return view('new_request',compact('order_number','name','phone','email','address','house','jadda','street','block','city'));
     }
+    public function index2(){
+        $order_number = null;
+        return view('new_request',compact('order_number'));
+    }
     public function store(Request $request){
         $order = new Order();
         $order->order_number = $request->order_number;

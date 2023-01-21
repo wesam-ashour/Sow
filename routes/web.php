@@ -33,16 +33,17 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 Route::group(['middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath'], 'prefix' => LaravelLocalization::setLocale()], function () {
     /** ADD ALL LOCALIZED ROUTES INSIDE THIS GROUP **/
     Route::get('/', function () {
-        return redirect(route('login'));
+        return redirect(route('new-request'));
     });
     require __DIR__ . '/auth.php';
-
+    Route::get('/new-request', [NewRequest::class, 'index2'])->name('new-request');
+    Route::get('/new-request/{order_number}', [NewRequest::class, 'index'])->name('new-request.order_number');
+    Route::post('/new-request/add', [NewRequest::class, 'store'])->name('new-request.store');
 });
 
 Route::group(['middleware' => ['auth', 'verified', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath'], 'prefix' => LaravelLocalization::setLocale()], function () {
 
-    Route::get('/new-request/{order_number}', [NewRequest::class, 'index'])->name('new-request');
-    Route::post('/new-request/add', [NewRequest::class, 'store'])->name('new-request.store');
+
     Route::get('/ScanQR', [QrScan::class, 'index'])->name('ScanQR.index');
     Route::get('/scanner/handle-scan', [QrScan::class, 'handleScan'])->name('ScanQR.handleScan');
     Route::get('/receive/response/{id}', [NewRequest::class, 'response']);
@@ -70,10 +71,11 @@ Route::group(['middleware' => ['auth', 'verified', 'localeSessionRedirect', 'loc
     Route::get('/search/statistics/', [DashboardController::class, 'SearchDateStatistics']);
 
 
-    Route::resource('transportations', TransportationController::class);
+    Route::resource('orders', TransportationController::class);
     Route::get('/search', [TransportationController::class, 'fetch_data']);
     Route::get('/search/date/', [TransportationController::class, 'SearchDate']);
 
+    Route::resource('drivers',DriverController::class);
 
 
     Route::get('language/{locale}', function ($locale) {

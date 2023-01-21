@@ -154,10 +154,11 @@
                     </div>
                     <!--end:Menu sub-->
                 </div>
-                <div class="menu-item menu-accordion {{str_contains($url,"transportations")  ? "hover show":""}} ">
-                        <!--begin:Menu link-->
-                        <a class="menu-link {{str_contains($url,"transportations") ? "active":""}}"
-                           href="{{route('transportations.index')}}">
+
+                <div class="menu-item menu-accordion {{str_contains($url,"drivers ")  ? "hover show":""}} ">
+                    <!--begin:Menu link-->
+                    <a class="menu-link {{str_contains($url,"drivers") ? "active":""}}"
+                       href="{{route('drivers.index')}}">
 											<span class="menu-icon">
 												<!--begin::Svg Icon | path: icons/duotune/abstract/abs029.svg-->
 												<span class="svg-icon svg-icon-2">
@@ -165,9 +166,24 @@
 												</span>
                                                 <!--end::Svg Icon-->
 											</span>
-                            <span class="menu-title">@lang('web.Orders')</span>
-                        </a>
-                        <!--end:Menu link-->
+                        <span class="menu-title">@lang('web.drivers')</span>
+                    </a>
+                    <!--end:Menu link-->
+                </div>
+                <div class="menu-item menu-accordion {{str_contains($url,"orders")  ? "hover show":""}} ">
+                    <!--begin:Menu link-->
+                    <a class="menu-link {{str_contains($url,"orders") ? "active":""}}"
+                       href="{{route('orders.index')}}">
+											<span class="menu-icon">
+												<!--begin::Svg Icon | path: icons/duotune/abstract/abs029.svg-->
+												<span class="svg-icon svg-icon-2">
+													<i class="bi bi-exclamation-triangle"></i>
+												</span>
+                                                <!--end::Svg Icon-->
+											</span>
+                        <span class="menu-title">@lang('web.Orders')</span>
+                    </a>
+                    <!--end:Menu link-->
                 </div>
                 <div class="menu-item menu-accordion {{str_contains($url,"ScanQR")  ? "hover show":""}} ">
                     <!--begin:Menu link-->

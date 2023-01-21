@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('email');
             $table->string('email_verified_at')->nullable();
             $table->string('mobile_number')->nullable()->unique();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->string('api_token')->unique()->nullable()->default(null);
             $table->string('fcm_token')->unique()->nullable()->default(null);
             $table->rememberToken();
