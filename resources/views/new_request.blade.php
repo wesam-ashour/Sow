@@ -1292,6 +1292,7 @@
                                     {{\Illuminate\Support\Facades\Session::get('failed')}}
                                 </div>
                             @endif
+
                             <form action="{{route('new-request.store')}}" method="post">
                                 @csrf
                                 <div data-v-71b52688="" class="row">
@@ -1310,13 +1311,25 @@
                                     <div data-v-71b52688="" class="pb-4 col-sm-6 col-md-4 offset-sm-3 offset-md-4 col-12"><span
                                             data-v-71b52688="">
                                             <div data-v-71b52688="" class="v-input rounded-lg overLap v-input--is-label-active v-input--is-dirty v-input--is-readonly theme--light v-text-field v-text-field--filled v-text-field--is-booted v-text-field--enclosed v-text-field--rounded"><div
-                                                    class="v-input__control"><div class="v-input__slot"><div
-                                                            class="v-text-field__slot">
+                                                    class="v-input__control">
+                                                    <div class="v-input__slot">
+                                                        <div class="v-text-field__slot">
                                                             <label for="input-15" class="v-label v-label--active theme--light" style="left: auto; right: 0px; position: absolute;">order number/رقم الطلب</label>
-                                                            <input id="input-15" name="order_number" value="{{$order_number}}" readonly="readonly" type="text"></div></div>
+                                                            <input id="input-15" name="order_number" value="{{$order_number}}" readonly="readonly" type="text">
+                                                        </div>
+                                                    </div>
+                                                     @error('order_number')
+                                                                <span class="text-danger" style="text-align: initial">{{$message}}</span>
+                                                    @enderror
                                                     <div class="v-text-field__details">
                                                         <div class="v-messages theme--light">
-                                                            <div class="v-messages__wrapper"></div></div></div></div></div></span></div>
+                                                            <div class="v-messages__wrapper"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </span>
+                                    </div>
                                     <div data-v-71b52688="" class="pb-4 col-sm-6 col-md-4 offset-sm-3 offset-md-4 col-12"><span
                                             data-v-71b52688="">
                                             <div data-v-71b52688="" class="v-input rounded-lg overLap v-input--is-label-active v-input--is-dirty theme--light v-text-field v-text-field--filled v-text-field--is-booted v-text-field--enclosed v-text-field--rounded"><div
@@ -1324,14 +1337,22 @@
                                                             class="v-input__prepend-inner"><div
                                                                 class="v-input__icon v-input__icon--prepend-inner"><i
                                                                     aria-hidden="true"
-                                                                    class="v-icon notranslate mdi mdi-account-circle-outline theme--light"></i></div></div><div
-                                                            class="v-text-field__slot"><label for="input-19"
-                                                                                              class="v-label v-label--active theme--light"
-                                                                                              style="left: auto; right: 0px; position: absolute;">Name/الأسم</label>
-                                                            <input id="input-19" type="text" name="name" value="{{$name}}"></div></div><div
-                                                        class="v-text-field__details"><div
-                                                            class="v-messages theme--light"><div
-                                                                class="v-messages__wrapper"></div></div></div></div></div></span></div><div
+                                                                    class="v-icon notranslate mdi mdi-account-circle-outline theme--light"></i>
+                                                            </div>
+                                                        </div>
+                                                        <div class="v-text-field__slot">
+                                                            <label for="input-19" class="v-label v-label--active theme--light" style="left: auto; right: 0px; position: absolute;">Name/الأسم</label>
+                                                            <input id="input-19" type="text" name="name" value="{{$name}}">
+                                                        </div>
+                                                    </div>
+                                                    @error('name')
+                                                                <span class="text-danger" style="text-align: initial">{{$message}}</span>
+                                                    @enderror
+                                                    <div class="v-text-field__details">
+                                                        <div class="v-messages theme--light">
+                                                            <div class="v-messages__wrapper">
+                                                            </div>
+                                                        </div></div></div></div></span></div><div
                                         data-v-71b52688=""
                                         class="pb-4 col-sm-6 col-md-4 offset-sm-3 offset-md-4 col-12"><span
                                             data-v-71b52688=""><div data-v-71b52688=""
@@ -1341,10 +1362,15 @@
                                                                 class="v-input__icon v-input__icon--prepend-inner"><i
                                                                     aria-hidden="true"
                                                                     class="v-icon notranslate mdi mdi-phone-outline theme--light"></i></div></div><div
-                                                            class="v-text-field__slot"><label for="input-24"
-                                                                                              class="v-label v-label--active theme--light"
-                                                                                              style="left: auto; right: 0px; position: absolute;">رقم الهاتف</label>
-                                                            <input id="input-24" type="number" name="phone" value="{{$phone}}"></div></div><div
+                                                            class="v-text-field__slot">
+                                                            <label for="input-24" class="v-label v-label--active theme--light" style="left: auto; right: 0px; position: absolute;">رقم الهاتف/Phone Number</label>
+                                                            <input id="input-24" type="number" name="phone" value="{{$phone}}">
+                                                        </div>
+                                                    </div>
+                                                     @error('phone')
+                                                                <span class="text-danger" style="text-align: initial">{{$message}}</span>
+                                                    @enderror
+                                                    <div
                                                         class="v-text-field__details"><div
                                                             class="v-messages theme--light"><div
                                                                 class="v-messages__wrapper"></div></div></div></div></div></span></div><div
@@ -1357,15 +1383,19 @@
                                                                 class="v-input__icon v-input__icon--prepend-inner"><i
                                                                     aria-hidden="true"
                                                                     class="v-icon notranslate mdi mdi-email-open-outline theme--light"></i></div></div><div
-                                                            class="v-text-field__slot"><label for="input-29"
-                                                                                              class="v-label v-label--active theme--light"
-                                                                                              style="left: auto; right: 0px; position: absolute;">البريد الإلكتروني</label>
-                                                            <input id="input-29" type="email" name="email" value="{{$email}}"></div></div>
+                                                            class="v-text-field__slot">
+                                                            <label for="input-29" class="v-label v-label--active theme--light" style="left: auto; right: 0px; position: absolute;">البريد الإلكتروني/E-mail</label>
+                                                            <input id="input-29" type="email" name="email" value="{{$email}}">
+                                                        </div>
+                                                    </div>
+                                                    @error('email')
+                                                                <span class="text-danger" style="text-align: initial">{{$message}}</span>
+                                                    @enderror
                                                     <div class="v-text-field__details">
                                                         <div class="v-messages theme--light">
                                                             <div class="v-messages__wrapper"></div></div></div></div></div></span></div>
                                     <div data-v-71b52688="" class="py-4 col-sm-6 col-md-4 offset-sm-3 offset-md-4 col-12" style="z-index: 900;">
-                                        <h3 class="primary--text text-center">العنوان</h3>
+                                        <h3 class="primary--text text-center" style="margin-top: 1rem">العنوان</h3>
                                     </div>
                                     <div data-v-71b52688="" class="pb-4 col-sm-6 col-md-4 offset-sm-3 offset-md-4 col-12">
                                         <span data-v-71b52688="">
@@ -1376,7 +1406,7 @@
                                                         <div class="v-select__slot custom-selector">
                                                            {{-- <label for="input-34" class="v-label theme--light" style="left: auto; right: 0px; position: absolute;">محافظة</label>--}}
                                                             <select  name="governorate" {{--style="width: 100%; height: 100%; outline: none;max-height: 304px; min-width: 91%; top: 455px; left: 672px; transform-origin: left top; z-index: 1001;"--}}>
-                                                            <option>المحافظة</option>
+                                                            <option disabled selected  value="0">المحافظة/Governorate</option>
                                                              @foreach(getGovernorate() as $value)
                                                                     <option value="{{$value->id}}">{{$value->name_en}}</option>
                                                              @endforeach
@@ -1392,6 +1422,10 @@
                                                        {{-- <div class="v-menu"><!----></div>--}}
 
                                                     </div>
+                                                     @error('governorate')
+                                                                <span class="text-danger" style="text-align: initial">{{$message}}</span>
+                                                            @enderror
+
                                                     <div class="v-text-field__details">
                                                         <div class="v-messages theme--light">
                                                             <div class="v-messages__wrapper"></div>
@@ -1409,8 +1443,8 @@
                                                          aria-owns="list-34" class="v-input__slot">
                                                         <div class="v-select__slot custom-selector">
                                                            {{-- <label for="input-34" class="v-label theme--light" style="left: auto; right: 0px; position: absolute;">محافظة</label>--}}
-                                                            <select  name="governorate" {{--style="width: 100%; height: 100%; outline: none;max-height: 304px; min-width: 91%; top: 455px; left: 672px; transform-origin: left top; z-index: 1001;"--}}>
-                                                            <option>المدينة</option>
+                                                            <select data-mce-placeholder=""  name="city" {{--style="width: 100%; height: 100%; outline: none;max-height: 304px; min-width: 91%; top: 455px; left: 672px; transform-origin: left top; z-index: 1001;"--}}>
+                                                            <option disabled selected value="0">المدينة/City</option>
                                                              @foreach(getCite() as $value)
                                                                     <option value="{{$value->id}}">{{$value->name_en}}</option>
                                                                 @endforeach
@@ -1426,6 +1460,9 @@
                                                        {{-- <div class="v-menu"><!----></div>--}}
 
                                                     </div>
+                                                     @error('city')
+                                                                <span class="text-danger" style="text-align: initial">{{$message}}</span>
+                                                            @enderror
                                                     <div class="v-text-field__details">
                                                         <div class="v-messages theme--light">
                                                             <div class="v-messages__wrapper"></div>
@@ -1465,12 +1502,14 @@
                                             data-v-71b52688=""><div data-v-71b52688=""
                                                                     class="v-input rounded-lg overLap v-input--is-label-active v-input--is-dirty theme--light v-text-field v-text-field--filled v-text-field--is-booted v-text-field--enclosed v-text-field--rounded"><div
                                                     class="v-input__control"><div class="v-input__slot"><div
-                                                            class="v-text-field__slot"><label for="input-46"
-                                                                                              class="v-label v-label--active theme--light"
-                                                                                              style="left: auto; right: 0px; position: absolute;">قطعة</label>
+                                                            class="v-text-field__slot">
+                                                            <label for="input-46" class="v-label v-label--active theme--light" style="left: auto; right: 0px; position: absolute;">قطعة/Plot</label>
                                                             <input id="input-46" type="text" name="block" value="{{$block}}">
                                                         </div>
                                                     </div>
+                                                     @error('block')
+                                                                <span class="text-danger" style="text-align: initial">{{$message}}</span>
+                                                            @enderror
                                                     <div class="v-text-field__details">
                                                         <div class="v-messages theme--light">
                                                             <div class="v-messages__wrapper"></div></div></div></div></div></span></div><div
@@ -1480,8 +1519,14 @@
                                                                     class="v-input rounded-lg overLap theme--light v-text-field v-text-field--filled v-text-field--is-booted v-text-field--enclosed v-text-field--rounded"><div
                                                     class="v-input__control"><div class="v-input__slot"><div
                                                             class="v-text-field__slot">
-                                                            <label for="input-50" class="v-label v-label--active theme--light" style="left: auto; right: 0px; position: absolute;">جادة</label>
-                                                            <input id="input-50" type="text" name="jadda" value="{{$jadda}}"></div></div><div
+                                                            <label for="input-50" class="v-label v-label--active theme--light" style="left: auto; right: 0px; position: absolute;">جادة/boulevard</label>
+                                                            <input id="input-50" type="text" name="jadda" value="{{$jadda}}">
+                                                        </div>
+                                                    </div>
+                                                     @error('jadda')
+                                                                <span class="text-danger" style="text-align: initial">{{$message}}</span>
+                                                            @enderror
+                                                    <div
                                                         class="v-text-field__details"><div
                                                             class="v-messages theme--light"><div
                                                                 class="v-messages__wrapper"></div></div></div></div></div></span></div><div
@@ -1490,12 +1535,14 @@
                                             data-v-71b52688=""><div data-v-71b52688=""
                                                                     class="v-input rounded-lg overLap v-input--is-label-active v-input--is-dirty theme--light v-text-field v-text-field--filled v-text-field--is-booted v-text-field--enclosed v-text-field--rounded"><div
                                                     class="v-input__control"><div class="v-input__slot"><div
-                                                            class="v-text-field__slot"><label for="input-54"
-                                                                                              class="v-label v-label--active theme--light"
-                                                                                              style="left: auto; right: 0px; position: absolute;">شارع</label>
+                                                            class="v-text-field__slot">
+                                                            <label for="input-54" class="v-label v-label--active theme--light" style="left: auto; right: 0px; position: absolute;">شارع/street</label>
                                                             <input id="input-54" type="text" name="street" value="{{$street}}">
                                                         </div>
                                                     </div>
+                                                     @error('street')
+                                                                <span class="text-danger" style="text-align: initial">{{$message}}</span>
+                                                            @enderror
                                                     <div class="v-text-field__details">
                                                         <div class="v-messages theme--light">
                                                             <div class="v-messages__wrapper">
@@ -1512,10 +1559,13 @@
                                                 <div class="v-input__control">
                                                     <div class="v-input__slot">
                                                         <div class="v-text-field__slot">
-                                                            <label for="input-58" class="v-label v-label--active theme--light" style="left: auto; right: 0px; position: absolute;">رقم المبنى</label>
+                                                            <label for="input-58" class="v-label v-label--active theme--light" style="left: auto; right: 0px; position: absolute;">رقم المبنى/building number</label>
                                                             <input id="input-58" type="text" name="house" value="{{$house}}">
                                                         </div>
                                                     </div>
+                                                     @error('house')
+                                                                <span class="text-danger" style="text-align: initial">{{$message}}</span>
+                                                            @enderror
                                                     <div class="v-text-field__details">
                                                         <div class="v-messages theme--light">
                                                             <div class="v-messages__wrapper"></div>
@@ -1530,10 +1580,14 @@
                                             <div data-v-71b52688="" class="v-input rounded-lg overLap theme--light v-text-field v-text-field--filled v-text-field--is-booted v-text-field--enclosed v-text-field--rounded">
                                                 <div class="v-input__control"><div class="v-input__slot">
                                                         <div class="v-text-field__slot">
-                                                            <label for="input-62" class="v-label v-label--active theme--light" style="left: auto; right: 0px; position: absolute;">الطابق</label>
+                                                            <label for="input-62" class="v-label v-label--active theme--light" style="left: auto; right: 0px; position: absolute;">الطابق/floor</label>
                                                             <input id="input-62" type="text" name="floor" value="floor">
                                                         </div>
+
                                                     </div>
+                                                    @error('floor')
+                                                                <span class="text-danger" style="text-align: initial">{{$message}}</span>
+                                                            @enderror
                                                     <div class="v-text-field__details">
                                                         <div class="v-messages theme--light">
                                                             <div class="v-messages__wrapper"></div>
@@ -1578,7 +1632,7 @@
                 <div tabindex="0" aria-selected="false" id="list-item-84-3" role="option" class="v-list-item v-list-item--link theme--light">
                     <div class="v-list-item__content"><div class="v-list-item__title">Jahra Governorate</div></div></div><div tabindex="0" aria-selected="false" id="list-item-84-4" role="option" class="v-list-item v-list-item--link theme--light"><div class="v-list-item__content"><div class="v-list-item__title">Capital Governorate</div></div></div><div tabindex="0" aria-selected="false" id="list-item-84-5" role="option" class="v-list-item v-list-item--link theme--light"><div class="v-list-item__content"><div class="v-list-item__title">Mubarak Alkabeer</div></div></div></div></div>
     --}}
-
 </div>
 </body>
+
 </html>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class NewRequest extends Controller
 {
@@ -24,6 +25,21 @@ class NewRequest extends Controller
         return view('new_request',compact('order_number'));
     }
     public function store(Request $request){
+        $validator = Validator::make($request->all(), [
+            'order_number' => 'required|unique:orders',
+            'name' => 'required',
+            'phone' => 'required',
+            'email' => 'required',
+            'block' => 'required',
+            'jadda' => 'required',
+            'house' => 'required',
+
+            'floor' => 'required',
+            'governorate' => 'required',
+            'city' => 'required',
+        ]);
+
+        if($validator->passes()){
         $order = new Order();
         $order->order_number = $request->order_number;
         $order->name = $request->name;
@@ -83,6 +99,11 @@ class NewRequest extends Controller
         $err = curl_error($curl);
         curl_close($curl);
         return redirect()->intended(json_decode($response)->paymentURL);
+        }else{
+            return back()->withErrors($validator->errors())->withInput();
+
+
+        }
     }
 
     public function response(Request $request,$id){
