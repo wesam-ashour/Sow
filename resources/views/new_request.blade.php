@@ -5,7 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <!--[if IE]>
-    <link rel="icon" href="/favicon.ico"><![endif]--><title></title>
+    <link rel="icon" href=""><![endif]-->
+    <title>الاتحاد الوطني لطلبة الكويت</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Sen&amp;display=swap" rel="stylesheet">
@@ -48,42 +49,34 @@
             background-color: #cbffff !important;
             border-color: #cbffff !important;
         }
-
         .v-application .primary--text.text--lighten-5 {
             color: #cbffff !important;
             caret-color: #cbffff !important;
         }
-
         .v-application .primary.lighten-4 {
             background-color: #acffff !important;
             border-color: #acffff !important;
         }
-
         .v-application .primary--text.text--lighten-4 {
             color: #acffff !important;
             caret-color: #acffff !important;
         }
-
         .v-application .primary.lighten-3 {
             background-color: #8cffff !important;
             border-color: #8cffff !important;
         }
-
         .v-application .primary--text.text--lighten-3 {
             color: #8cffff !important;
             caret-color: #8cffff !important;
         }
-
         .v-application .primary.lighten-2 {
             background-color: #6be3ff !important;
             border-color: #6be3ff !important;
         }
-
         .v-application .primary--text.text--lighten-2 {
             color: #6be3ff !important;
             caret-color: #6be3ff !important;
         }
-
         .v-application .primary.lighten-1 {
             background-color: #46c7ff !important;
             border-color: #46c7ff !important;
@@ -1132,12 +1125,115 @@
         .v-application .surface--text.text--darken-4 {
             color: #919191 !important;
             caret-color: #919191 !important;
-        }</style>
+        }
+
+        .custom-selector select{
+            min-height: 100%;
+            border-radius: 3px;
+            outline: none;
+            padding: 0 10px;
+            cursor: pointer;
+            margin-top: 5px;
+            appearance: none;
+            width: 100%;
+        }
+        .custom-selector .selector-options {
+            list-style: none;
+            padding: 5px 0;
+            margin: 0;
+            background: #11436b;
+            color: #fff;
+            border-radius: 4px;
+            z-index: 1;
+            width: 96%;
+            position: absolute;
+            left: 2%;
+            top: 35%;
+        }
+        .custom-selector::after{
+            content: '';
+            border-width: 5px;
+            border-style: solid;
+            border-color: transparent;
+            border-top-color: #222;
+            display: inline-block;
+            position: absolute;
+            right: 18rem;
+            bottom: 1rem;
+            border-radius: 2px;
+        }
+        .custom-selector option{
+            list-style: none;
+            padding: 5px 0;
+            margin: 0;
+            background-color: #d8dfe466;
+            border-radius: 4px;
+            border-color: red;
+            z-index: 1;
+            width: 96%;
+            position: absolute;
+            left: 2%;
+            top:35%
+        }
+        .custom-selector option li{
+            height: 35px;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            cursor: pointer;
+            color: #fff;
+        }
+
+    </style>
     <link rel="stylesheet" type="text/css" href="{{asset('pages/css/chunk-0f057602.d60dae19.css')}}">
 
     <link rel="stylesheet" type="text/css" href="{{asset('pages/css/chunk-3fc50ebf.f5807d62.css')}}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script>
+        /* Video Explanatio - https://youtu.be/-0VuZEYIYuI */
+        document.querySelectorAll('.custom-select').forEach(setupSelector);
 
+        function setupSelector(selector) {
+            selector.addEventListener('change', e => {
+                console.log('changed', e.target.value)
+            })
+
+            selector.addEventListener('mousedown', e => {
+                if(window.innerWidth >= 420) {// override look for non mobile
+                    e.preventDefault();
+
+                    const select = selector.children[0];
+                    const dropDown = document.createElement('ul');
+                    dropDown.className = "selector-options";
+
+                    [...select.children].forEach(option => {
+                        const dropDownOption = document.createElement('li');
+                        dropDownOption.textContent = option.textContent;
+
+                        dropDownOption.addEventListener('mousedown', (e) => {
+                            e.stopPropagation();
+                            select.value = option.value;
+                            selector.value = option.value;
+                            select.dispatchEvent(new Event('change'));
+                            selector.dispatchEvent(new Event('change'));
+                            dropDown.remove();
+                        });
+
+                        dropDown.appendChild(dropDownOption);
+                    });
+
+                    selector.appendChild(dropDown);
+
+                    // handle click out
+                    document.addEventListener('click', (e) => {
+                        if(!selector.contains(e.target)) {
+                            dropDown.remove();
+                        }
+                    });
+                }
+            });
+        }
+    </script>
 </head>
 <body>
 <div data-v-d2325c8a="" data-app="true" class="v-application v-application--is-rtl theme--light" id="app">
@@ -1160,10 +1256,10 @@
                                      style="width: 65px;">
                                     <div class="v-responsive__sizer" style="padding-bottom: 151.974%;"></div>
                                     <div class="v-image__image v-image__image--contain"
-                                         style="background-image: url(&quot;https://ezhlha.makegrp.com/img/Ezhelha_Logo.91c810f7.png&quot;); background-position: center center;"></div>
+                                         style="background-image: url(''); background-position: center center;"></div>
                                     <div class="v-responsive__content" style="width: 608px;"></div>
                                 </div>
-                                <div class="text-center py-5">
+                                <div class="text-center py-5" style="visibility: hidden">
                                     <button type="button"
                                             class="black--text v-btn v-btn--has-bg v-btn--rounded theme--light v-size--default"
                                             role="button" aria-haspopup="true" aria-expanded="false"
@@ -1196,6 +1292,7 @@
                                     {{\Illuminate\Support\Facades\Session::get('failed')}}
                                 </div>
                             @endif
+
                             <form action="{{route('new-request.store')}}" method="post">
                                 @csrf
                                 <div data-v-71b52688="" class="row">
@@ -1206,7 +1303,7 @@
                                         <div data-v-71b52688="" class="d-flex flex-row justify-center">
                                             <div data-v-71b52688="" aria-label="" class="v-image v-responsive bg theme--light" style="width: 650px;">
                                                 <div class="v-responsive__sizer" style="padding-bottom: 97.2163%;"></div>
-                                                <div class="v-image__image v-image__image--contain" style="background-image: url({{asset('images/Imagebackground.jpg')}}); background-position: center center;"></div>
+                                                <div class="v-image__image v-image__image--contain" style="background-image: url(https://ezhlha.makegrp.com/img/Image%20from%20iOS.8ceff8a0.jpg); background-position: center center;"></div>
                                                 <div class="v-responsive__content" style="width: 467px;"></div>
                                             </div>
                                         </div>
@@ -1214,13 +1311,25 @@
                                     <div data-v-71b52688="" class="pb-4 col-sm-6 col-md-4 offset-sm-3 offset-md-4 col-12"><span
                                             data-v-71b52688="">
                                             <div data-v-71b52688="" class="v-input rounded-lg overLap v-input--is-label-active v-input--is-dirty v-input--is-readonly theme--light v-text-field v-text-field--filled v-text-field--is-booted v-text-field--enclosed v-text-field--rounded"><div
-                                                    class="v-input__control"><div class="v-input__slot"><div
-                                                            class="v-text-field__slot">
-                                                            <label for="input-15" class="v-label v-label--active theme--light" style="left: auto; right: 0px; position: absolute;">رقم الطلب</label>
-                                                            <input id="input-15" name="order_number" value="{{$order_number}}" readonly="readonly" type="text"></div></div>
+                                                    class="v-input__control">
+                                                    <div class="v-input__slot">
+                                                        <div class="v-text-field__slot">
+                                                            <label for="input-15" class="v-label v-label--active theme--light" style="left: auto; right: 0px; position: absolute;">order number/رقم الطلب</label>
+                                                            <input id="input-15" name="order_number" value="{{$order_number}}" readonly="readonly" type="text">
+                                                        </div>
+                                                    </div>
+                                                     @error('order_number')
+                                                                <span class="text-danger" style="text-align: initial">{{$message}}</span>
+                                                    @enderror
                                                     <div class="v-text-field__details">
                                                         <div class="v-messages theme--light">
-                                                            <div class="v-messages__wrapper"></div></div></div></div></div></span></div>
+                                                            <div class="v-messages__wrapper"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </span>
+                                    </div>
                                     <div data-v-71b52688="" class="pb-4 col-sm-6 col-md-4 offset-sm-3 offset-md-4 col-12"><span
                                             data-v-71b52688="">
                                             <div data-v-71b52688="" class="v-input rounded-lg overLap v-input--is-label-active v-input--is-dirty theme--light v-text-field v-text-field--filled v-text-field--is-booted v-text-field--enclosed v-text-field--rounded"><div
@@ -1228,14 +1337,22 @@
                                                             class="v-input__prepend-inner"><div
                                                                 class="v-input__icon v-input__icon--prepend-inner"><i
                                                                     aria-hidden="true"
-                                                                    class="v-icon notranslate mdi mdi-account-circle-outline theme--light"></i></div></div><div
-                                                            class="v-text-field__slot"><label for="input-19"
-                                                                                              class="v-label v-label--active theme--light"
-                                                                                              style="left: auto; right: 0px; position: absolute;">الأسم</label>
-                                                            <input id="input-19" type="text" name="name" value="{{$name}}"></div></div><div
-                                                        class="v-text-field__details"><div
-                                                            class="v-messages theme--light"><div
-                                                                class="v-messages__wrapper"></div></div></div></div></div></span></div><div
+                                                                    class="v-icon notranslate mdi mdi-account-circle-outline theme--light"></i>
+                                                            </div>
+                                                        </div>
+                                                        <div class="v-text-field__slot">
+                                                            <label for="input-19" class="v-label v-label--active theme--light" style="left: auto; right: 0px; position: absolute;">Name/الأسم</label>
+                                                            <input id="input-19" type="text" name="name" value="{{$name}}">
+                                                        </div>
+                                                    </div>
+                                                    @error('name')
+                                                                <span class="text-danger" style="text-align: initial">{{$message}}</span>
+                                                    @enderror
+                                                    <div class="v-text-field__details">
+                                                        <div class="v-messages theme--light">
+                                                            <div class="v-messages__wrapper">
+                                                            </div>
+                                                        </div></div></div></div></span></div><div
                                         data-v-71b52688=""
                                         class="pb-4 col-sm-6 col-md-4 offset-sm-3 offset-md-4 col-12"><span
                                             data-v-71b52688=""><div data-v-71b52688=""
@@ -1245,10 +1362,15 @@
                                                                 class="v-input__icon v-input__icon--prepend-inner"><i
                                                                     aria-hidden="true"
                                                                     class="v-icon notranslate mdi mdi-phone-outline theme--light"></i></div></div><div
-                                                            class="v-text-field__slot"><label for="input-24"
-                                                                                              class="v-label v-label--active theme--light"
-                                                                                              style="left: auto; right: 0px; position: absolute;">رقم الهاتف</label>
-                                                            <input id="input-24" type="number" name="phone" value="{{$phone}}"></div></div><div
+                                                            class="v-text-field__slot">
+                                                            <label for="input-24" class="v-label v-label--active theme--light" style="left: auto; right: 0px; position: absolute;">رقم الهاتف/Phone Number</label>
+                                                            <input id="input-24" type="number" name="phone" value="{{$phone}}">
+                                                        </div>
+                                                    </div>
+                                                     @error('phone')
+                                                                <span class="text-danger" style="text-align: initial">{{$message}}</span>
+                                                    @enderror
+                                                    <div
                                                         class="v-text-field__details"><div
                                                             class="v-messages theme--light"><div
                                                                 class="v-messages__wrapper"></div></div></div></div></div></span></div><div
@@ -1261,15 +1383,19 @@
                                                                 class="v-input__icon v-input__icon--prepend-inner"><i
                                                                     aria-hidden="true"
                                                                     class="v-icon notranslate mdi mdi-email-open-outline theme--light"></i></div></div><div
-                                                            class="v-text-field__slot"><label for="input-29"
-                                                                                              class="v-label v-label--active theme--light"
-                                                                                              style="left: auto; right: 0px; position: absolute;">البريد الإلكتروني</label>
-                                                            <input id="input-29" type="email" name="email" value="{{$email}}"></div></div>
+                                                            class="v-text-field__slot">
+                                                            <label for="input-29" class="v-label v-label--active theme--light" style="left: auto; right: 0px; position: absolute;">البريد الإلكتروني/E-mail</label>
+                                                            <input id="input-29" type="email" name="email" value="{{$email}}">
+                                                        </div>
+                                                    </div>
+                                                    @error('email')
+                                                                <span class="text-danger" style="text-align: initial">{{$message}}</span>
+                                                    @enderror
                                                     <div class="v-text-field__details">
                                                         <div class="v-messages theme--light">
                                                             <div class="v-messages__wrapper"></div></div></div></div></div></span></div>
                                     <div data-v-71b52688="" class="py-4 col-sm-6 col-md-4 offset-sm-3 offset-md-4 col-12" style="z-index: 900;">
-                                        <h3 class="primary--text text-center">العنوان</h3>
+                                        <h3 class="primary--text text-center" style="margin-top: 1rem">العنوان</h3>
                                     </div>
                                     <div data-v-71b52688="" class="pb-4 col-sm-6 col-md-4 offset-sm-3 offset-md-4 col-12">
                                         <span data-v-71b52688="">
@@ -1277,25 +1403,29 @@
                                                 <div class="v-input__control">
                                                     <div role="combobox" aria-haspopup="listbox" aria-expanded="false"
                                                          aria-owns="list-34" class="v-input__slot">
-                                                        <div class="v-select__slot">
+                                                        <div class="v-select__slot custom-selector">
                                                            {{-- <label for="input-34" class="v-label theme--light" style="left: auto; right: 0px; position: absolute;">محافظة</label>--}}
-                                                            <select name="governorate" style="width: 100%; height: 100%; outline: none;max-height: 304px; min-width: 91%; top: 455px; left: 672px; transform-origin: left top; z-index: 1001;">
-                                                            <option>المحافظة</option>
+                                                            <select  name="governorate" {{--style="width: 100%; height: 100%; outline: none;max-height: 304px; min-width: 91%; top: 455px; left: 672px; transform-origin: left top; z-index: 1001;"--}}>
+                                                            <option disabled selected  value="0">المحافظة/Governorate</option>
                                                              @foreach(getGovernorate() as $value)
                                                                     <option value="{{$value->id}}">{{$value->name_en}}</option>
                                                              @endforeach
                                                         </select>
-                                                             <div class="v-input__append-inner">
+                                                            {{-- <div class="v-input__append-inner">
                                                                 <div class="v-input__icon v-input__icon--append">
                                                                     <i aria-hidden="true" class="v-icon notranslate mdi mdi-menu-down theme--light"></i>
                                                                 </div>
                                                             </div>
-                                                            <input type="hidden">
+                                                            <input type="hidden">--}}
 
                                                         </div>
                                                        {{-- <div class="v-menu"><!----></div>--}}
 
                                                     </div>
+                                                     @error('governorate')
+                                                                <span class="text-danger" style="text-align: initial">{{$message}}</span>
+                                                            @enderror
+
                                                     <div class="v-text-field__details">
                                                         <div class="v-messages theme--light">
                                                             <div class="v-messages__wrapper"></div>
@@ -1309,35 +1439,77 @@
                                         <span data-v-71b52688="">
                                             <div data-v-71b52688="" class="v-input rounded-lg overLap theme--light v-text-field v-text-field--filled v-text-field--is-booted v-text-field--enclosed v-text-field--rounded v-select v-autocomplete" style="z-index: 999;">
                                                 <div class="v-input__control">
+                                                    <div role="combobox" aria-haspopup="listbox" aria-expanded="false"
+                                                         aria-owns="list-34" class="v-input__slot">
+                                                        <div class="v-select__slot custom-selector">
+                                                           {{-- <label for="input-34" class="v-label theme--light" style="left: auto; right: 0px; position: absolute;">محافظة</label>--}}
+                                                            <select data-mce-placeholder=""  name="city" {{--style="width: 100%; height: 100%; outline: none;max-height: 304px; min-width: 91%; top: 455px; left: 672px; transform-origin: left top; z-index: 1001;"--}}>
+                                                            <option disabled selected value="0">المدينة/City</option>
+                                                             @foreach(getCite() as $value)
+                                                                    <option value="{{$value->id}}">{{$value->name_en}}</option>
+                                                                @endforeach
+                                                        </select>
+                                                            {{-- <div class="v-input__append-inner">
+                                                                <div class="v-input__icon v-input__icon--append">
+                                                                    <i aria-hidden="true" class="v-icon notranslate mdi mdi-menu-down theme--light"></i>
+                                                                </div>
+                                                            </div>
+                                                            <input type="hidden">--}}
+
+                                                        </div>
+                                                       {{-- <div class="v-menu"><!----></div>--}}
+
+                                                    </div>
+                                                     @error('city')
+                                                                <span class="text-danger" style="text-align: initial">{{$message}}</span>
+                                                            @enderror
+                                                    <div class="v-text-field__details">
+                                                        <div class="v-messages theme--light">
+                                                            <div class="v-messages__wrapper"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </span>
+                                    </div>
+                                   {{-- <div data-v-71b52688="" class="pb-4 col-sm-6 col-md-4 offset-sm-3 offset-md-4 col-12">
+                                        <span data-v-71b52688="">
+                                            <div data-v-71b52688="" class="v-input rounded-lg overLap theme--light v-text-field v-text-field--filled v-text-field--is-booted v-text-field--enclosed v-text-field--rounded v-select v-autocomplete" style="z-index: 999;">
+                                                <div class="v-input__control">
                                                     <div role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-owns="list-40" class="v-input__slot">
                                                         <div class="v-select__slot">
-                                                            {{--<label for="input-40" class="v-label theme--light" style="left: auto; right: 0px; position: absolute;">مدينة</label>
-                                                            <input id="input-40" type="text" autocomplete="off" value="{{$city}}">--}}
-                                                             <select name="city" style="width: 100%; height: 100%; outline: none;max-height: 304px; min-width: 91%; top: 455px; left: 672px; transform-origin: left top; z-index: 1001;">
+                                                            --}}{{--<label for="input-40" class="v-label theme--light" style="left: auto; right: 0px; position: absolute;">مدينة</label>
+                                                            <input id="input-40" type="text" autocomplete="off" value="{{$city}}">--}}{{--
+                                                             <select class="custom-selector" name="city" style="width: 100%; height: 100%; outline: none;max-height: 304px; min-width: 91%; top: 455px; left: 672px; transform-origin: left top; z-index: 1001;">
                                                             <option>المدينة</option>
                                                              @foreach(getCite() as $value)
                                                                      <option value="{{$value->id}}">{{$value->name_en}}</option>
                                                              @endforeach
                                                         </select>
-                                                            <div class="v-input__append-inner">
-                                                                <div class="v-input__icon v-input__icon--append">
-                                                                    <i aria-hidden="true" class="v-icon notranslate mdi mdi-menu-down theme--light"></i></div></div>
-                                                            <input type="hidden"></div><div
-                                                            class="v-menu"><!----></div></div><div
+
+
+                                                        </div>
+                                                        <div class="v-menu">
+                                                            <!---->
+                                                        </div>
+                                                    </div>
+                                                    <div
                                                         class="v-text-field__details"><div
-                                                            class="v-messages theme--light"><div
-                                                                class="v-messages__wrapper"></div></div></div></div></div></span></div><div
-                                        data-v-71b52688=""
+                                                            class="v-messages theme--light">
+                                                            <div class="v-messages__wrapper"></div></div></div></div></div></span></div>--}}
+                                    <div data-v-71b52688=""
                                         class="pb-4 col-sm-6 col-md-4 offset-sm-3 offset-md-4 col-12"><span
                                             data-v-71b52688=""><div data-v-71b52688=""
                                                                     class="v-input rounded-lg overLap v-input--is-label-active v-input--is-dirty theme--light v-text-field v-text-field--filled v-text-field--is-booted v-text-field--enclosed v-text-field--rounded"><div
                                                     class="v-input__control"><div class="v-input__slot"><div
-                                                            class="v-text-field__slot"><label for="input-46"
-                                                                                              class="v-label v-label--active theme--light"
-                                                                                              style="left: auto; right: 0px; position: absolute;">قطعة</label>
+                                                            class="v-text-field__slot">
+                                                            <label for="input-46" class="v-label v-label--active theme--light" style="left: auto; right: 0px; position: absolute;">قطعة/Plot</label>
                                                             <input id="input-46" type="text" name="block" value="{{$block}}">
                                                         </div>
                                                     </div>
+                                                     @error('block')
+                                                                <span class="text-danger" style="text-align: initial">{{$message}}</span>
+                                                            @enderror
                                                     <div class="v-text-field__details">
                                                         <div class="v-messages theme--light">
                                                             <div class="v-messages__wrapper"></div></div></div></div></div></span></div><div
@@ -1347,8 +1519,14 @@
                                                                     class="v-input rounded-lg overLap theme--light v-text-field v-text-field--filled v-text-field--is-booted v-text-field--enclosed v-text-field--rounded"><div
                                                     class="v-input__control"><div class="v-input__slot"><div
                                                             class="v-text-field__slot">
-                                                            <label for="input-50" class="v-label v-label--active theme--light" style="left: auto; right: 0px; position: absolute;">جادة</label>
-                                                            <input id="input-50" type="text" name="jadda" value="{{$jadda}}"></div></div><div
+                                                            <label for="input-50" class="v-label v-label--active theme--light" style="left: auto; right: 0px; position: absolute;">جادة/boulevard</label>
+                                                            <input id="input-50" type="text" name="jadda" value="{{$jadda}}">
+                                                        </div>
+                                                    </div>
+                                                     @error('jadda')
+                                                                <span class="text-danger" style="text-align: initial">{{$message}}</span>
+                                                            @enderror
+                                                    <div
                                                         class="v-text-field__details"><div
                                                             class="v-messages theme--light"><div
                                                                 class="v-messages__wrapper"></div></div></div></div></div></span></div><div
@@ -1357,12 +1535,14 @@
                                             data-v-71b52688=""><div data-v-71b52688=""
                                                                     class="v-input rounded-lg overLap v-input--is-label-active v-input--is-dirty theme--light v-text-field v-text-field--filled v-text-field--is-booted v-text-field--enclosed v-text-field--rounded"><div
                                                     class="v-input__control"><div class="v-input__slot"><div
-                                                            class="v-text-field__slot"><label for="input-54"
-                                                                                              class="v-label v-label--active theme--light"
-                                                                                              style="left: auto; right: 0px; position: absolute;">شارع</label>
+                                                            class="v-text-field__slot">
+                                                            <label for="input-54" class="v-label v-label--active theme--light" style="left: auto; right: 0px; position: absolute;">شارع/street</label>
                                                             <input id="input-54" type="text" name="street" value="{{$street}}">
                                                         </div>
                                                     </div>
+                                                     @error('street')
+                                                                <span class="text-danger" style="text-align: initial">{{$message}}</span>
+                                                            @enderror
                                                     <div class="v-text-field__details">
                                                         <div class="v-messages theme--light">
                                                             <div class="v-messages__wrapper">
@@ -1379,10 +1559,13 @@
                                                 <div class="v-input__control">
                                                     <div class="v-input__slot">
                                                         <div class="v-text-field__slot">
-                                                            <label for="input-58" class="v-label v-label--active theme--light" style="left: auto; right: 0px; position: absolute;">رقم المبنى</label>
+                                                            <label for="input-58" class="v-label v-label--active theme--light" style="left: auto; right: 0px; position: absolute;">رقم المبنى/building number</label>
                                                             <input id="input-58" type="text" name="house" value="{{$house}}">
                                                         </div>
                                                     </div>
+                                                     @error('house')
+                                                                <span class="text-danger" style="text-align: initial">{{$message}}</span>
+                                                            @enderror
                                                     <div class="v-text-field__details">
                                                         <div class="v-messages theme--light">
                                                             <div class="v-messages__wrapper"></div>
@@ -1397,10 +1580,14 @@
                                             <div data-v-71b52688="" class="v-input rounded-lg overLap theme--light v-text-field v-text-field--filled v-text-field--is-booted v-text-field--enclosed v-text-field--rounded">
                                                 <div class="v-input__control"><div class="v-input__slot">
                                                         <div class="v-text-field__slot">
-                                                            <label for="input-62" class="v-label v-label--active theme--light" style="left: auto; right: 0px; position: absolute;">الطابق</label>
-                                                            <input id="input-62" type="text" name="floor" value="floor">
+                                                            <label for="input-62" class="v-label v-label--active theme--light" style="left: auto; right: 0px; position: absolute;">الطابق/floor</label>
+                                                            <input id="input-62" type="text" name="floor" value="">
                                                         </div>
+
                                                     </div>
+                                                    @error('floor')
+                                                                <span class="text-danger" style="text-align: initial">{{$message}}</span>
+                                                            @enderror
                                                     <div class="v-text-field__details">
                                                         <div class="v-messages theme--light">
                                                             <div class="v-messages__wrapper"></div>
@@ -1445,7 +1632,7 @@
                 <div tabindex="0" aria-selected="false" id="list-item-84-3" role="option" class="v-list-item v-list-item--link theme--light">
                     <div class="v-list-item__content"><div class="v-list-item__title">Jahra Governorate</div></div></div><div tabindex="0" aria-selected="false" id="list-item-84-4" role="option" class="v-list-item v-list-item--link theme--light"><div class="v-list-item__content"><div class="v-list-item__title">Capital Governorate</div></div></div><div tabindex="0" aria-selected="false" id="list-item-84-5" role="option" class="v-list-item v-list-item--link theme--light"><div class="v-list-item__content"><div class="v-list-item__title">Mubarak Alkabeer</div></div></div></div></div>
     --}}
-
 </div>
 </body>
+
 </html>

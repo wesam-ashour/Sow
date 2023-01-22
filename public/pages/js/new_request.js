@@ -9,15 +9,15 @@ $(function () {
     function create_news() {
         "use strict";
         var KTUsersAddPermission = function () {
-            const t = document.getElementById("kt_modal_add_driver"),
-                e = t.querySelector("#kt_modal_add_driver_form"),
+            const t = document.getElementById("kt_modal_add_new_request"),
+                e = t.querySelector("#kt_modal_add_new_request_form"),
                 n = new bootstrap.Modal(t);
             return {
                 init: function () {
                     (() => {
                         var o = FormValidation.formValidation(e, {
                             fields: {
-                                full_name: {validators: {notEmpty: {message: "Name is required"}}},
+                                flsdaoor: {validators: {notEmpty: {message: "floor is required"}}},
                                 email: {validators: {notEmpty: {message: "Email is required"}}},
                                 phone_number: {validators: {notEmpty: {message: "Phone Number is required"}}},
                                 address: {validators: {notEmpty: {message: "Address is required"}}},
