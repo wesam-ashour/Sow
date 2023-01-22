@@ -1581,7 +1581,7 @@
                                                 <div class="v-input__control"><div class="v-input__slot">
                                                         <div class="v-text-field__slot">
                                                             <label for="input-62" class="v-label v-label--active theme--light" style="left: auto; right: 0px; position: absolute;">الطابق/floor</label>
-                                                            <input id="input-62" type="text" name="floor" value="floor">
+                                                            <input id="input-62" type="text" name="floor" value="">
                                                         </div>
 
                                                     </div>
