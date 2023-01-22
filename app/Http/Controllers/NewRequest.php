@@ -33,6 +33,7 @@ class NewRequest extends Controller
             'block' => 'required',
             'jadda' => 'required',
             'house' => 'required',
+            'street' => 'required',
 
             'floor' => 'required',
             'governorate' => 'required',
