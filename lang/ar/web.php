@@ -162,11 +162,19 @@ return [
     'in' => 'النوع المحدد غير صالح',
 
     /*driver*/
-
+    'Order_Details' => 'تفاصيل الطلب',
     'address' => 'العنوان',
     'Add_driver' => 'اضافة سائق',
     'drivers' => 'السائقين',
     'action' => 'العمليات',
-
+    'block' => 'قطعه',
+    'jadda' => 'جادة',
+    'house' => 'المنزل',
+    'assigned_driver' => 'السائق المعين بواسطه',
+    'assigned_status' => 'الحالة المعينة بواسطه',
+    'date_payment' => 'تاريخ الدفع',
+    'TrackID' => 'رقم التتبع',
+    'PaymentID' => 'رقم الدفعه',
+    'driver' => 'السائق',
 
 ];

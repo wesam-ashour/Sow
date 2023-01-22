@@ -72,6 +72,9 @@ Route::group(['middleware' => ['auth', 'verified', 'localeSessionRedirect', 'loc
 
 
     Route::resource('orders', TransportationController::class);
+    Route::post('/changeStatus/order/', [TransportationController::class, 'changeStatus']);
+    Route::post('/changeUser/order/', [TransportationController::class, 'changeUserOrder']);
+
     Route::get('/search', [TransportationController::class, 'fetch_data']);
     Route::get('/search/date/', [TransportationController::class, 'SearchDate']);
 

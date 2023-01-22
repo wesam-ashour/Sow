@@ -60,5 +60,45 @@ function order_status($value){
     }
 }
 
+function selected($value,$status){
+    if ($value == $status){
+        return 'selected';
+    }
+}
+
+function selectedUser($value,$status){
+    if ($value == $status){
+        return 'selected';
+    }
+}
+
+function Select($value){
+    if ($value == 1) {
+        return "New Order";
+    } elseif ($value == 2) {
+        return "Inside the Library";
+    } elseif ($value == 3) {
+        return "Delivery in progress";
+    } elseif ($value == 4) {
+        return "Delivered";
+    } elseif ($value == 5) {
+        return "Throwback";
+    } elseif ($value == 6) {
+        return "Cancelled";
+    }
+}
+
+function disableSelect($value){
+    if ($value == 1 || $value == 4){
+        return 'disabled' ;
+    }
+}
+
+function disableOption($value){
+    if ($value == 1){
+        return 'disabled' ;
+    }
+}
+
 
 

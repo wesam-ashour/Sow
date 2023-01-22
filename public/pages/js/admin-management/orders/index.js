@@ -31,48 +31,24 @@ $(function () {
                                 name: 'name'
                             },
                             {
-                                data: 'phone_number',
-                                name: 'phone_number'
-                            },
-                            {
                                 data: 'email',
                                 name: 'email'
-                            },
-                            {
-                                data: 'governorate',
-                                name: 'governorate'
-                            },
-                            {
-                                data: 'city',
-                                name: 'city'
-                            },
-                            {
-                                data: 'pieces_number',
-                                name: 'pieces_number'
-                            },
-                            {
-                                data: 'avenue',
-                                name: 'avenue'
-                            },
-                            {
-                                data: 'street',
-                                name: 'street'
-                            },
-                            {
-                                data: 'building_number',
-                                name: 'building_number'
-                            },
-                            {
-                                data: 'floor',
-                                name: 'floor'
                             },
                             {
                                 data: 'status',
                                 name: 'status'
                             },
                             {
+                                data: 'assign_driver',
+                                name: 'assign_driver'
+                            },
+                            {
                                 data: 'payment_status',
                                 name: 'payment_status'
+                            },
+                            {
+                                data: 'actions',
+                                name: 'actions'
                             },
 
 

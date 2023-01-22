@@ -165,10 +165,20 @@ return [
 
     /*driver*/
 
+    'Order_Details' => 'Order Details',
     'address' => 'address',
     'Add_driver' => 'Add driver',
     'drivers' => 'drivers',
     'action' => 'actions',
+    'block' => 'Block',
+    'jadda' => 'jadda',
+    'house' => 'House',
+    'assigned_driver' => 'Assigned driver by',
+    'assigned_status' => 'Assigned status by',
+    'date_payment' => 'Date payment',
+    'TrackID' => 'Track ID',
+    'PaymentID' => 'Payment ID',
+    'driver' => 'Driver',
 
 
 

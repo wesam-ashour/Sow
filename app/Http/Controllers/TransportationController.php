@@ -6,6 +6,7 @@ use App\Models\Order;
 use App\Models\User;
 use Dflydev\DotAccessData\Data;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -23,43 +24,43 @@ class TransportationController extends Controller
         if ($request->ajax()) {
             return Datatables::of($transportations_all)->addIndexColumn()
                 ->addColumn('order_number', function ($transportations_all) {
-                    return '<a  class="text-gray-900 fw-bolder text-hover-primary mb-1 text-center">' . $transportations_all->order_number . '</a>';
+                    return $transportations_all->order_number;
                 })
                 ->addColumn('name', function ($transportations_all) {
-                    return '<a  class="text-gray-900 fw-bolder text-hover-primary mb-1 text-center">' . $transportations_all->name . '</a>';
-                })
-                ->addColumn('phone_number', function ($transportations_all) {
-                    return '<a  class="text-gray-900 fw-bolder text-hover-primary mb-1 text-center">' . $transportations_all->phone_number . '</a>';
+                    return $transportations_all->name;
                 })
                 ->addColumn('email', function ($transportations_all) {
-                    return '<a  class="text-gray-900 fw-bolder text-hover-primary mb-1 text-center">' . $transportations_all->email . '</a>';
-                })
-                ->addColumn('governorate', function ($transportations_all) {
-                    return '<a  class="text-gray-900 fw-bolder text-hover-primary mb-1 text-center">' . $transportations_all->governorate . '</a>';
-                })
-                ->addColumn('city', function ($transportations_all) {
-                    return '<a  class="text-gray-900 fw-bolder text-hover-primary mb-1 text-center">' . $transportations_all->city . '</a>';
-                })
-                ->addColumn('pieces_number', function ($transportations_all) {
-                    return '<a  class="text-gray-900 fw-bolder text-hover-primary mb-1 text-center">' . $transportations_all->block . '</a>';
-                })
-                ->addColumn('avenue', function ($transportations_all) {
-                    return '<a  class="text-gray-900 fw-bolder text-hover-primary mb-1 text-center">' . $transportations_all->jadda . '</a>';
-                })
-                ->addColumn('street', function ($transportations_all) {
-                    return '<a  class="text-gray-900 fw-bolder text-hover-primary mb-1 text-center">' . $transportations_all->street . '</a>';
-                })
-                ->addColumn('building_number', function ($transportations_all) {
-                    return '<a  class="text-gray-900 fw-bolder text-hover-primary mb-1 text-center">' . $transportations_all->house . '</a>';
-                })
-                ->addColumn('floor', function ($transportations_all) {
-                    return '<a  class="text-gray-900 fw-bolder text-hover-primary mb-1 text-center">' . $transportations_all->floor . '</a>';
+                    return $transportations_all->email;
                 })
                 ->addColumn('status', function ($transportations_all) {
-                    return '<a  class="text-gray-900 fw-bolder text-hover-primary mb-1 text-center">' . order_status($transportations_all->status) . '</a>';
+                    $select = '<select style="height: auto;line-height: 14px;width:170px;" class="form-select form-control-solid cc" id="'.$transportations_all->id.'" '.disableSelect($transportations_all->status).' onclick="ChangeSelect(this)">';
+                        foreach (Order::STATUS as $status){
+                           $select = $select . '<option '.disableOption($status).' value="'.$status.'" '.selected($status,$transportations_all->status).'>'. Select($status) .'</option>';
+                        }
+                        return $select . '</select>';
                 })
                 ->addColumn('payment_status', function ($transportations_all) {
-                    return '<a  class="text-gray-900 fw-bolder text-hover-primary mb-1 text-center">' . payment_status($transportations_all->payment_status)  . '</a>';
+                    return payment_status($transportations_all->payment_status);
+                })
+                ->addColumn('assign_driver', function ($transportations_all) {
+                    $select = '<select style="height: auto;line-height: 14px;width:170px;" class="form-select form-control-solid dd" id="'.$transportations_all->id.'" onclick="ChangeSelectUser(this)"><option></option>';
+                    foreach (User::where('user_type',1)->get() as $user){
+                        $select = $select . '<option value="'.$user->id.'" '.selectedUser($user->id,$transportations_all->user_id).'>'. $user->full_name .'</option>';
+                    }
+                    return $select . '</select>';
+                })
+                ->editColumn('actions', function ($transportations_all) {
+                    $action = '<button id="show" data-id="' . $transportations_all->id . '" class="btn btn-icon btn-active-light-primary w-30px h-30px me-3" data-bs-toggle="modal" data-bs-target="#kt_modal_show_orders">
+                                    <!--begin::Svg Icon | path: icons/duotune/general/gen019.svg-->
+                                    <span class="svg-icon svg-icon-3">
+																	<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor"/>
+                                                                    <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor"/>
+                                                                    </svg>
+																</span>
+                                    <!--end::Svg Icon-->
+                                </button>';
+                    return $action;
                 })
                 ->rawColumns(['order_number'], ['name'], ['phone_number'], ['email'],
                     ['governorate'], ['city'], ['pieces_number'], ['avenue'], ['street'], ['building_number'], ['floor'], ['status'], ['payment_status'])
@@ -91,7 +92,7 @@ class TransportationController extends Controller
                     }
                 }
                 return view('transportations.search', compact('transportations_all'))->render();
-            }else{
+            } else {
                 $transportations_alls = DB::table('transportation_requests')->orderBy('id', 'desc')->paginate(10);
                 return view('transportations.searchEmpty', compact('transportations_alls'))->render();
             }
@@ -123,9 +124,15 @@ class TransportationController extends Controller
 
     public function show(Request $request, Order $transportation)
     {
+
         if ($request->ajax()) {
-            $activity = Order::find($transportation->id);
-            return response()->json($activity->complaint);
+            $order = Order::find($request->id);
+            $driver = User::find($order->user_id)->full_name;
+            $status = Select($order->status);
+            $assigned_status = User::find($order->assigned_status)->full_name;
+            $assigned_driver = User::find($order->assigned_driver)->full_name;
+            $payment_status = payment_status($order->payment_status);
+            return response()->json(['order'=>$order,'driver'=>$driver,'status'=>$status,'assigned_status'=>$assigned_status,'assigned_driver'=>$assigned_driver,'payment_status'=>$payment_status]);
         }
     }
 
@@ -142,6 +149,26 @@ class TransportationController extends Controller
     public function destroy(Order $transportation)
     {
         //
+    }
+
+    public function changeStatus(Request $request)
+    {
+        $order = Order::find($request->id);
+        $order->status = $request->value;
+        $order->assigned_status = Auth::user()->id;
+        $order->save();
+        return response()->json(['success']);
+
+    }
+
+    public function changeUserOrder(Request $request)
+    {
+        $order = Order::find($request->id);
+        $order->user_id = $request->value;
+        $order->assigned_driver =  Auth::user()->id;
+        $order->save();
+        return response()->json(['success']);
+
     }
 
 

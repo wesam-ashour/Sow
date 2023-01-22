@@ -71,19 +71,13 @@
                         <thead>
                         <!--begin::Table row-->
                         <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
-                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") min-w-125px @else text-start @endif">@lang('web.order_number')</th>
-                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") min-w-125px @else text-start @endif">@lang('web.name')</th>
-                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") min-w-125px @else text-start @endif">@lang('web.phone_number')</th>
-                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") min-w-125px @else text-start @endif">@lang('web.email')</th>
-                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") min-w-125px @else text-start @endif">@lang('web.governorate')</th>
-                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") min-w-125px @else text-start @endif">@lang('web.city')</th>
-                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") min-w-125px @else text-start @endif">@lang('web.pieces_number')</th>
-                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") min-w-125px @else text-start @endif">@lang('web.avenue')</th>
-                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") min-w-125px @else text-start @endif">@lang('web.street')</th>
-                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") min-w-125px @else text-start @endif">@lang('web.building_number')</th>
-                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") min-w-125px @else text-start @endif">@lang('web.floor')</th>
-                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") min-w-125px @else text-start @endif">@lang('web.status')</th>
-                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") min-w-125px @else text-start @endif">@lang('web.payment_status')</th>
+                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900  min-w-125px @else text-start @endif">@lang('web.order_number')</th>
+                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900  min-w-125px @else text-start @endif">@lang('web.name')</th>
+                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900  min-w-125px @else text-start @endif">@lang('web.email')</th>
+                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900  min-w-125px @else text-start @endif">@lang('web.status')</th>
+                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900  min-w-125px @else text-start @endif">@lang('web.Driver')</th>
+                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900  min-w-125px @else text-start @endif">@lang('web.payment_status')</th>
+                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900  min-w-125px @else text-start @endif">@lang('web.Actions')</th>
                         </tr>
                         <!--end::Table row-->
                         </thead>
@@ -100,7 +94,7 @@
             <!--end::Card-->
             <!--begin::Modals-->
             <!--begin::Modal - Update permissions-->
-            <div class="modal fade" id="kt_modal_show_news" tabindex="-1" aria-hidden="true">
+            <div class="modal fade" id="kt_modal_show_orders" tabindex="-1" aria-hidden="true">
                 <!--begin::Modal dialog-->
                 <div class="modal-dialog modal-dialog-centered modal-xl">
                     <!--begin::Modal content-->
@@ -108,7 +102,7 @@
                         <!--begin::Modal header-->
                         <div class="modal-header">
                             <!--begin::Modal title-->
-                            <h2 class="fw-bold">@lang('web.News_Details')</h2>
+                            <h2 class="fw-bold">@lang('web.Order_Details')</h2>
                             <!--end::Modal title-->
                             <!--begin::Close-->
                             <div class="btn btn-icon btn-sm btn-active-icon-primary"
@@ -151,24 +145,24 @@
                                         <div class="fv-row col-md-6 mb-7">
                                             <!--begin::Label-->
                                             <label class="fs-6 fw-semibold form-label mb-2">
-                                                <span style="font-weight: bold">@lang('web.title') (@lang('web.english')) :</span>
+                                                <span style="font-weight: bold">@lang('web.order_number') :</span>
                                             </label>
                                             <br>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <span id="title_en_show"></span>
+                                            <span id="order_number_show"></span>
                                             <!--end::Input-->
                                         </div>
 
                                         <div class="fv-row col-md-6 mb-7">
                                             <!--begin::Label-->
                                             <label class="fs-6 fw-semibold form-label mb-2">
-                                                <span style="font-weight: bold">@lang('web.title') (@lang('web.arabic')) :</span>
+                                                <span style="font-weight: bold">@lang('web.name') :</span>
                                             </label>
                                             <br>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <span id="title_ar_show"></span>
+                                            <span id="name_show"></span>
                                             <!--end::Input-->
                                         </div>
                                     </div>
@@ -178,52 +172,24 @@
                                         <div class="fv-row col-md-6 mb-7">
                                             <!--begin::Label-->
                                             <label class="fs-6 fw-semibold form-label mb-2">
-                                                <span style="font-weight: bold">@lang('web.article') (@lang('web.english')) :</span>
+                                                <span style="font-weight: bold">@lang('web.Mobile') :</span>
                                             </label>
                                             <br>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <span id="article_en_show"></span>
+                                            <span id="phone_show"></span>
                                             <!--end::Input-->
                                         </div>
 
                                         <div class="fv-row col-md-6 mb-7">
                                             <!--begin::Label-->
                                             <label class="fs-6 fw-semibold form-label mb-2">
-                                                <span style="font-weight: bold">@lang('web.article') (@lang('web.arabic')) :</span>
+                                                <span style="font-weight: bold">@lang('web.email') :</span>
                                             </label>
                                             <br>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <span id="article_ar_show"></span>
-                                            <!--end::Input-->
-                                        </div>
-
-                                    </div>
-                                    <hr>
-
-                                    <div class="row">
-                                        <div class="fv-row col-md-6 mb-7">
-                                            <!--begin::Label-->
-                                            <label class="fs-6 fw-semibold form-label mb-2">
-                                                <span style="font-weight: bold">@lang('web.description') (@lang('web.english')) :</span>
-                                            </label>
-                                            <br>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <span id="description_en_show"></span>
-                                            <!--end::Input-->
-                                        </div>
-
-                                        <div class="fv-row col-md-6 mb-7">
-                                            <!--begin::Label-->
-                                            <label class="fs-6 fw-semibold form-label mb-2">
-                                                <span style="font-weight: bold">@lang('web.description') (@lang('web.arabic')) :</span>
-                                            </label>
-                                            <br>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <span id="description_ar_show"></span>
+                                            <span id="email_show"></span>
                                             <!--end::Input-->
                                         </div>
 
@@ -234,15 +200,109 @@
                                         <div class="fv-row col-md-6 mb-7">
                                             <!--begin::Label-->
                                             <label class="fs-6 fw-semibold form-label mb-2">
-                                                <span style="font-weight: bold">@lang('web.type') :</span>
+                                                <span style="font-weight: bold">@lang('web.governorate') :</span>
                                             </label>
                                             <br>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <span id="type_show"></span>
+                                            <span id="governorate_show"></span>
                                             <!--end::Input-->
                                         </div>
 
+                                        <div class="fv-row col-md-6 mb-7">
+                                            <!--begin::Label-->
+                                            <label class="fs-6 fw-semibold form-label mb-2">
+                                                <span style="font-weight: bold">@lang('web.city') :</span>
+                                            </label>
+                                            <br>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <span id="city_show"></span>
+                                            <!--end::Input-->
+                                        </div>
+
+                                    </div>
+                                    <hr>
+
+                                    <div class="row">
+                                        <div class="fv-row col-md-6 mb-7">
+                                            <!--begin::Label-->
+                                            <label class="fs-6 fw-semibold form-label mb-2">
+                                                <span style="font-weight: bold">@lang('web.block') :</span>
+                                            </label>
+                                            <br>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <span id="block_show"></span>
+                                            <!--end::Input-->
+                                        </div>
+
+                                        <div class="fv-row col-md-6 mb-7">
+                                            <!--begin::Label-->
+                                            <label class="fs-6 fw-semibold form-label mb-2">
+                                                <span style="font-weight: bold">@lang('web.jadda') :</span>
+                                            </label>
+                                            <br>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <span id="jadda_show"></span>
+                                            <!--end::Input-->
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="fv-row col-md-6 mb-7">
+                                            <!--begin::Label-->
+                                            <label class="fs-6 fw-semibold form-label mb-2">
+                                                <span style="font-weight: bold">@lang('web.street') :</span>
+                                            </label>
+                                            <br>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <span id="street_show"></span>
+                                            <!--end::Input-->
+                                        </div>
+
+                                        <div class="fv-row col-md-6 mb-7">
+                                            <!--begin::Label-->
+                                            <label class="fs-6 fw-semibold form-label mb-2">
+                                                <span style="font-weight: bold">@lang('web.house') :</span>
+                                            </label>
+                                            <br>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <span id="house_show"></span>
+                                            <!--end::Input-->
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="fv-row col-md-6 mb-7">
+                                            <!--begin::Label-->
+                                            <label class="fs-6 fw-semibold form-label mb-2">
+                                                <span style="font-weight: bold">@lang('web.driver') :</span>
+                                            </label>
+                                            <br>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <span id="driver_show"></span>
+                                            <!--end::Input-->
+                                        </div>
+
+                                        <div class="fv-row col-md-6 mb-7">
+                                            <!--begin::Label-->
+                                            <label class="fs-6 fw-semibold form-label mb-2">
+                                                <span style="font-weight: bold">@lang('web.assigned_driver') :</span>
+                                            </label>
+                                            <br>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <span id="assigned_driver_show"></span>
+                                            <!--end::Input-->
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
                                         <div class="fv-row col-md-6 mb-7">
                                             <!--begin::Label-->
                                             <label class="fs-6 fw-semibold form-label mb-2">
@@ -254,27 +314,70 @@
                                             <span id="status_show"></span>
                                             <!--end::Input-->
                                         </div>
+
+                                        <div class="fv-row col-md-6 mb-7">
+                                            <!--begin::Label-->
+                                            <label class="fs-6 fw-semibold form-label mb-2">
+                                                <span style="font-weight: bold">@lang('web.assigned_status') :</span>
+                                            </label>
+                                            <br>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <span id="assigned_status_show"></span>
+                                            <!--end::Input-->
+                                        </div>
                                     </div>
                                     <hr>
-
                                     <div class="row">
-
-                                        <!--begin::Label-->
-                                        <label class="fs-6 fw-semibold form-label mb-2">
-                                            <span style="font-weight: bold">@lang('web.PhotosNews') :</span>
-                                        </label>
-                                        <br>
-                                        <br>
-                                        <!--end::Label-->
-                                        <!--begin::Input-->
-
-
-                                        <!--begin::Input-->
-                                        <div id="show_image_div">
-                                            <span id="image_show"></span>
-
+                                        <div class="fv-row col-md-6 mb-7">
+                                            <!--begin::Label-->
+                                            <label class="fs-6 fw-semibold form-label mb-2">
+                                                <span style="font-weight: bold">@lang('web.payment_status') :</span>
+                                            </label>
+                                            <br>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <span id="payment_status_show"></span>
+                                            <!--end::Input-->
                                         </div>
-                                        <!--end::Input-->
+
+                                        <div class="fv-row col-md-6 mb-7">
+                                            <!--begin::Label-->
+                                            <label class="fs-6 fw-semibold form-label mb-2">
+                                                <span style="font-weight: bold">@lang('web.date_payment') :</span>
+                                            </label>
+                                            <br>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <span id="date_payment_show"></span>
+                                            <!--end::Input-->
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="fv-row col-md-6 mb-7">
+                                            <!--begin::Label-->
+                                            <label class="fs-6 fw-semibold form-label mb-2">
+                                                <span style="font-weight: bold">@lang('web.TrackID') :</span>
+                                            </label>
+                                            <br>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <span id="TrackID_show"></span>
+                                            <!--end::Input-->
+                                        </div>
+
+                                        <div class="fv-row col-md-6 mb-7">
+                                            <!--begin::Label-->
+                                            <label class="fs-6 fw-semibold form-label mb-2">
+                                                <span style="font-weight: bold">@lang('web.PaymentID') :</span>
+                                            </label>
+                                            <br>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <span id="PaymentID_show"></span>
+                                            <!--end::Input-->
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="text-center pt-15">
@@ -301,27 +404,7 @@
     <!--end::Content-->
 @endsection
 @section('js')
-    <script>
-        function getStatusNews(el)
-        {
-            var id = el.id;
-            var isChecked = el.checked;
-            $.ajax({
-                type: "GET",
-                dataType: "json",
-                url: '/changeStatus/news/',
-                data: {id:id,isChecked:isChecked},
-                success: function(data){
-                    Swal.fire(
-                        '@lang('web.Status changed successfully')',
-                        '',
-                        'success'
-                    )
-                }
-            });
-        }
-    </script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 
     <!--begin::Vendors Javascript(used for this page only)-->
     <script src="{{asset('assets/plugins/custom/datatables/datatables.bundle.js')}}" defer></script>
@@ -336,5 +419,109 @@
     <script src="{{asset('assets/js/custom/utilities/modals/create-app.js')}}" defer></script>
     <script src="{{asset('assets/js/custom/utilities/modals/users-search.js')}}" defer></script>
     <!--end::Custom Javascript-->
+    <script>
+        $(function () {
+
+            $(document).on('click', '#close_modal', function () {
+                $('#kt_modal_show_orders').modal('hide');
+            });
+            $(document).on('click', '#cancel_modal', function () {
+                $('#kt_modal_show_orders').modal('hide');
+            });
+        });
+    </script>
+    <script>
+        $(function () {
+
+            $(document).on('click', '#show', function () {
+                let id = $(this).data('id');
+                $.ajax({
+                    type: 'GET',
+                    url: "/orders/" + id,
+                    data: {"id":id},
+                    success: function (response) {
+                        $("#order_number_show").html(response.order.order_number);
+                        $("#name_show").html(response.order.name);
+                        $("#phone_show").html(response.order.phone);
+                        $("#email_show").html(response.order.email);
+                        $("#governorate_show").html(response.order.governorate);
+                        $("#city_show").html(response.order.city);
+                        $("#block_show").html(response.order.block);
+                        $("#jadda_show").html(response.order.jadda);
+                        $("#street_show").html(response.order.street);
+                        $("#house_show").html(response.order.house);
+                        $("#driver_show").html(response.driver);
+                        $("#assigned_driver_show").html(response.assigned_driver);
+                        $("#status_show").html(response.status);
+                        $("#assigned_status_show").html(response.assigned_status);
+                        $("#payment_status_show").html(response.payment_status);
+                        $("#date_payment_show").html(response.order.date_payment);
+                        $("#TrackID_show").html(response.order.TrackID);
+                        $("#PaymentID_show").html(response.order.PaymentID);
+                    },
+                });
+
+            });
+        });
+
+
+        function ChangeSelect(el) {
+            $('.cc').on('change', function (e) {
+                var id = this.id;
+                var value = this.value;
+                if (value == 4) {
+                    jQuery("#" + id).attr('disabled', true);
+                }
+                e.preventDefault();
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    url: $('#app_url').val() + '/' + $('#language').val() + '/changeStatus/order/',
+                    data: {"id": id, "value": value},
+                    success: function (data) {
+                        Swal.fire(
+                            '@lang('web.Status changed successfully')',
+                            '',
+                            'success'
+                        )
+                    }
+                });
+            });
+
+        }
+
+        function ChangeSelectUser(el) {
+            $('.dd').on('change', function (e) {
+                var id = this.id;
+                var value = this.value;
+                e.preventDefault();
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    url: $('#app_url').val() + '/' + $('#language').val() + '/changeUser/order/',
+                    data: {"id": id, "value": value},
+                    success: function (data) {
+                        Swal.fire(
+                            '@lang('web.Driver assigned successfully')',
+                            '',
+                            'success'
+                        )
+                    }
+                });
+            });
+
+        }
+
+    </script>
     <!--end::Javascript-->
 @endsection

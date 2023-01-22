@@ -11,4 +11,5 @@ class Order extends Model
 {
     use HasFactory;
     protected $table = "orders";
+    const STATUS = ['1','2','3','4','5','6'];
 }
