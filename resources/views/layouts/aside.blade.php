@@ -10,29 +10,16 @@
      data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_app_sidebar_mobile_toggle">
     <!--begin::Logo-->
     <div class="app-sidebar-logo px-6" id="kt_app_sidebar_logo">
-        <!--begin::Logo image-->
-        <a href="{{url('/')}}">
-            <div class="symbol-label">
-                @if(auth()->user()->personalphoto)
-                    <img alt="Logo"
-                         src="{{asset('images/users/' . \Illuminate\Support\Facades\Auth::user()->personalphoto)}}"
-                         style="border-radius: 50%;width: 20% !important;"
-                         class=" app-sidebar-logo-default"/>
-                    <img alt="Logo"
-                         src="{{asset('images/users/' . \Illuminate\Support\Facades\Auth::user()->personalphoto)}}"
-                         style="border-radius: 50%;width: 20% !important;"
-                         class=" app-sidebar-logo-minimize"/>
-                @else
-                    <img alt="Logo" src="{{asset('assets/media/avatars/300-1.jpg')}}"
-                         style="border-radius: 50%;width: 20% !important;"/>
-                @endif
-                <a class="text-hover-primary mb-1"
-                   style="@if(\Illuminate\Support\Facades\App::getLocale() == "ar")padding-right: 15px; @else padding-left: 15px; @endif color: white; font-size:14px; display: inline">{{\Illuminate\Support\Facades\Auth::user()->full_name}}</a>
-            </div>
-        </a>
-        <!--end::Logo image-->
-
+        <div class="aside-logo flex-column-auto" id="kt_aside_logo">
+            <!--begin::Logo-->
+            <a href="{{route('dashboard.index')}}" style="color: white;font-size: 20px;">
+                Dashboard Admin Panel
+            </a>
+            <!--end::Logo-->
+        </div>
+        <!--end::Sidebar toggle-->
     </div>
+    <!--end::Logo-->
     <!--end::Logo-->
     <!--begin::sidebar menu-->
     <div class="app-sidebar-menu overflow-hidden flex-column-fluid">
@@ -85,7 +72,7 @@
                 <!--end:Menu item-->
                 <!--begin:Menu item-->
                 <div data-kt-menu-trigger="click"
-                     class="menu-item menu-accordion {{str_contains($url,"admins") || str_contains($url,"roles") || str_contains($url,"permissions") || str_contains($url,"drivers") || str_contains($url,"passengers") ? "hover show":""}} ">
+                     class="menu-item menu-accordion {{str_contains($url,"admins") || str_contains($url,"roles") || str_contains($url,"permissions") || str_contains($url,"passengers") ? "hover show":""}} ">
                     <!--begin:Menu link-->
                     @if(\Illuminate\Support\Facades\Auth::user()->hasAnyPermission(['admins_view','drivers_view','passengers_view','roles_view']))
 
@@ -162,7 +149,7 @@
 											<span class="menu-icon">
 												<!--begin::Svg Icon | path: icons/duotune/abstract/abs029.svg-->
 												<span class="svg-icon svg-icon-2">
-													<i class="bi bi-exclamation-triangle"></i>
+													<i class="bi bi-car-front"></i>
 												</span>
                                                 <!--end::Svg Icon-->
 											</span>
@@ -177,7 +164,7 @@
 											<span class="menu-icon">
 												<!--begin::Svg Icon | path: icons/duotune/abstract/abs029.svg-->
 												<span class="svg-icon svg-icon-2">
-													<i class="bi bi-exclamation-triangle"></i>
+													<i class="bi bi-card-checklist"></i>
 												</span>
                                                 <!--end::Svg Icon-->
 											</span>
@@ -192,7 +179,7 @@
 											<span class="menu-icon">
 												<!--begin::Svg Icon | path: icons/duotune/abstract/abs029.svg-->
 												<span class="svg-icon svg-icon-2">
-													<i class="bi bi-exclamation-triangle"></i>
+													<i class="bi bi-qr-code-scan"></i>
 												</span>
                                                 <!--end::Svg Icon-->
 											</span>
