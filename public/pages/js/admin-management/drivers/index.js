@@ -38,6 +38,12 @@ $(function () {
                                 data: 'address',
                                 name: 'address'
                             },
+                            {
+                                data: 'action',
+                                name: 'action',
+                                orderable: false,
+                                searchable: false
+                            },
 
                         ], language: {
                             url: language === "en" ? "//cdn.datatables.net/plug-ins/1.13.1/i18n/en-GB.json" : "//cdn.datatables.net/plug-ins/1.13.1/i18n/ar.json",

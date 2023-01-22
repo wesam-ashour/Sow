@@ -168,6 +168,7 @@ return [
     'address' => 'address',
     'Add_driver' => 'Add driver',
     'drivers' => 'drivers',
+    'action' => 'actions',
 
 
 

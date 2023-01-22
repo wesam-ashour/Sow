@@ -99,6 +99,7 @@
                             <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") min-w-125px @else text-start @endif">@lang('web.email')</th>
                             <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") min-w-125px @else text-start @endif">@lang('web.phone_number')</th>
                             <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") min-w-125px @else text-start @endif">@lang('web.address')</th>
+                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") min-w-125px @else text-start @endif">@lang('web.action')</th>
                         </tr>
                         <!--end::Table row-->
                         </thead>
@@ -233,7 +234,7 @@
                                 <!--begin::Actions-->
                                 <div class="text-center pt-15">
                                     <button type="reset" class="btn btn-light me-3"
-                                            data-kt-permissions-modal-action="cancel">@lang('web.Discard')</button>
+                                            data-kt-driver-modal-action="cancel">@lang('web.Discard')</button>
                                     <button type="submit" class="btn btn-primary"
                                             data-kt-permissions-modal-action="submit">
                                         <span class="indicator-label">@lang('web.Submit')</span>
@@ -252,7 +253,146 @@
                 </div>
                 <!--end::Modal dialog-->
             </div>
-            <!--end::Modal - Update permissions-->
+            <!--end::Modal - add  driver-->
+            <!--begin::Modal - add  driver-->
+            <div class="modal fade" id="kt_modal_update_drivers" tabindex="-1" aria-hidden="true">
+                <!--begin::Modal dialog-->
+                <div class="modal-dialog modal-dialog-centered modal-ml">
+                    <!--begin::Modal content-->
+                    <div class="modal-content">
+                        <!--begin::Modal header-->
+                        <div class="modal-header">
+                            <!--begin::Modal title-->
+                            <h2 class="fw-bold">@lang('web.Add_driver')</h2>
+                            <!--end::Modal title-->
+                            <!--begin::Close-->
+                            <div class="btn btn-icon btn-sm btn-active-icon-primary"
+                                 data-kt-permissions-modal-action="close">
+                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                                <span class="svg-icon svg-icon-1">
+															<svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                                 xmlns="http://www.w3.org/2000/svg">
+																<rect opacity="0.5" x="6" y="17.3137" width="16"
+                                                                      height="2" rx="1"
+                                                                      transform="rotate(-45 6 17.3137)"
+                                                                      fill="currentColor"/>
+																<rect x="7.41422" y="6" width="16" height="2" rx="1"
+                                                                      transform="rotate(45 7.41422 6)"
+                                                                      fill="currentColor"/>
+															</svg>
+														</span>
+                                <!--end::Svg Icon-->
+                            </div>
+                            <!--end::Close-->
+                        </div>
+                        <!--end::Modal header-->
+                        <!--begin::Modal body-->
+                        <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+                            <!--begin::Form-->
+                            <form id="kt_modal_add_driver_form" class="form" action="#" enctype="multipart/form-data">
+                                @csrf
+                                <div class="d-flex flex-column scroll-y me-n7 pe-7"
+                                     id="kt_modal_detail_car_scroll" data-kt-scroll="true"
+                                     data-kt-scroll-activate="{default: false, lg: true}"
+                                     data-kt-scroll-max-height="auto"
+                                     data-kt-scroll-dependencies="#kt_modal_detail_car_header"
+                                     data-kt-scroll-wrappers="#kt_modal_detail_car_scroll"
+                                     data-kt-scroll-offset="300px">
+                                    <!--begin::Input group-->
+                                    <div class="row">
+                                        <div class="fv-row col-12 mb-7">
+                                            <!--begin::Label-->
+                                            <label class="fs-6 fw-semibold form-label mb-2">
+                                                <span class="required">@lang('web.Full Name')</span>
+                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="popover"
+                                                   data-bs-trigger="hover" data-bs-html="true"
+                                                   data-bs-content="@lang('web.required')"></i>
+                                            </label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <input id="edit_full_name" type="text" class="form-control form-control-solid"
+                                                   placeholder="@lang('web.Enter Here')" name="edit_full_name">
+                                            <strong id="edit_full_name_error" class="errors text-danger"
+                                                    role="alert"></strong>
+                                            <!--end::Input-->
+                                        </div>
+                                        <div class="fv-row col-12 mb-7">
+                                            <!--begin::Label-->
+                                            <label class="fs-6 fw-semibold form-label mb-2">
+                                                <span class="required">@lang('web.email')</span>
+                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="popover"
+                                                   data-bs-trigger="hover" data-bs-html="true"
+                                                   data-bs-content="@lang('web.required')"></i>
+                                            </label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <input id="edit_email" type="email" class="form-control form-control-solid"
+                                                   placeholder="@lang('web.Enter Here')" name="edit_email">
+                                            <strong id="edit_email_error" class="errors text-danger"
+                                                    role="alert"></strong>
+                                            <!--end::Input-->
+                                        </div>
+                                        <div class="fv-row col-12 mb-7">
+                                            <!--begin::Label-->
+                                            <label class="fs-6 fw-semibold form-label mb-2">
+                                                <span class="required">@lang('web.phone_number')</span>
+                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="popover"
+                                                   data-bs-trigger="hover" data-bs-html="true"
+                                                   data-bs-content="@lang('web.required')"></i>
+                                            </label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <input id="edit_phone_number" type="number" class="form-control form-control-solid"
+                                                   placeholder="@lang('web.Enter Here')" name="edit_phone_number">
+                                            <strong id="phone_number_error" class="errors text-danger"
+                                                    role="alert"></strong>
+                                            <!--end::Input-->
+                                        </div>
+                                        <div class="fv-row col-12 mb-7">
+                                            <!--begin::Label-->
+                                            <label class="fs-6 fw-semibold form-label mb-2">
+                                                <span class="required">@lang('web.address')</span>
+                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="popover"
+                                                   data-bs-trigger="hover" data-bs-html="true"
+                                                   data-bs-content="@lang('web.required')"></i>
+                                            </label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <textarea id="edit_address" type="number" class="form-control form-control-solid"
+                                                      placeholder="@lang('web.Enter Here')" name="edit_address"></textarea>
+                                            <strong id="address_error" class="errors text-danger"
+                                                    role="alert"></strong>
+                                            <!--end::Input-->
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <!--end::Input group-->
+                                <!--begin::Actions-->
+                                <div class="text-center pt-15">
+                                    <button type="reset" class="btn btn-light me-3"
+                                            data-kt-edit-driver-modal-action="cancel">@lang('web.Discard')</button>
+                                    <button type="submit" class="btn btn-primary"
+                                            data-kt-permissions-modal-action="submit">
+                                        <span class="indicator-label">@lang('web.Submit')</span>
+                                        <span class="indicator-progress">@lang('web.Please wait...')
+																<span
+                                                                    class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                    </button>
+                                </div>
+                                <!--end::Actions-->
+                            </form>
+                            <!--end::Form-->
+                        </div>
+                        <!--end::Modal body-->
+                    </div>
+                    <!--end::Modal content-->
+                </div>
+                <!--end::Modal dialog-->
+            </div>
+            <!--end::Modal - add  driver-->
         </div>
         <!--end::Content container-->
         <input type="hidden" id="trans" value="{{trans('web.Selected')}}">
@@ -267,6 +407,7 @@
     <!--begin::Custom Javascript(used for this page only)-->
     <script src="{{asset('pages/js/admin-management/drivers/add-drivers.js')}}" defer></script>
     <script src="{{asset('pages/js/admin-management/drivers/index.js')}}" defer></script>
+    <script src="{{asset('pages/js/admin-management/drivers/list.js')}}" defer></script>
     <script src="{{asset('assets/js/widgets.bundle.js')}}" defer></script>
     <script src="{{asset('assets/js/custom/widgets.js')}}" defer></script>
     <script src="{{asset('assets/js/custom/apps/chat/chat.js')}}" defer></script>

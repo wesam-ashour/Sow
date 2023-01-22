@@ -1347,7 +1347,7 @@
                                                                     class="v-input rounded-lg overLap theme--light v-text-field v-text-field--filled v-text-field--is-booted v-text-field--enclosed v-text-field--rounded"><div
                                                     class="v-input__control"><div class="v-input__slot"><div
                                                             class="v-text-field__slot">
-                                                            <label for="input-50" class="v-label theme--light" style="left: auto; right: 0px; position: absolute;">جادة</label>
+                                                            <label for="input-50" class="v-label v-label--active theme--light" style="left: auto; right: 0px; position: absolute;">جادة</label>
                                                             <input id="input-50" type="text" name="jadda" value="{{$jadda}}"></div></div><div
                                                         class="v-text-field__details"><div
                                                             class="v-messages theme--light"><div
@@ -1379,7 +1379,7 @@
                                                 <div class="v-input__control">
                                                     <div class="v-input__slot">
                                                         <div class="v-text-field__slot">
-                                                            <label for="input-58" class="v-label theme--light" style="left: auto; right: 0px; position: absolute;">رقم المبنى</label>
+                                                            <label for="input-58" class="v-label v-label--active theme--light" style="left: auto; right: 0px; position: absolute;">رقم المبنى</label>
                                                             <input id="input-58" type="text" name="house" value="{{$house}}">
                                                         </div>
                                                     </div>
@@ -1397,7 +1397,7 @@
                                             <div data-v-71b52688="" class="v-input rounded-lg overLap theme--light v-text-field v-text-field--filled v-text-field--is-booted v-text-field--enclosed v-text-field--rounded">
                                                 <div class="v-input__control"><div class="v-input__slot">
                                                         <div class="v-text-field__slot">
-                                                            <label for="input-62" class="v-label theme--light" style="left: auto; right: 0px; position: absolute;">الطابق</label>
+                                                            <label for="input-62" class="v-label v-label--active theme--light" style="left: auto; right: 0px; position: absolute;">الطابق</label>
                                                             <input id="input-62" type="text" name="floor" value="floor">
                                                         </div>
                                                     </div>

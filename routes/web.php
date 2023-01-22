@@ -75,7 +75,9 @@ Route::group(['middleware' => ['auth', 'verified', 'localeSessionRedirect', 'loc
     Route::get('/search', [TransportationController::class, 'fetch_data']);
     Route::get('/search/date/', [TransportationController::class, 'SearchDate']);
 
-    Route::resource('drivers',DriverController::class);
+    Route::get('drivers',[DriverController::class, 'index'])->name('drivers.index');
+    Route::post('drivers/store',[DriverController::class, 'store'])->name('drivers.store');
+    Route::get('drivers/edit/{id}',[DriverController::class, 'edit']);
 
 
     Route::get('language/{locale}', function ($locale) {
