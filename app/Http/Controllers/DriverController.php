@@ -46,7 +46,7 @@ class DriverController extends Controller
                                              data-name="' . $driver->name . '" data-bs-toggle="modal" data-bs-target="#kt_modal_edit_driver" class="menu-link px-3">' . trans("web.Edit") . '</a>
                                         </div>';
                         $action = $action . '<div class="menu-item px-3">
-                                            <a id="delete" href="#" data-id="' . $driver->id . '" data-name="' . $driver->name . '" class="menu-link px-3">' . trans("web.Delete") . '</a>
+                                            <a id="edit_delete" href="#" data-id="' . $driver->id . '" data-name="' . $driver->name . '" class="menu-link px-3">' . trans("web.Delete") . '</a>
                                         </div>';
                     $action = $action . '</div></div></div>';
                     return $action;
@@ -81,5 +81,11 @@ class DriverController extends Controller
             $driver = User::query()->get()->find($id);
             return response()->json($driver);
         }
+    }
+
+    public function destroy($id){
+        $driver = User::find($id)->delete();
+        return response()->json(['success' => $driver]);
+
     }
 }

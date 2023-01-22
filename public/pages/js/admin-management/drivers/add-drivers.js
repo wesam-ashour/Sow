@@ -44,7 +44,7 @@ $(function () {
                             }).then((function (t) {
                                 t.value && $("#spoken_languages").val(null).trigger("change") && $(".errors").html("") && $("#file-chosen-input").html(language === "en" ? "No file chosen" : " لم يتم اختيار ملف") && $("#file-chosensss").html(language === "en" ? "No file chosen" : " لم يتم اختيار ملف") && n.hide()
                             }))
-                        })), t.querySelector('[data-kt-driver-modal-action="cancel"]').addEventListener("click", (t => {
+                        })), t.querySelector('[data-kt-permissions-modal-action="cancel"]').addEventListener("click", (t => {
                             t.preventDefault(), Swal.fire({
                                 text: language === "en" ? "Are you sure you would like to cancel?" : "هل أنت متأكد أنك تريد الإلغاء؟",
                                 icon: "warning",

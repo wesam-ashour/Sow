@@ -3,10 +3,10 @@ $(function () {
         language = $('#language').val();
 
     $(document).ready(function () {
-        update_news();
+        update_driver();
     });
 
-    function update_news() {
+    function update_driver() {
         "use strict";
         var KTUsersUpdatePermission = function () {
             const t = document.getElementById("kt_modal_update_drivers"),

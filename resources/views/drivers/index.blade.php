@@ -234,7 +234,7 @@
                                 <!--begin::Actions-->
                                 <div class="text-center pt-15">
                                     <button type="reset" class="btn btn-light me-3"
-                                            data-kt-driver-modal-action="cancel">@lang('web.Discard')</button>
+                                            data-kt-permissions-modal-action="cancel">@lang('web.Discard')</button>
                                     <button type="submit" class="btn btn-primary"
                                             data-kt-permissions-modal-action="submit">
                                         <span class="indicator-label">@lang('web.Submit')</span>
@@ -254,8 +254,8 @@
                 <!--end::Modal dialog-->
             </div>
             <!--end::Modal - add  driver-->
-            <!--begin::Modal - add  driver-->
-            <div class="modal fade" id="kt_modal_update_drivers" tabindex="-1" aria-hidden="true">
+            <!--begin::Modal - update  driver-->
+            <div class="modal fade" id="kt_modal_update_news" tabindex="-1" aria-hidden="true">
                 <!--begin::Modal dialog-->
                 <div class="modal-dialog modal-dialog-centered modal-ml">
                     <!--begin::Modal content-->
@@ -289,7 +289,7 @@
                         <!--begin::Modal body-->
                         <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
                             <!--begin::Form-->
-                            <form id="kt_modal_add_driver_form" class="form" action="#" enctype="multipart/form-data">
+                            <form id="kt_modal_update_drivers_form" class="form" action="#" enctype="multipart/form-data">
                                 @csrf
                                 <div class="d-flex flex-column scroll-y me-n7 pe-7"
                                      id="kt_modal_detail_car_scroll" data-kt-scroll="true"
@@ -373,7 +373,7 @@
                                 <!--begin::Actions-->
                                 <div class="text-center pt-15">
                                     <button type="reset" class="btn btn-light me-3"
-                                            data-kt-edit-driver-modal-action="cancel">@lang('web.Discard')</button>
+                                            data-kt-permissions-modal-action="cancel">@lang('web.Discard')</button>
                                     <button type="submit" class="btn btn-primary"
                                             data-kt-permissions-modal-action="submit">
                                         <span class="indicator-label">@lang('web.Submit')</span>
