@@ -14,7 +14,7 @@
             <!--begin::Page title-->
             <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                 <!--begin::Title-->
-                <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">@lang('web.order_list')</h1>
+                <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">@lang('web.drivers_list')</h1>
                 <!--end::Title-->
                 <!--begin::Breadcrumb-->
                 <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -55,7 +55,7 @@
                             <!--end::Svg Icon-->
                             <input type="text" data-kt-ecommerce-forms-filter="search"
                                    class="form-control form-control-solid w-250px ps-15"
-                                   placeholder="@lang('web.Search')"/>
+                                   placeholder="@lang('web.Search Here')"/>
                         </div>
                         <!--end::Search-->
                     </div>

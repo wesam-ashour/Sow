@@ -169,6 +169,7 @@ return [
     'address' => 'address',
     'Add_driver' => 'Add driver',
     'drivers' => 'drivers',
+    'drivers_list' => 'drivers_list',
     'action' => 'actions',
     'block' => 'Block',
     'jadda' => 'jadda',
@@ -180,6 +181,10 @@ return [
     'PaymentID' => 'Payment ID',
     'driver' => 'Driver',
     'Driver assigned successfully' => 'Driver assigned successfully',
+
+    /*manage_locations*/
+
+    'manage_locations' => 'manage_locations'
 
 
 

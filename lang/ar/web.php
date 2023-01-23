@@ -166,6 +166,7 @@ return [
     'address' => 'العنوان',
     'Add_driver' => 'اضافة سائق',
     'drivers' => 'السائقين',
+    'drivers_list' => 'قائمة السائقين',
     'action' => 'العمليات',
     'block' => 'قطعه',
     'jadda' => 'جادة',
@@ -180,6 +181,9 @@ return [
 
     /*new requset site*/
 
+    /*manage_locations*/
+
+    'manage_locations' => 'أدارة الأماكن'
 
 
 ];

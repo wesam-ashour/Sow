@@ -6,6 +6,7 @@ use App\Http\Controllers\CarController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\EmergencyController;
+use App\Http\Controllers\ManageLocationsController;
 use App\Http\Controllers\NewRequest;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PassengerController;
@@ -82,6 +83,8 @@ Route::group(['middleware' => ['auth', 'verified', 'localeSessionRedirect', 'loc
     Route::post('drivers/store',[DriverController::class, 'store'])->name('drivers.store');
     Route::get('drivers/edit/{id}',[DriverController::class, 'edit']);
     Route::delete('drivers/delete/{id}',[DriverController::class, 'destroy'])->name('destroy.delete');
+
+    Route::get('manage_locations',[ManageLocationsController::class, 'index'])->name('manage_locations.index');
 
 
     Route::get('language/{locale}', function ($locale) {

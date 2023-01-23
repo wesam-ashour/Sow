@@ -187,6 +187,21 @@
                     </a>
                     <!--end:Menu link-->
                 </div>
+                <div class="menu-item menu-accordion {{str_contains($url,"manage_locations")  ? "hover show":""}} ">
+                    <!--begin:Menu link-->
+                    <a class="menu-link {{str_contains($url,"•	manage_locations") ? "active":""}}"
+                       href="{{route('manage_locations.index')}}">
+											<span class="menu-icon">
+												<!--begin::Svg Icon | path: icons/duotune/abstract/abs029.svg-->
+												<span class="svg-icon svg-icon-2">
+													<i class="bi bi-house"></i>
+												</span>
+                                                <!--end::Svg Icon-->
+											</span>
+                        <span class="menu-title">@lang('web.manage_locations')</span>
+                    </a>
+                    <!--end:Menu link-->
+                </div>
                 <br>
                 <br>
                 <br>
