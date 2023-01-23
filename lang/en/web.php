@@ -179,6 +179,7 @@ return [
     'TrackID' => 'Track ID',
     'PaymentID' => 'Payment ID',
     'driver' => 'Driver',
+    'Driver assigned successfully' => 'Driver assigned successfully',
 
 
 

@@ -16,16 +16,16 @@ class DriverController extends Controller
         if ($request->ajax()) {
             return Datatables::of($driver)->addIndexColumn()
                 ->addColumn('full_name', function ($driver) {
-                    return '<a  class="text-gray-900 fw-bolder text-hover-primary mb-1 text-center">' . $driver->full_name . '</a>';
+                    return $driver->full_name;
                 })
                 ->addColumn('email', function ($driver) {
-                    return '<a  class="text-gray-900 fw-bolder text-hover-primary mb-1 text-center">' . $driver->email . '</a>';
+                    return  $driver->email;
                 })
                 ->addColumn('mobile_number', function ($driver) {
-                    return '<a  class="text-gray-900 fw-bolder text-hover-primary mb-1 text-center">' . $driver->mobile_number . '</a>';
+                    return $driver->mobile_number;
                 })
                 ->addColumn('address', function ($driver) {
-                    return '<a  class="text-gray-900 fw-bolder text-hover-primary mb-1 text-center">' . $driver->address . '</a>';
+                    return $driver->address;
                 })
                 ->addColumn('action', function ($driver) {
                     $action = '<div class="text-start">
