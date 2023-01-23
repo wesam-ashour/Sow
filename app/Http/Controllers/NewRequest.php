@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 class NewRequest extends Controller
 {
     public function index(Request $request,$order_number){
+        /**/
         $name = request()->input('name');
         $phone = request()->input('phone');
         $email = request()->input('email');
