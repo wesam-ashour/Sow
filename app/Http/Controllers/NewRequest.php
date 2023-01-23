@@ -18,7 +18,9 @@ class NewRequest extends Controller
         $street = request()->input('street');
         $block = request()->input('block');
         $city = request()->input('city');
-        return view('new_request',compact('order_number','name','phone','email','address','house','jadda','street','block','city'));
+
+        $check_order = Order::query()->where('order_number' , '=' , $order_number)->get()->first();
+        return view('new_request',compact('order_number','name','phone','email','address','house','jadda','street','block','city','check_order'));
     }
     public function index2(){
         $order_number = null;
@@ -26,7 +28,7 @@ class NewRequest extends Controller
     }
     public function store(Request $request){
         $validator = Validator::make($request->all(), [
-            'order_number' => 'required|unique:orders',
+            'order_number' => 'required',
             'name' => 'required',
             'phone' => 'required',
             'email' => 'required',
@@ -34,14 +36,28 @@ class NewRequest extends Controller
             'jadda' => 'required',
             'house' => 'required',
             'street' => 'required',
-
             'floor' => 'required',
             'governorate' => 'required',
             'city' => 'required',
+        ], [
+            'order_number.required' => trans("web.required"),
+            'name.required' => trans("web.required"),
+            'phone.required' => trans("web.required"),
+            'email.required' => trans("web.required"),
+            'block.required' => trans("web.required"),
+            'jadda.required' => trans("web.required"),
+            'house.required' => trans("web.required"),
+            'street.required' => trans("web.required"),
+            'floor.required' => trans("web.required"),
+            'governorate.required' => trans("web.required"),
+            'city.required' => trans("web.required"),
         ]);
 
         if($validator->passes()){
-        $order = new Order();
+            $order = Order::query()->where('order_number' , '=' , $request->order_number)->get()->first();
+            if (!$order){
+                $order = new Order();
+            }
         $order->order_number = $request->order_number;
         $order->name = $request->name;
         $order->phone = $request->phone;
@@ -56,6 +72,7 @@ class NewRequest extends Controller
         $order->status = 1;
         $order->payment_status = 0;
         $order->save();
+
         $request_data = array(
             'merchant_id' => '1201',
             'username' => 'test',
