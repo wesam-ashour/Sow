@@ -139,6 +139,8 @@ return [
     'floor' => 'Floor',
     'status' => 'Status',
     'payment_status' => 'Payment status',
+    'delivery_date' => 'Delivery Date',
+    'Delivery date added successfully' => 'Delivery date added successfully',
 
 
     /*messages*/
@@ -168,6 +170,7 @@ return [
     'Order_Details' => 'Order Details',
     'address' => 'address',
     'Add_driver' => 'Add driver',
+    'edit_driver' => 'Edit Driver',
     'drivers' => 'drivers',
     'drivers_list' => 'drivers_list',
     'action' => 'actions',

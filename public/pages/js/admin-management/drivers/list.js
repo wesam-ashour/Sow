@@ -26,6 +26,7 @@ $(function () {
             dataType: 'json',
             success: function (response) {
                 $("#driver_edit_id").html(response.id);
+                $("#edit_id").val(response.id);
                 $("#edit_full_name").val(response.full_name);
                 $("#edit_email").val(response.email);
                 $("#edit_phone_number").val(response.mobile_number);

@@ -55,7 +55,7 @@
                             <!--end::Svg Icon-->
                             <input type="text" data-kt-ecommerce-forms-filter="search"
                                    class="form-control form-control-solid w-250px ps-15"
-                                   placeholder="@lang('web.Search')"/>
+                                   placeholder="@lang('web.Search Here')"/>
                         </div>
                         <!--end::Search-->
                     </div>
@@ -76,6 +76,7 @@
                             <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900  min-w-125px @else text-start @endif">@lang('web.email')</th>
                             <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900  min-w-125px @else text-start @endif">@lang('web.status')</th>
                             <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900  min-w-125px @else text-start @endif">@lang('web.driver')</th>
+                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900  min-w-125px @else text-start @endif">@lang('web.delivery_date')</th>
                             <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900  min-w-125px @else text-start @endif">@lang('web.payment_status')</th>
                             <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900  min-w-125px @else text-start @endif">@lang('web.Actions')</th>
                         </tr>
@@ -512,6 +513,29 @@
                         )
                     }
                 });
+        }
+
+        function delivery_date(el){
+            var id = el.id;
+            var value = el.value;
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                type: "post",
+                dataType: "json",
+                url: $('#app_url').val() + '/' + $('#language').val() + '/delivery_date',
+                data: {"id": id, "value": value},
+                success: function (data) {
+                    Swal.fire(
+                        '@lang('web.Delivery date added successfully')',
+                        '',
+                        'success'
+                    )
+                }
+            });
         }
 
     </script>

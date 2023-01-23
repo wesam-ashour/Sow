@@ -2,7 +2,7 @@
 <html @if(App::getLocale() == 'en') lang="en" style="direction: ltr;" @else lang="ar" style="direction: rtl;" @endif>
 <!--begin::Head-->
 <head><base href=""/>
-    <title>Dasboard</title>
+    <title>الاتحاد الوطني لطلبة الكويت</title>
     <meta charset="utf-8" />
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
     <meta name="description" content="Taqoa"/>
@@ -14,7 +14,7 @@
     <meta property="og:url" content="https://keenthemes.com/metronic" />
     <meta property="og:site_name" content="Keenthemes | Metronic" />
     <link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
-    <link rel="shortcut icon" href="{{asset('logo_n.png')}}" />
+    <link rel="shortcut icon" href="{{asset('images/logo.jpg')}}" />
     <!--begin::Fonts(mandatory for all pages)-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
     <link rel="stylesheet" href="{{asset('pages/css/main.css')}}">

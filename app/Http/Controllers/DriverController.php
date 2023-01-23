@@ -82,6 +82,16 @@ class DriverController extends Controller
             return response()->json($driver);
         }
     }
+    public function update(Request $request){
+        $driver = User::query()->find($request->edit_id);
+
+        $driver->full_name = $request->edit_full_name;
+        $driver->email = $request->edit_email;
+        $driver->mobile_number = $request->edit_phone_number;
+        $driver->address = $request->edit_address;
+        $driver->user_type = 1;
+        $driver->save();
+    }
 
     public function destroy($id){
         $driver = User::find($id)->delete();

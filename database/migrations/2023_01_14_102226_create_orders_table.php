@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('street');
             $table->string('house');
             $table->string('floor');
+            $table->date('delivery_date')->nullable();
             $table->foreignId('user_id')->nullable()->constrained('users')->cascadeOnDelete();
             $table->integer('status')->comment('1-new order / 2-inside the library / ');
             $table->foreignId('assigned_status')->nullable()->constrained('users')->cascadeOnDelete();

@@ -136,6 +136,8 @@ return [
     'floor' => 'الطابق',
     'status' => 'الحالة',
     'payment_status' => 'حالة الدفع',
+    'delivery_date' => 'تاريخ التوصيل',
+    'Delivery date added successfully' => 'تم اضافة تاريخ التوصيل بنجاح',
 
 
 
@@ -165,6 +167,7 @@ return [
     'Order_Details' => 'تفاصيل الطلب',
     'address' => 'العنوان',
     'Add_driver' => 'اضافة سائق',
+    'edit_driver' => 'تعديل سائق',
     'drivers' => 'السائقين',
     'drivers_list' => 'قائمة السائقين',
     'action' => 'العمليات',
