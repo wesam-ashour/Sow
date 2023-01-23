@@ -466,20 +466,18 @@
 
 
         function ChangeSelect(el) {
-            $('.cc').on('change', function (e) {
-                var id = this.id;
-                var value = this.value;
+                var id = el.id;
+                var value = el.value;
                 if (value == 4) {
                     jQuery("#" + id).attr('disabled', true);
                 }
-                e.preventDefault();
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
                     }
                 });
                 $.ajax({
-                    type: "POST",
+                    type: "GET",
                     dataType: "json",
                     url: $('#app_url').val() + '/' + $('#language').val() + '/changeStatus/order/',
                     data: {"id": id, "value": value},
@@ -491,22 +489,18 @@
                         )
                     }
                 });
-            });
-
         }
 
         function ChangeSelectUser(el) {
-            $('.dd').on('change', function (e) {
-                var id = this.id;
-                var value = this.value;
-                e.preventDefault();
+                var id = el.id;
+                var value = el.value;
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
                     }
                 });
                 $.ajax({
-                    type: "POST",
+                    type: "GET",
                     dataType: "json",
                     url: $('#app_url').val() + '/' + $('#language').val() + '/changeUser/order/',
                     data: {"id": id, "value": value},
@@ -518,8 +512,6 @@
                         )
                     }
                 });
-            });
-
         }
 
     </script>

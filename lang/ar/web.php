@@ -176,6 +176,7 @@ return [
     'TrackID' => 'رقم التتبع',
     'PaymentID' => 'رقم الدفعه',
     'driver' => 'السائق',
+    'Driver assigned successfully' => 'تم تعيين السائق بنجاح',
 
     /*new requset site*/
 

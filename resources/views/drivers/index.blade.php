@@ -95,11 +95,11 @@
                         <thead>
                         <!--begin::Table row-->
                         <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
-                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") min-w-125px @else text-start @endif">@lang('web.Full Name')</th>
-                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") min-w-125px @else text-start @endif">@lang('web.email')</th>
-                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") min-w-125px @else text-start @endif">@lang('web.phone_number')</th>
-                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") min-w-125px @else text-start @endif">@lang('web.address')</th>
-                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") min-w-125px @else text-start @endif">@lang('web.action')</th>
+                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900 min-w-125px @else text-start @endif">@lang('web.Full Name')</th>
+                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900 min-w-125px @else text-start @endif">@lang('web.email')</th>
+                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900 min-w-125px @else text-start @endif">@lang('web.phone_number')</th>
+                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900 min-w-125px @else text-start @endif">@lang('web.address')</th>
+                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900 min-w-125px @else text-start @endif">@lang('web.action')</th>
                         </tr>
                         <!--end::Table row-->
                         </thead>

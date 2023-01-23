@@ -33,7 +33,7 @@ class TransportationController extends Controller
                     return $transportations_all->email;
                 })
                 ->addColumn('status', function ($transportations_all) {
-                    $select = '<select style="height: auto;line-height: 14px;width:170px;" class="form-select form-control-solid cc" id="'.$transportations_all->id.'" '.disableSelect($transportations_all->status).' onclick="ChangeSelect(this)">';
+                    $select = '<select style="height: auto;line-height: 14px;width:170px;" class="form-select form-control-solid cc" id="'.$transportations_all->id.'" '.disableSelect($transportations_all->status).' onchange="ChangeSelect(this)">';
                         foreach (Order::STATUS as $status){
                            $select = $select . '<option '.disableOption($status).' value="'.$status.'" '.selected($status,$transportations_all->status).'>'. Select($status) .'</option>';
                         }
@@ -43,7 +43,7 @@ class TransportationController extends Controller
                     return payment_status($transportations_all->payment_status);
                 })
                 ->addColumn('assign_driver', function ($transportations_all) {
-                    $select = '<select style="height: auto;line-height: 14px;width:170px;" class="form-select form-control-solid dd" id="'.$transportations_all->id.'" onclick="ChangeSelectUser(this)"><option></option>';
+                    $select = '<select style="height: auto;line-height: 14px;width:170px;" class="form-select form-control-solid dd" id="'.$transportations_all->id.'" onchange="ChangeSelectUser(this)"><option></option>';
                     foreach (User::where('user_type',1)->get() as $user){
                         $select = $select . '<option value="'.$user->id.'" '.selectedUser($user->id,$transportations_all->user_id).'>'. $user->full_name .'</option>';
                     }
@@ -62,7 +62,7 @@ class TransportationController extends Controller
                                 </button>';
                     return $action;
                 })
-                ->rawColumns(['order_number'], ['name'], ['phone_number'], ['email'],
+                ->rawColumns(['order_number'], ['name'], ['email'],
                     ['governorate'], ['city'], ['pieces_number'], ['avenue'], ['street'], ['building_number'], ['floor'], ['status'], ['payment_status'])
                 ->escapeColumns(['order_number' => 'order_number'], ['name' => 'name'], ['phone_number' => 'phone_number']
                     , ['email' => 'email'], ['governorate' => 'governorate'], ['city' => 'city']
