@@ -187,10 +187,10 @@
                     </a>
                     <!--end:Menu link-->
                 </div>
-                <div class="menu-item menu-accordion {{str_contains($url,"manage_locations")  ? "hover show":""}} ">
+                <div class="menu-item menu-accordion {{str_contains($url,"locations")  ? "hover show":""}} ">
                     <!--begin:Menu link-->
-                    <a class="menu-link {{str_contains($url,"•	manage_locations") ? "active":""}}"
-                       href="{{route('manage_locations.index')}}">
+                    <a class="menu-link {{str_contains($url,"•	locations") ? "active":""}}"
+                       href="{{route('locations.index')}}">
 											<span class="menu-icon">
 												<!--begin::Svg Icon | path: icons/duotune/abstract/abs029.svg-->
 												<span class="svg-icon svg-icon-2">

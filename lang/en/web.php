@@ -184,7 +184,17 @@ return [
 
     /*manage_locations*/
 
-    'manage_locations' => 'manage_locations'
+    'locations_list' => 'Locations list',
+    'manage_locations' => 'Manage locations',
+    'Add_Location' => 'Add Location',
+    'Types' => 'Type',
+    'Governorate' => 'Governorate',
+    'City' => 'City',
+    'Edit_location' => 'Edit location',
+    'priceLocation' => 'Price city',
+    'Price' => 'Price',
+    'nothing' => 'Nothing',
+
 
 
 

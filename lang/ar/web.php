@@ -183,7 +183,15 @@ return [
 
     /*manage_locations*/
 
-    'manage_locations' => 'أدارة الأماكن'
-
+    'locations_list' => 'قائمة المواقع',
+    'manage_locations' => 'أدارة المواقع',
+    'Add_Location' => 'اضافه موقع',
+    'Types' => 'النوع',
+    'Governorate' => 'محافظة',
+    'City' => 'مدينة',
+    'Edit_location' => 'تعديل الموقع',
+    'priceLocation' => 'سعر المدينة',
+    'Price' => 'السعر',
+    'nothing' => 'لا يوجد',
 
 ];

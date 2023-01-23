@@ -16,8 +16,9 @@ return new class extends Migration
         Schema::create('core_lookups', function (Blueprint $table) {
             $table->id();
             $table->string('s_key')->nullable();
-            $table->string('name_en')->nullable();
-            $table->string('name_ar')->nullable();
+            $table->string('name')->nullable();
+            $table->double('price')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

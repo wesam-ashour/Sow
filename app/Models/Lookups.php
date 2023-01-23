@@ -9,6 +9,6 @@ use Spatie\Translatable\HasTranslations;
 
 class Lookups extends Model
 {
-    use HasFactory;
+    use HasFactory,SoftDeletes;
     protected $table = "core_lookups";
 }

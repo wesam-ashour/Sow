@@ -84,7 +84,7 @@ Route::group(['middleware' => ['auth', 'verified', 'localeSessionRedirect', 'loc
     Route::get('drivers/edit/{id}',[DriverController::class, 'edit']);
     Route::delete('drivers/delete/{id}',[DriverController::class, 'destroy'])->name('destroy.delete');
 
-    Route::get('manage_locations',[ManageLocationsController::class, 'index'])->name('manage_locations.index');
+    Route::resource('locations', ManageLocationsController::class);
 
 
     Route::get('language/{locale}', function ($locale) {

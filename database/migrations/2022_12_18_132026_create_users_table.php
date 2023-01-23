@@ -30,6 +30,7 @@ class CreateUsersTable extends Migration
             $table->integer('roles_id')->nullable();
             $table->integer('user_status')->nullable()->default(1)->comment('1(active)/ 2(inactive)');
             $table->string('personalphoto')->nullable();
+            $table->softDeletes();
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable();
         });
