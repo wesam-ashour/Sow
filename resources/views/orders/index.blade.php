@@ -487,7 +487,8 @@
                             '@lang('web.Status changed successfully')',
                             '',
                             'success'
-                        )
+                        );
+                        $('#kt_orders_table').DataTable().ajax.reload();
                     }
                 });
         }
@@ -510,7 +511,8 @@
                             '@lang('web.Driver assigned successfully')',
                             '',
                             'success'
-                        )
+                        );
+                        $('#kt_orders_table').DataTable().ajax.reload();
                     }
                 });
         }
@@ -533,7 +535,8 @@
                         '@lang('web.Delivery date added successfully')',
                         '',
                         'success'
-                    )
+                    );
+                    $('#kt_orders_table').DataTable().ajax.reload();
                 }
             });
         }

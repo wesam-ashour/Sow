@@ -134,13 +134,7 @@
                         <div class="menu-item px-3">
                             <div class="menu-content d-flex align-items-center px-3">
                                 <!--begin::Avatar-->
-                                <div class="symbol symbol-50px me-5">
-                                    @if(auth()->user()->personalphoto)
-                                        <img src="{{asset('images/users/'.auth()->user()->personalphoto)}}" alt="user" />
-                                    @else
-                                        <img alt="Logo" src="{{asset('assets/media/avatars/300-1.jpg')}}" />
-                                    @endif
-                                </div>
+
                                 <!--end::Avatar-->
                                 <!--begin::Username-->
                                 <div class="d-flex flex-column">
@@ -168,7 +162,7 @@
 												<span class="menu-title position-relative">@lang('web.Language')
                                                 @if (App::getLocale() == 'ar')
                                                         <span class="fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 end-0">@lang('web.arabic')
-												        <img class="w-15px h-15px rounded-1 ms-2" src="{{asset('assets/media/flags/palestine.svg')}}" alt="" /></span></span>
+												        <img class="w-15px h-15px rounded-1 ms-2" src="{{asset('assets/media/flags/kuwait.svg')}}" alt="" /></span></span>
                                                 @else
                                                         <span class="fs-8 rounded bg-light px-3 py-2 position-absolute translate-middle-y top-50 end-0">@lang('web.english')
 												        <img class="w-15px h-15px rounded-1 ms-2" src="{{asset('assets/media/flags/united-states.svg')}}" alt="" /></span></span>
@@ -182,7 +176,7 @@
                                     <div class="menu-item px-3 mt-1">
                                         <a class="menu-link d-flex px-5" rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
                                             <span class="symbol symbol-20px me-4">
-															<img class="rounded-1" src="@if($localeCode == 'en'){{asset('assets/media/flags/united-states.svg')}} @else {{asset('assets/media/flags/palestine.svg')}}@endif" alt="" />
+															<img class="rounded-1" src="@if($localeCode == 'en'){{asset('assets/media/flags/united-states.svg')}} @else {{asset('assets/media/flags/kuwait.svg')}}@endif" alt="" />
 														</span>{{ $properties['native'] }}</a>
                                         </a>
                                     </div>

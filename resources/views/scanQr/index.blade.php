@@ -2,7 +2,19 @@
 @section('css')
 @endsection
 <meta name="apple-mobile-web-app-capable" content="yes">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+<input hidden name="lan" id="lan" value="{{\Illuminate\Support\Facades\App::getLocale()}}">
 <script src="{{asset('assets/js/html5-qrcode.min.js')}}"></script>
+<script>
+    const app_url = $('#app_url').val(),
+        language = $('#lan').val();
+    $( document ).ready(function() {
+        $( "#Request" ).text( language === "en" ? "Request Camera Permissions" : "طلب أذونات الكاميرا" );
+        $( "#start" ).text( language === "en" ? "Start Scanning" : "ابدأ المسح" );
+        $( "#stop" ).text( language === "en" ? "Stop Scanning" : "اوقف المسح" );
+    });
+</script>
 <style>
     /*.result{*/
     /*    background-color: green;*/
@@ -22,7 +34,7 @@
             <!--begin::Page title-->
             <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                 <!--begin::Title-->
-                <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">@lang('web.driver_list')</h1>
+                <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">@lang('web.Scan')</h1>
                 <!--end::Title-->
                 <!--begin::Breadcrumb-->
                 <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -38,7 +50,7 @@
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
-                    <li class="breadcrumb-item text-muted">@lang('web.drivers_Management')</li>
+                    <li class="breadcrumb-item text-muted">@lang('web.Scan_Management')</li>
                     <!--end::Item-->
                 </ul>
                 <!--end::Breadcrumb-->
@@ -56,7 +68,7 @@
 
             <div class="card card-bordered">
                 <div class="card-header">
-                    <h3 class="card-title">Scan Qrcode</h3>
+                    <h3 class="card-title">@lang('web.Scan')</h3>
                 </div>
                 <div class="card-body">
                     <div class="row">

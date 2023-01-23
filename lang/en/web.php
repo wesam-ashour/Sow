@@ -51,6 +51,7 @@ return [
     'Dark' => 'Dark',
     'emaillEnter' => 'Enter email',
     'passwordEnter' => 'Enter password',
+    'Home' => 'Home',
 
 
     'Unpaid' => 'Unpaid',
@@ -70,7 +71,7 @@ return [
     'Orders' => 'Orders',
 
     /*dashboard*/
-    'Total system users' => 'Total system users',
+    'Total system users' => 'System users',
     'requested' => 'requested',
     'Accepted' => 'accepted',
     'rejected' => 'rejected',
@@ -198,6 +199,11 @@ return [
     'Price' => 'Price',
     'nothing' => 'Nothing',
 
+    /*manage_locations*/
+    'Scan' => 'Scan Qrcode',
+    'Scan_Management' => 'Scan Management',
+    'nothing' => 'Nothing',
+    'nothing' => 'Nothing',
 
 
 

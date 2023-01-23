@@ -94,6 +94,12 @@ function disableSelect($value){
     }
 }
 
+function disableSelectDriver($value){
+    if ($value == 1 || $value == 4){
+        return 'disabled' ;
+    }
+}
+
 function disableOption($value){
     if ($value == 1){
         return 'disabled' ;

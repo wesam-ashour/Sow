@@ -40,14 +40,14 @@ class TransportationController extends Controller
                         return $select . '</select>';
                 })
                 ->addColumn('assign_driver', function ($transportations_all) {
-                    $select = '<select style="height: auto;line-height: 14px;width:170px;" class="form-select form-control-solid dd" id="'.$transportations_all->id.'" onchange="ChangeSelectUser(this)"><option></option>';
+                    $select = '<select style="height: auto;line-height: 14px;width:170px;" class="form-select form-control-solid dd" id="'.$transportations_all->id.'" '.disableSelectDriver($transportations_all->status).' onchange="ChangeSelectUser(this)"><option></option>';
                     foreach (User::where('user_type',1)->get() as $user){
                         $select = $select . '<option value="'.$user->id.'" '.selectedUser($user->id,$transportations_all->user_id).'>'. $user->full_name .'</option>';
                     }
                     return $select . '</select>';
                 })
                 ->addColumn('delivery_date', function ($transportations_all) {
-                    return '<input class="form-select form-control-solid dd" type="date" id="'.$transportations_all->id.'" onchange="delivery_date(this)"></option>';
+                    return '<input style="height: 34px;width:170px;" class="form-select form-control-solid dd" value="'. $transportations_all->delivery_date .'" type="date" id="'.$transportations_all->id.'" onchange="delivery_date(this)" '.disableSelectDriver($transportations_all->status).'></option>';
                 })
                 ->addColumn('payment_status', function ($transportations_all) {
                     return payment_status($transportations_all->payment_status);

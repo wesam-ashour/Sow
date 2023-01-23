@@ -50,6 +50,7 @@ return [
     'Dark' => 'داكن',
     'emaillEnter' => 'أدخل البريد الإلكتروني',
     'passwordEnter' => 'أدخل كلمة المرور',
+    'Home' => 'الرئيسيه',
 
     'Unpaid' => 'غير مدفوع',
     'paid' => 'مدفوع',
@@ -67,7 +68,7 @@ return [
 
 
     /*dashboard*/
-    'Total system users' => 'إجمالي مستخدمي النظام',
+    'Total system users' => 'مستخدمين النظام',
     'requested' => 'طلب',
     'Accepted' => 'مقبول',
     'rejected' => 'مرفوض',
@@ -196,5 +197,9 @@ return [
     'priceLocation' => 'سعر المدينة',
     'Price' => 'السعر',
     'nothing' => 'لا يوجد',
+
+    /*manage_locations*/
+    'Scan' => 'مسح رمز الاستجابة السريعة',
+    'Scan_Management' => 'إدارة المسح',
 
 ];
