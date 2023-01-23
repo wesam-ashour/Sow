@@ -39,15 +39,18 @@ class TransportationController extends Controller
                         }
                         return $select . '</select>';
                 })
-                ->addColumn('payment_status', function ($transportations_all) {
-                    return payment_status($transportations_all->payment_status);
-                })
                 ->addColumn('assign_driver', function ($transportations_all) {
                     $select = '<select style="height: auto;line-height: 14px;width:170px;" class="form-select form-control-solid dd" id="'.$transportations_all->id.'" onchange="ChangeSelectUser(this)"><option></option>';
                     foreach (User::where('user_type',1)->get() as $user){
                         $select = $select . '<option value="'.$user->id.'" '.selectedUser($user->id,$transportations_all->user_id).'>'. $user->full_name .'</option>';
                     }
                     return $select . '</select>';
+                })
+                ->addColumn('delivery_date', function ($transportations_all) {
+                    return '<input class="form-select form-control-solid dd" type="date" id="'.$transportations_all->id.'" onchange="delivery_date(this)"></option>';
+                })
+                ->addColumn('payment_status', function ($transportations_all) {
+                    return payment_status($transportations_all->payment_status);
                 })
                 ->editColumn('actions', function ($transportations_all) {
                     $action = '<button id="show" data-id="' . $transportations_all->id . '" class="btn btn-icon btn-active-light-primary w-30px h-30px me-3" data-bs-toggle="modal" data-bs-target="#kt_modal_show_orders">
@@ -167,6 +170,16 @@ class TransportationController extends Controller
         $order->user_id = $request->value;
         $order->assigned_driver =  Auth::user()->id;
         $order->save();
+        return response()->json(['success']);
+
+    }
+
+    public function delivery_date(Request $request){
+
+       $order = Order::query()->where('id','=',$request->id)->get()->first();
+       $order->delivery_date = $request->value;
+
+       $order->save();
         return response()->json(['success']);
 
     }

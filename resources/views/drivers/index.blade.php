@@ -188,7 +188,7 @@
                                             <!--end::Label-->
                                             <!--begin::Input-->
                                             <input id="email" type="email" class="form-control form-control-solid"
-                                                   placeholder="@lang('web.Enter Here')" name="email">
+                                                   placeholder="@lang('web.Enter Here')" name="email" @if(app()->getLocale() == 'ar')style="text-align: end"@endif>
                                             <strong id="email_error" class="errors text-danger"
                                                     role="alert"></strong>
                                             <!--end::Input-->
@@ -204,7 +204,7 @@
                                             <!--end::Label-->
                                             <!--begin::Input-->
                                             <input id="phone_number" type="number" class="form-control form-control-solid"
-                                                   placeholder="@lang('web.Enter Here')" name="phone_number">
+                                                   placeholder="@lang('web.Enter Here')" name="phone_number" @if(app()->getLocale() == 'ar')style="text-align: end"@endif>
                                             <strong id="phone_number_error" class="errors text-danger"
                                                     role="alert"></strong>
                                             <!--end::Input-->
@@ -220,7 +220,7 @@
                                             <!--end::Label-->
                                             <!--begin::Input-->
                                             <textarea id="address" type="number" class="form-control form-control-solid"
-                                                      placeholder="@lang('web.Enter Here')" name="address"></textarea>
+                                                      placeholder="@lang('web.Enter Here')" name="address" @if(app()->getLocale() == 'ar')style="text-align: end"@endif></textarea>
                                             <strong id="address_error" class="errors text-danger"
                                                     role="alert"></strong>
                                             <!--end::Input-->
@@ -255,7 +255,7 @@
             </div>
             <!--end::Modal - add  driver-->
             <!--begin::Modal - update  driver-->
-            <div class="modal fade" id="kt_modal_update_news" tabindex="-1" aria-hidden="true">
+            <div class="modal fade" id="kt_modal_edit_driver" tabindex="-1" aria-hidden="true">
                 <!--begin::Modal dialog-->
                 <div class="modal-dialog modal-dialog-centered modal-ml">
                     <!--begin::Modal content-->
@@ -263,11 +263,11 @@
                         <!--begin::Modal header-->
                         <div class="modal-header">
                             <!--begin::Modal title-->
-                            <h2 class="fw-bold">@lang('web.Add_driver')</h2>
+                            <h2 class="fw-bold">@lang('web.edit_driver')</h2>
                             <!--end::Modal title-->
                             <!--begin::Close-->
-                            <div class="btn btn-icon btn-sm btn-active-icon-primary"
-                                 data-kt-permissions-modal-action="close">
+                            <div class="btn btn-icon btn-sm btn-active-icon-primary close"
+                                 data-kt-editDriver-modal-action="close">
                                 <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
                                 <span class="svg-icon svg-icon-1">
 															<svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -300,6 +300,7 @@
                                      data-kt-scroll-offset="300px">
                                     <!--begin::Input group-->
                                     <div class="row">
+                                        <input type="hidden" id="edit_id" name="edit_id">
                                         <div class="fv-row col-12 mb-7">
                                             <!--begin::Label-->
                                             <label class="fs-6 fw-semibold form-label mb-2">
@@ -372,10 +373,8 @@
                                 <!--end::Input group-->
                                 <!--begin::Actions-->
                                 <div class="text-center pt-15">
-                                    <button type="reset" class="btn btn-light me-3"
-                                            data-kt-permissions-modal-action="cancel">@lang('web.Discard')</button>
                                     <button type="submit" class="btn btn-primary"
-                                            data-kt-permissions-modal-action="submit">
+                                            data-kt-editDriver-modal-action="submit">
                                         <span class="indicator-label">@lang('web.Submit')</span>
                                         <span class="indicator-progress">@lang('web.Please wait...')
 																<span

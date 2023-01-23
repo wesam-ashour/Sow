@@ -43,6 +43,10 @@ $(function () {
                                 name: 'assign_driver'
                             },
                             {
+                                data: 'delivery_date',
+                                name: 'delivery_date'
+                            },
+                            {
                                 data: 'payment_status',
                                 name: 'payment_status'
                             },

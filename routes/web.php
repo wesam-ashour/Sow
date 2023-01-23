@@ -76,12 +76,15 @@ Route::group(['middleware' => ['auth', 'verified', 'localeSessionRedirect', 'loc
     Route::get('/changeStatus/order/', [TransportationController::class, 'changeStatus']);
     Route::get('/changeUser/order/', [TransportationController::class, 'changeUserOrder']);
 
+    Route::post('delivery_date',[TransportationController::class,'delivery_date']);
+
     Route::get('/search', [TransportationController::class, 'fetch_data']);
     Route::get('/search/date/', [TransportationController::class, 'SearchDate']);
 
     Route::get('drivers',[DriverController::class, 'index'])->name('drivers.index');
     Route::post('drivers/store',[DriverController::class, 'store'])->name('drivers.store');
     Route::get('drivers/edit/{id}',[DriverController::class, 'edit']);
+    Route::post('drivers/update',[DriverController::class, 'update'])->name('drivers.update');
     Route::delete('drivers/delete/{id}',[DriverController::class, 'destroy'])->name('destroy.delete');
 
     Route::get('manage_locations',[ManageLocationsController::class, 'index'])->name('manage_locations.index');
