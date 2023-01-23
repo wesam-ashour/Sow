@@ -466,13 +466,11 @@
 
 
         function ChangeSelect(el) {
-            $('.cc').on('change', function (e) {
-                var id = this.id;
-                var value = this.value;
+                var id = el.id;
+                var value = el.value;
                 if (value == 4) {
                     jQuery("#" + id).attr('disabled', true);
                 }
-                e.preventDefault();
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
@@ -491,8 +489,6 @@
                         )
                     }
                 });
-            });
-
         }
 
         function ChangeSelectUser(el) {
