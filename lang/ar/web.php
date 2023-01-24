@@ -58,6 +58,7 @@ return [
     'transportations' => 'طلبات',
     'error' => 'خطأ',
     'Something went wrong!' => 'هناك خطأ ما!',
+    'Total system drivers' => 'عدد سائقين النظام',
 
 
     'Unpaid' => 'غير مدفوع',
@@ -205,7 +206,7 @@ return [
     'priceLocation' => 'سعر المدينة',
     'Price' => 'السعر',
     'nothing' => 'لا يوجد',
-
+    'governorate_fk_city' => 'المحافظة التابعة لها',
     /*manage_locations*/
     'Scan' => 'مسح رمز الاستجابة السريعة',
     'Scan_Management' => 'إدارة المسح',

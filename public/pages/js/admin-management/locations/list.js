@@ -28,6 +28,7 @@ $(function () {
                 $("#location_edit_id").html(id);
                 $("#name_edit").val(response.name);
                 $("#type_edit").val(response.s_key);
+                $("#governorate_fk_city_edit").val(response.fk_relationships);
                 if (response.price != null){
                     $("#price_edit").val(response.price);
                     $("#priceLocation_edit").css("display", "block");

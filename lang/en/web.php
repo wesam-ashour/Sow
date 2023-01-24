@@ -63,6 +63,7 @@ return [
     'paid' => 'paid',
     'new request' => 'new request',
     'ScanQR' => 'Scan QR',
+    'Total system drivers' => 'Total system drivers',
 
 
 
@@ -203,6 +204,7 @@ return [
     'priceLocation' => 'Price city',
     'Price' => 'Price',
     'nothing' => 'Nothing',
+    'governorate_fk_city' => 'its governorate province',
 
     /*manage_locations*/
     'Scan' => 'Scan Qrcode',

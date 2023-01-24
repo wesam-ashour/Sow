@@ -12,6 +12,7 @@ class ManageLocationsController extends Controller
 
     public function index(Request $request){
         $locations = Lookups::all();
+
         if ($request->ajax()) {
             return Datatables::of($locations)->addIndexColumn()
                 ->editColumn('name', function ($locations) {
@@ -23,6 +24,14 @@ class ManageLocationsController extends Controller
                    }else{
                        return trans('web.City');
                    }
+                })
+                ->editColumn('fk_relationships', function ($locations) {
+                    if ($locations->s_key == "Governorate"){
+                        return '----';
+                    }else{
+                        return getGovernorateByid($locations->fk_relationships);
+                    }
+
                 })
                 ->editColumn('price', function ($locations) {
                     if ($locations->price){
@@ -67,6 +76,7 @@ class ManageLocationsController extends Controller
             'name' => 'required|string|max:255',
             'type' => 'required|string|max:255',
             'price' => $request->type == "City" ? 'required|numeric' : '',
+            'governorate_fk_city' => $request->type == "City" ? 'required' : '',
         ], [
             'name.required' => trans("web.required"),
             'name.string' => trans("web.string"),
@@ -76,11 +86,13 @@ class ManageLocationsController extends Controller
             'type.max' => trans("web.max"),
             'price.required' => trans("web.required"),
             'price.numeric' => trans("web.numeric"),
+            'governorate_fk_city.required' => trans("web.required"),
         ]);
         if ($validator->passes()) {
             $data = new Lookups();
             $data->name = $request->name;
             $data->s_key = $request->type;
+            $data->fk_relationships = $request->governorate_fk_city;
             $data->price = $request->price;
             $data->save();
             return response()->json(['success' => $data]);

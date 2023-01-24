@@ -36,6 +36,10 @@ $(function () {
                                 name: 's_key'
                             },
                             {
+                                data: 'fk_relationships',
+                                name: 'fk_relationships'
+                            },
+                            {
                                 data: 'price',
                                 name: 'price'
                             },
