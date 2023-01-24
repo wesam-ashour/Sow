@@ -67,7 +67,7 @@ return [
 
 
 
-    /*sidebar*/
+    /*sidebar.*/
     'dashboard1' => 'Dashboard',
     'Users Management' => 'Users',
     'Admins' => 'Admins',
