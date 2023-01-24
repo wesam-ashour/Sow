@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('s_key')->nullable();
             $table->string('name')->nullable();
+            $table->string('fk_relationships')->nullable();
             $table->double('price')->nullable();
             $table->softDeletes();
             $table->timestamps();

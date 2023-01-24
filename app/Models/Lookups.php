@@ -11,4 +11,13 @@ class Lookups extends Model
 {
     use HasFactory,SoftDeletes;
     protected $table = "core_lookups";
+
+
+    public function governorate_fk_city()
+    {
+        return $this->hasOne(Lookups::class, 'fk_relationships', 'id');
+    }
+
+
+
 }

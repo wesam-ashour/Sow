@@ -1320,7 +1320,7 @@
                                                     <div class="v-input__slot">
                                                         <div class="v-text-field__slot">
                                                             <label for="input-15" class="v-label v-label--active theme--light" style="left: auto; right: 0px; position: absolute;">order number/رقم الطلب</label>
-                                                            <input id="input-15" name="order_number" value="{{$order_number}}" readonly="readonly" type="text">
+                                                            <input id="input-15" name="order_number" value="@if($check_order){{$check_order->order_number}}@else {{$order_number}}@endif" readonly="readonly" type="text">
                                                         </div>
                                                     </div>
                                                     <div class="v-text-field__details">
@@ -1346,7 +1346,7 @@
                                                         </div>
                                                         <div class="v-text-field__slot">
                                                             <label for="input-19" class="v-label v-label--active theme--light" style="left: auto; right: 0px; position: absolute;">Name/الأسم</label>
-                                                            <input id="input-19" type="text" name="name" value="{{$name}}">
+                                                            <input id="input-19" type="text" name="name" value="@if($check_order){{$check_order->name}}@else {{$name}}@endif">
                                                         </div>
                                                     </div>
                                                     <div class="v-text-field__details">
@@ -1372,7 +1372,7 @@
                                                         </div>
                                                         <div class="v-text-field__slot">
                                                             <label for="input-24" class="v-label v-label--active theme--light" style="left: auto; right: 0px; position: absolute;">رقم الهاتف/Phone Number</label>
-                                                            <input id="input-24" type="number" name="phone" value="{{$phone}}">
+                                                            <input id="input-24" type="text" name="phone" value="@if($check_order){{$check_order->phone}}@else {{$phone}}@endif">
                                                         </div>
                                                     </div>
                                                     <div class="v-text-field__details">
@@ -1398,7 +1398,7 @@
                                                         </div>
                                                         <div class="v-text-field__slot">
                                                             <label for="input-29" class="v-label v-label--active theme--light" style="left: auto; right: 0px; position: absolute;">البريد الإلكتروني/E-mail</label>
-                                                            <input readonly id="input-29" type="email" name="email" value="{{$email}}">
+                                                            <input readonly id="input-29" type="email" name="email" value="@if($check_order){{$check_order->email}}@else {{$email}}@endif">
                                                         </div>
                                                     </div>
                                                     <div class="v-text-field__details">
@@ -1421,10 +1421,10 @@
                                                     <div role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-owns="list-34" class="v-input__slot">
                                                         <div class="v-select__slot custom-selector">
                                                            {{-- <label for="input-34" class="v-label theme--light" style="left: auto; right: 0px; position: absolute;">محافظة</label>--}}
-                                                            <select  name="governorate" {{--style="width: 100%; height: 100%; outline: none;max-height: 304px; min-width: 91%; top: 455px; left: 672px; transform-origin: left top; z-index: 1001;"--}}>
+                                                            <select id="governorate" name="governorate" {{--style="width: 100%; height: 100%; outline: none;max-height: 304px; min-width: 91%; top: 455px; left: 672px; transform-origin: left top; z-index: 1001;"--}}>
                                                             <option disabled selected  value="0">المحافظة/Governorate</option>
                                                              @foreach(getGovernorate() as $value)
-                                                                    <option value="{{$value->id}}" @if($check_order){{$value->id ? $check_order->governorate ? "selected":"":""}}@endif>{{$value->name_en}}</option>
+                                                                    <option value="{{$value->id}}" @if($check_order){{$value->id ? $check_order->governorate ? "selected":"":""}}@endif>{{$value->name}}</option>
                                                              @endforeach
                                                         </select>
                                                             {{-- <div class="v-input__append-inner">
@@ -1455,11 +1455,15 @@
                                                     <div role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-owns="list-34" class="v-input__slot">
                                                         <div class="v-select__slot custom-selector">
                                                            {{-- <label for="input-34" class="v-label theme--light" style="left: auto; right: 0px; position: absolute;">محافظة</label>--}}
-                                                            <select data-mce-placeholder=""  name="city" {{--style="width: 100%; height: 100%; outline: none;max-height: 304px; min-width: 91%; top: 455px; left: 672px; transform-origin: left top; z-index: 1001;"--}}>
-                                                            <option disabled selected value="0">المدينة/City</option>
-                                                             @foreach(getCite() as $value)
-                                                                    <option value="{{$value->id}}" @if($check_order){{$value->id ? $check_order->city ? "selected":"":""}}@endif>{{$value->name_en}}</option>
-                                                             @endforeach
+                                                            <select id="city" data-mce-placeholder=""  name="city" {{--style="width: 100%; height: 100%; outline: none;max-height: 304px; min-width: 91%; top: 455px; left: 672px; transform-origin: left top; z-index: 1001;"--}}>
+                                                                @if($check_order)
+                                                                    <option selected value="{{getCiteByid($check_order->city)->id}}">{{getCiteByid($check_order->city)->name}}</option>
+                                                                @else
+                                                                    <option disabled selected value="0">المدينة/City</option>
+                                                                @endif
+                                                        {{--     @foreach(getCite() as $value)
+                                                                    <option value="{{$value->id}}" @if($check_order){{$value->id ? $check_order->city ? "selected":"":""}}@endif>{{$value->name}}</option>
+                                                             @endforeach--}}
                                                         </select>
                                                            {{--  <div class="v-input__append-inner">
                                                                 <div class="v-input__icon v-input__icon--append">
@@ -1489,8 +1493,8 @@
                                                      @enderror
                                                     <div class="v-input__slot">
                                                         <div class="v-text-field__slot">
-                                                            <label for="input-46" class="v-label v-label--active theme--light" style="left: auto; right: 0px; position: absolute;">قطعة/Plot</label>
-                                                            <input id="input-46" type="text" name="block" value="@if($check_order){{$check_order->block}}@endif">
+                                                            <label for="input-46" class="v-label v-label--active theme--light" style="left: auto; right: 0px; position: absolute;">قطعة/block</label>
+                                                            <input id="input-46" type="text" name="block" value="@if($check_order){{$check_order->block}}@else {{$block}}@endif">
                                                         </div>
                                                     </div>
                                                     <div class="v-text-field__details">
@@ -1510,7 +1514,7 @@
                                                     <div class="v-input__slot">
                                                         <div class="v-text-field__slot">
                                                             <label for="input-50" class="v-label v-label--active theme--light" style="left: auto; right: 0px; position: absolute;">جادة/boulevard</label>
-                                                            <input id="input-50" type="text" name="jadda" value="@if($check_order){{$check_order->jadda}}@endif">
+                                                            <input id="input-50" type="text" name="jadda" value="@if($check_order){{$check_order->jadda}}@else {{$jadda}}@endif">
                                                         </div>
                                                     </div>
                                                     <div class="v-text-field__details">
@@ -1530,7 +1534,7 @@
                                                     <div class="v-input__slot">
                                                         <div class="v-text-field__slot">
                                                             <label for="input-54" class="v-label v-label--active theme--light" style="left: auto; right: 0px; position: absolute;">شارع/street</label>
-                                                            <input id="input-54" type="text" name="street" value="@if($check_order){{$check_order->street}}@endif">
+                                                            <input id="input-54" type="text" name="street" value="@if($check_order){{$check_order->street}}@else {{$street}}@endif">
                                                         </div>
                                                     </div>
                                                     <div class="v-text-field__details">
@@ -1551,7 +1555,7 @@
                                                     <div class="v-input__slot">
                                                         <div class="v-text-field__slot">
                                                             <label for="input-58" class="v-label v-label--active theme--light" style="left: auto; right: 0px; position: absolute;">رقم المبنى/building number</label>
-                                                            <input id="input-58" type="text" name="house" value="@if($check_order){{$check_order->house}}@endif">
+                                                            <input id="input-58" type="text" name="house" value="@if($check_order){{$check_order->house}}@else {{$house}}@endif">
                                                         </div>
                                                     </div>
                                                     <div class="v-text-field__details">
@@ -1571,7 +1575,7 @@
                                                     <div class="v-input__slot">
                                                         <div class="v-text-field__slot">
                                                             <label for="input-62" class="v-label v-label--active theme--light" style="left: auto; right: 0px; position: absolute;">الطابق/floor</label>
-                                                            <input id="input-62" type="text" name="floor" value="@if($check_order){{$check_order->floor}}@endif">
+                                                            <input id="input-62" type="text" name="floor" value="@if($check_order){{$check_order->floor}}@else {{$floor}}@endif">
                                                         </div>
                                                     </div>
                                                     <div class="v-text-field__details">
@@ -1611,28 +1615,30 @@
         @endif
     </div>
 
-    {{--
-        <div class="v-menu__content theme--light menuable__content__active v-autocomplete__content" style="max-height: 304px; min-width: 558px; top: 637px; left: 673px; transform-origin: left top; z-index: 1001;">
-            <div role="listbox" tabindex="-1" class="v-list v-select-list v-sheet theme--light theme--light" data-v-71b52688="true" id="list-34">
-                <div tabindex="0" aria-selected="false" id="list-item-84-0" role="option" class="v-list-item v-list-item--link theme--light">
-                    <div class="v-list-item__content">
-                        <div class="v-list-item__title">Hawalli Governorate</div>
-                    </div>
-                </div>
-                <div tabindex="0" aria-selected="false" id="list-item-84-1" role="option" class="v-list-item v-list-item--link theme--light">
-                    <div class="v-list-item__content"><div class="v-list-item__title">Ahmadi Governorate
-                        </div>
-                    </div>
-                </div>
-                <div tabindex="0" aria-selected="false" id="list-item-84-2" role="option" class="v-list-item v-list-item--link theme--light">
-                    <div class="v-list-item__content">
-                        <div class="v-list-item__title">Farwaniya Governorate</div>
-                    </div>
-                </div>
-                <div tabindex="0" aria-selected="false" id="list-item-84-3" role="option" class="v-list-item v-list-item--link theme--light">
-                    <div class="v-list-item__content"><div class="v-list-item__title">Jahra Governorate</div></div></div><div tabindex="0" aria-selected="false" id="list-item-84-4" role="option" class="v-list-item v-list-item--link theme--light"><div class="v-list-item__content"><div class="v-list-item__title">Capital Governorate</div></div></div><div tabindex="0" aria-selected="false" id="list-item-84-5" role="option" class="v-list-item v-list-item--link theme--light"><div class="v-list-item__content"><div class="v-list-item__title">Mubarak Alkabeer</div></div></div></div></div>
-    --}}
 </div>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<!--end::Custom Javascript-->
+<script>
+    $('#governorate').change(function () {
+        var id = $(this).val();
+        $("#city").empty();
+        $.ajax({
+            url: "/Cities_within_governorate/" + id,
+            type: "GET",
+            success: function(data){
+                // Update the second select with the new options
+                if (data[1].length != 0){
+                    for (var i = 0; i < data.length; i++) {
+                        $("#city").append("<option value='" + data[1][i].id + "'>" + data[1][i].name + "</option>");
+                    }
+                }else {
+                    $("#city").append("<option disabled value='" +0 + "'>" + 'المدينة/City' + "</option>");
+                }
 
+
+            }
+        });
+    });
+</script>
 </html>

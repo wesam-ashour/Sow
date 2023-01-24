@@ -18,9 +18,10 @@ class NewRequest extends Controller
         $street = request()->input('street');
         $block = request()->input('block');
         $city = request()->input('city');
+        $floor = request()->input('floor');
 
         $check_order = Order::query()->where('order_number' , '=' , $order_number)->get()->first();
-        return view('new_request',compact('order_number','name','phone','email','address','house','jadda','street','block','city','check_order'));
+        return view('new_request',compact('order_number','name','phone','email','address','house','jadda','street','block','city','check_order','floor'));
     }
     public function index2(){
         $order_number = null;
@@ -143,6 +144,13 @@ class NewRequest extends Controller
             $order->save();
             return redirect()->route('new-request', [$id])->with('failed','There is an error');
         }
+    }
+
+    public function Cities_within_governorate($governorateId){
+            $city = \App\Models\Lookups::query()->where('s_key','=','City')->where('fk_relationships','=',$governorateId)->get();
+            return response()->json(['city',$city]);
+
+
     }
 
 }

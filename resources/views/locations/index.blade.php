@@ -95,6 +95,7 @@
                             <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900  min-w-125px @else text-start @endif">@lang('web.ID')</th>
                             <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900  min-w-125px @else text-start @endif">@lang('web.name')</th>
                             <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900  min-w-125px @else text-start @endif">@lang('web.Types')</th>
+                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900  min-w-125px @else text-start @endif">@lang('web.governorate_fk_city')</th>
                             <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900  min-w-125px @else text-start @endif">@lang('web.Price')</th>
                             <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900  min-w-125px @else text-start @endif">@lang('web.Actions')</th>
                         </tr>
@@ -190,6 +191,27 @@
                                             <select id="type_edit" class="form-control form-control-solid" name="type_edit">
                                                 <option value="Governorate">@lang('web.Governorate')</option>
                                                 <option value="City">@lang('web.City')</option>
+                                            </select>
+                                            <strong id="type_edit_error" class="errors text-danger"
+                                                    role="alert"></strong>
+                                            <!--end::Input-->
+                                        </div>
+                                        <div class="fv-row col-12 mb-7 governorate_fk_city_edit" id="governorate_fk_city_edit"
+                                             style="display: none">
+                                            <!--begin::Label-->
+                                            <label class="fs-6 fw-semibold form-label mb-2">
+                                                <span class="required">@lang('web.governorate_fk_city')</span>
+                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="popover"
+                                                   data-bs-trigger="hover" data-bs-html="true"
+                                                   data-bs-content="@lang('web.required')"></i>
+                                            </label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <select id="governorate_fk_city_edit" class="form-control form-control-solid" name="governorate_fk_city_edit">
+                                                <option></option>
+                                                @foreach(getGovernorate() as $value)
+                                                    <option value="{{$value->id}}">{{$value->name}}</option>
+                                                @endforeach
                                             </select>
                                             <strong id="type_edit_error" class="errors text-danger"
                                                     role="alert"></strong>
@@ -322,7 +344,27 @@
                                                     role="alert"></strong>
                                             <!--end::Input-->
                                         </div>
-
+                                        <div class="fv-row col-12 mb-7 governorate_fk_city" id="governorate_fk_city"
+                                             style="display: none">
+                                            <!--begin::Label-->
+                                            <label class="fs-6 fw-semibold form-label mb-2">
+                                                <span class="required">@lang('web.governorate_fk_city')</span>
+                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="popover"
+                                                   data-bs-trigger="hover" data-bs-html="true"
+                                                   data-bs-content="@lang('web.required')"></i>
+                                            </label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <select id="governorate_fk_city" class="form-control form-control-solid" name="governorate_fk_city">
+                                                <option ></option>
+                                                @foreach(getGovernorate() as $value)
+                                                    <option value="{{$value->id}}">{{$value->name}}</option>
+                                                @endforeach
+                                            </select>
+                                            <strong id="governorate_fk_city_error" class="errors text-danger"
+                                                    role="alert"></strong>
+                                            <!--end::Input-->
+                                        </div>
                                         <div class="fv-row col-12 mb-7 priceLocation" id="priceLocation"
                                              style="display: none">
                                             <!--begin::Label-->
@@ -397,9 +439,12 @@
             if ($(this).val() === "City") {
 
                 $("#priceLocation").css("display", "block");
+                $("#governorate_fk_city").css("display", "block");
 
             } else {
                 $("#priceLocation").css("display", "none");
+                $("#governorate_fk_city").css("display", "none");
+
 
             }
         });
@@ -408,6 +453,7 @@
             if ($(this).val() === "City") {
 
                 $("#priceLocation_edit").css("display", "block");
+                $("#governorate_fk_city_edit").css("display", "block");
 
             } else {
                 $("#priceLocation_edit").css("display", "none");

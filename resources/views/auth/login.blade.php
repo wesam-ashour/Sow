@@ -46,7 +46,7 @@
         <div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
             <!--begin::Logo-->
             <a class="mb-12">
-                <img alt="Logo" src="{{asset('logo_n.png')}}" class="h-75px" />
+                <img alt="Logo" src="{{asset('images/logo.jpg')}}" class="h-75px" />
             </a>
             <!--end::Logo-->
             <!--begin::Wrapper-->

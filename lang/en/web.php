@@ -70,10 +70,11 @@ return [
     'paid' => 'paid',
     'new request' => 'new request',
     'ScanQR' => 'Scan QR',
+    'Total system drivers' => 'Total system drivers',
 
 
 
-    /*sidebar*/
+    /*sidebar.*/
     'dashboard1' => 'Dashboard',
     'Users Management' => 'Users',
     'Admins' => 'Admins',
@@ -81,6 +82,8 @@ return [
     'Pages' => 'Pages',
     'Settings' => 'Settings',
     'Orders' => 'Orders',
+    'Dashboard Admin Panel' => 'Dashboard Admin Panel',
+
 
     /*dashboard*/
     'Total system users' => 'System users',
@@ -210,6 +213,7 @@ return [
     'priceLocation' => 'Price city',
     'Price' => 'Price',
     'nothing' => 'Nothing',
+    'governorate_fk_city' => 'its governorate province',
 
     /*manage_locations*/
     'Scan' => 'Scan Qrcode',

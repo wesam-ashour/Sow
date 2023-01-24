@@ -42,9 +42,16 @@ function getGovernorate(){
     $governorate = \App\Models\Lookups::query()->where('s_key','=','Governorate')->get();
     return $governorate;
 }
+function getGovernorateByid($id){
+    $governorate = \App\Models\Lookups::query()->find($id);
+    if ($governorate)
+        return $governorate->name;
+    else
+        return '---';
+}
 
-function getCite(){
-    $city = \App\Models\Lookups::query()->where('s_key','=','City')->get();
+function getCiteByid($id){
+    $city = \App\Models\Lookups::query()->find($id);
     return $city;
 }
 function payment_status($value){
