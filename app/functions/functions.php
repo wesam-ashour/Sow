@@ -55,10 +55,13 @@ function getCiteByid($id){
     return $city;
 }
 function payment_status($value){
-    if ($value == 0){
+    if ($value == 1){
         return trans('web.Unpaid');
+    }elseif ($value == 2) {
+        return trans('web.paid');
+    }else{
+        return trans('web.fail');
     }
-    return  trans('web.paid');
 }
 
 function order_status($value){

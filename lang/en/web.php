@@ -229,5 +229,11 @@ return [
     'No Driver yet' => 'No Driver yet',
     'Not delivered yet' => 'Not delivered yet',
     'Not payments yet' => 'Not payments yet',
+    'fail' => 'Fail payment',
+    'Status changed' => 'The status has changed',
+    'Order status changed successfully' => 'Order status changed successfully',
+    'The order of the request has already changed by ' => 'The order of the request has already changed by ',
+    'Order unpaid yet!' => 'The order unpaid yet!',
+    'The order not found!' => 'The order not found!',
 
 ];

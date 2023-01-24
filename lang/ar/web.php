@@ -219,12 +219,18 @@ return [
     /*orders_status*/
     'New Order' => 'طلب جديد',
     'Inside the Library' => 'داخل المكتبة',
-    'Delivery in progress' => 'التسليم قيد التقدم',
+    'Delivery in progress' => 'جاري التوصيل',
     'Delivered' => 'تم التوصيل',
     'Throwback' => 'مرجع',
     'Cancelled' => 'ألغيت',
     'No Driver yet' => 'لا سائق حتى الان',
     'Not delivered yet' => 'لم تصل بعد',
     'Not payments yet' => 'لا يوجد دفعات بعد',
+    'fail' => 'فشل الدفع',
+    'Status changed' => 'تم تغير الحالة',
+    'Order status changed successfully' => 'تم تغيير حالة الطلب بنجاح',
+    'The order of the request has already changed by ' => 'تم تغيير ترتيب الطلب من قبل ',
+    'Order unpaid yet!' => 'الطلب غير مدفوع حتى الآن!',
+    'The order not found!' => 'الطلب غير موجود!',
 
 ];

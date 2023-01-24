@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lookups;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -74,6 +75,8 @@ class NewRequest extends Controller
         $order->payment_status = 0;
         $order->save();
 
+        $total = Lookups::where('id',$request->city)->get()->first();
+
         $request_data = array(
             'merchant_id' => '1201',
             'username' => 'test',
@@ -81,7 +84,7 @@ class NewRequest extends Controller
             'api_key' => 'jtest123', // in sandbox request
             //'api_key' =>password_hash('API_KEY',PASSWORD_BCRYPT), //In production mode, please pass API_KEY with BCRYPT function
             'order_id' => time(), // MIN 30 characters with strong unique function (like hashing function with time)
-            'total_price' => '10',
+            'total_price' => $total->price,
             'CurrencyCode' => 'KWD',//only works in production mode
             //'CurrencyCode'=>'KWD',//'KWD','SAR','USD','BHD','EUR','OMR','QAR','AED' and others,Please ask our support to activate
             'CstFName' => 'Test Name',

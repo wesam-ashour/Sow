@@ -20,13 +20,17 @@ class QrScan extends Controller
         $order = Order::where('order_number',$request->scan)->get()->first();
         if ($order){
             if ($order->status == 1){
-                $order->status = 2;
-                $order->user_id = Auth::user()->id;
-                $order->save();
-                return response()->json(['success' => 'Order status changed successfully']);
+                if ($order->payment_status == 2) {
+                    $order->status = 2;
+                    $order->user_id = Auth::user()->id;
+                    $order->save();
+                    return response()->json(['success' => 'Order status changed successfully']);
+                }else{
+                    return response()->json(['unpaid' => 'Order unpaid yet!']);
+                }
             }else{
                 $user = User::find($order->user_id)->full_name;
-                $response = "The order of the request has already changed " . $user;
+                $response = trans('web.The order of the request has already changed by ') . $user;
                 return response()->json(['done' => $response]);
             }
         }else{

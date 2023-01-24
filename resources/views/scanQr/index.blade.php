@@ -105,8 +105,8 @@
                     if (data.success){
                         document.getElementById('stop').click();
                         Swal.fire(
-                            'Status changed',
-                            data.success,
+                            @lang('web.Status changed'),
+                            @lang('web.Order status changed successfully'),
                             'success'
                         ).then((result) => {
                             if (result.isConfirmed) {
@@ -124,12 +124,23 @@
                                 document.getElementById('start').click();
                             }
                         })
+                    }else if(data.unpaid){
+                        document.getElementById('stop').click();
+                        Swal.fire(
+                            @lang('web.Order unpaid yet!'),
+                            '',
+                            'info'
+                        ).then((result) => {
+                            if (result.isConfirmed) {
+                                document.getElementById('start').click();
+                            }
+                        })
                     }else{
                         document.getElementById('stop').click();
                         Swal.fire({
                             icon: 'error',
-                            title: 'Oops...',
-                            text: data.error,
+                            title: @lang('web.error'),
+                            text: @lang('web.The order not found!'),
                             footer: ''
                         }).then((result) => {
                             if (result.isConfirmed) {
