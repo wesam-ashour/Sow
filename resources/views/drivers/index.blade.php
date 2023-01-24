@@ -65,6 +65,7 @@
                         <!--begin::Toolbar-->
                         <div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
                             <!--end::Filter-->
+                            @can('drivers_create')
                             <!--begin:Add user-->
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add_driver">
                                     <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
@@ -78,6 +79,7 @@
                                     @lang('web.Add_driver')
                                 </button>
                         <!--end::Add user-->
+                            @endcan
                         </div>
                         <!--end::Toolbar-->
                         <!--begin::Group actions-->
@@ -203,8 +205,8 @@
                                             </label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <input id="phone_number" type="number" class="form-control form-control-solid"
-                                                   placeholder="@lang('web.Enter Here')" name="phone_number" @if(app()->getLocale() == 'ar')style="text-align: end"@endif>
+                                            <input id="phone_number" type="text" class="form-control form-control-solid"
+                                                   placeholder="@lang('web.Enter Here')" name="phone_number">
                                             <strong id="phone_number_error" class="errors text-danger"
                                                     role="alert"></strong>
                                             <!--end::Input-->
@@ -343,7 +345,7 @@
                                             </label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <input id="edit_phone_number" type="number" class="form-control form-control-solid"
+                                            <input id="edit_phone_number" type="text" class="form-control form-control-solid"
                                                    placeholder="@lang('web.Enter Here')" name="edit_phone_number">
                                             <strong id="phone_number_error" class="errors text-danger"
                                                     role="alert"></strong>

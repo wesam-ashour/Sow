@@ -43,6 +43,8 @@ $(function () {
                                 cancelButtonText: language === "en" ? "No, return" : "لا رجوع",
                                 customClass: {confirmButton: "btn btn-primary", cancelButton: "btn btn-active-light"}
                             }).then((function (t) {
+                                $("input").val("");
+                                $("textarea").val("");
                                 t.value && $(".errors").html("") && $("#file-chosen-input").html(language === "en" ? "No file chosen" : " لم يتم اختيار ملف") && n.hide()
                             }))
                         })), t.querySelector('[data-kt-permissions-modal-action="cancel"]').addEventListener("click", (t => {
@@ -101,6 +103,7 @@ $(function () {
                                                 $(".errors").html("");
                                                 /*table.DataTable().ajax.reload();*/
                                                 $('#kt_locations_table').DataTable().ajax.reload();
+                                                window.location.reload();
 
                                             } else {
                                                 Swal.fire({

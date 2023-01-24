@@ -19,7 +19,7 @@ class TransportationController extends Controller
 
     public function __construct()
     {
-        $this->middleware(['permission:transportations_view']);
+        $this->middleware(['permission:orders_view']);
     }
 
     public function index(Request $request)

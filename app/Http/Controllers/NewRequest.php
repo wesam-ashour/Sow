@@ -72,7 +72,7 @@ class NewRequest extends Controller
         $order->house = $request->house;
         $order->floor = $request->floor;
         $order->status = 1;
-        $order->payment_status = 0;
+        $order->payment_status = 1;
         $order->save();
 
         $total = Lookups::where('id',$request->city)->get()->first();

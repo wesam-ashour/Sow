@@ -74,7 +74,7 @@
                 <div data-kt-menu-trigger="click"
                      class="menu-item menu-accordion {{str_contains($url,"admins") || str_contains($url,"roles") || str_contains($url,"permissions") || str_contains($url,"passengers") ? "hover show":""}} ">
                     <!--begin:Menu link-->
-                    @if(\Illuminate\Support\Facades\Auth::user()->hasAnyPermission(['admins_view','drivers_view','passengers_view','roles_view']))
+                    @if(\Illuminate\Support\Facades\Auth::user()->hasAnyPermission(['admins_view','roles_view']))
 
                     <span class="menu-link">
 
@@ -141,7 +141,7 @@
                     </div>
                     <!--end:Menu sub-->
                 </div>
-
+                @can('drivers')
                 <div class="menu-item menu-accordion {{str_contains($url,"drivers ")  ? "hover show":""}} ">
                     <!--begin:Menu link-->
                     <a class="menu-link {{str_contains($url,"drivers") ? "active":""}}"
@@ -157,6 +157,8 @@
                     </a>
                     <!--end:Menu link-->
                 </div>
+                @endcan
+                @can('orders')
                 <div class="menu-item menu-accordion {{str_contains($url,"orders")  ? "hover show":""}} ">
                     <!--begin:Menu link-->
                     <a class="menu-link {{str_contains($url,"orders") ? "active":""}}"
@@ -172,6 +174,8 @@
                     </a>
                     <!--end:Menu link-->
                 </div>
+                @endcan
+                @can('ScanQR')
                 <div class="menu-item menu-accordion {{str_contains($url,"ScanQR")  ? "hover show":""}} ">
                     <!--begin:Menu link-->
                     <a class="menu-link {{str_contains($url,"•	ScanQR") ? "active":""}}"
@@ -187,6 +191,8 @@
                     </a>
                     <!--end:Menu link-->
                 </div>
+                @endcan
+                @can('locations')
                 <div class="menu-item menu-accordion {{str_contains($url,"locations")  ? "hover show":""}} ">
                     <!--begin:Menu link-->
                     <a class="menu-link {{str_contains($url,"•	locations") ? "active":""}}"
@@ -202,6 +208,7 @@
                     </a>
                     <!--end:Menu link.-->
                 </div>
+                @endcan
                 <br>
                 <br>
                 <br>
