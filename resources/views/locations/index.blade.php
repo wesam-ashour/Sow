@@ -62,6 +62,7 @@
                     <!--end::Card title-->
                     <!--begin::Card toolbar-->
                     <div class="card-toolbar">
+                        @can('locations_create')
                         <!--begin::Button-->
                             <button type="button" class="btn btn-light-primary" data-bs-toggle="modal"
                                     data-bs-target="#kt_modal_add_location">
@@ -81,6 +82,7 @@
                                 <!--end::Svg Icon-->@lang('web.Add_Location')
                             </button>
                         <!--end::Button-->
+                        @endcan
                     </div>
                 </div>
                 <!--end::Card header-->

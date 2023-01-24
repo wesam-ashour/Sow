@@ -9,7 +9,10 @@ use Yajra\DataTables\Facades\DataTables;
 
 class ManageLocationsController extends Controller
 {
-
+    public function __construct()
+    {
+        $this->middleware(['permission:locations']);
+    }
     public function index(Request $request){
         $locations = Lookups::all();
 
@@ -53,11 +56,12 @@ class ManageLocationsController extends Controller
 									</span>' . trans("web.action") . '
                                   </button>
                                   <div class="dropdown-menu">';
-
+                 if (auth()->guard("web")->user()->can('locations_edit'))
                     $action = $action . '<div class="menu-item px-3">
                                             <a id="edit" data-id="' . $locations->id . '"
                                              data-name="' . $locations->name . '" data-bs-toggle="modal" data-bs-target="#kt_modal_update_location" class="menu-link px-3">' . trans("web.Edit") . '</a>
                                         </div>';
+                 if (auth()->guard("web")->user()->can('locations_delete'))
                     $action = $action . '<div class="menu-item px-3">
                                             <a id="delete" href="#" data-id="' . $locations->id . '" data-name="' . $locations->name . '" class="menu-link px-3">' . trans("web.Delete") . '</a>
                                         </div>';

@@ -79,6 +79,8 @@ return [
     'Settings' => 'إعدادات',
     'Orders' => 'الطلبات',
     'ScanQR' => 'مسح رمز الاستجابة السريع',
+    'Dashboard Admin Panel' => 'لوحة الإدارة',
+
 
 
     /*dashboard*/
@@ -153,6 +155,9 @@ return [
     'payment_status' => 'حالة الدفع',
     'delivery_date' => 'تاريخ التوصيل',
     'Delivery date added successfully' => 'تم اضافة تاريخ التوصيل بنجاح',
+    'governorate_fk_city' => 'المحافظة التابعة لها',
+    'orders' => 'الطلبات',
+
 
 
 
@@ -201,8 +206,8 @@ return [
 
     /*manage_locations*/
 
-    'locations_list' => 'قائمة المواقع',
-    'manage_locations' => 'أدارة المواقع',
+    'locations_list' => 'قائمة المحافظات والمدن',
+    'manage_locations' => 'أدارة المحافظات والمدن',
     'Add_Location' => 'اضافه موقع',
     'Types' => 'النوع',
     'Governorate' => 'محافظة',
@@ -215,6 +220,7 @@ return [
     /*manage_locations*/
     'Scan' => 'مسح رمز الاستجابة السريعة',
     'Scan_Management' => 'إدارة المسح',
+    'locations' => 'أدارة المحافظات والمدن',
 
     /*orders_status*/
     'New Order' => 'طلب جديد',

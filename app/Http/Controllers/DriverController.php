@@ -9,6 +9,10 @@ use Yajra\DataTables\Facades\DataTables;
 class DriverController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->middleware(['permission:drivers']);
+    }
 
     public function index(Request $request){
 
@@ -40,11 +44,12 @@ class DriverController extends Controller
 									</span>' . trans("web.action") . '
                                   </button>
                                   <div class="dropdown-menu">';
-
+                    if (auth()->guard("web")->user()->can('drivers_edit'))
                         $action = $action . '<div class="menu-item px-3">
                                             <a id="edit_driver" data-id="' . $driver->id . '"
                                              data-name="' . $driver->name . '" data-bs-toggle="modal" data-bs-target="#kt_modal_edit_driver" class="menu-link px-3">' . trans("web.Edit") . '</a>
                                         </div>';
+                    if (auth()->guard("web")->user()->can('drivers_delete'))
                         $action = $action . '<div class="menu-item px-3">
                                             <a id="edit_delete" href="#" data-id="' . $driver->id . '" data-name="' . $driver->name . '" class="menu-link px-3">' . trans("web.Delete") . '</a>
                                         </div>';

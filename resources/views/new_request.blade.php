@@ -1278,8 +1278,8 @@
             </nav>
         </div>
         @if($order_number)
-        <main data-v-d2325c8a="" class="v-main bg" data-booted="true" style="padding: 0px;">
-            <div class="v-main__wrap">
+            <main data-v-d2325c8a="" class="v-main bg" data-booted="true" style="padding: 0px;">
+                <div class="v-main__wrap">
                 <div data-v-71b52688="" data-v-d2325c8a="">
                     <div data-v-71b52688="" class="container px-8 pt-6 pt-6 pb-8">
                              <!-- Success message -->
@@ -1293,12 +1293,19 @@
                                     {{\Illuminate\Support\Facades\Session::get('failed')}}
                                 </div>
                             @endif
-
                             <form action="{{route('new-request.store')}}" method="post">
                                 @csrf
                                 <div data-v-71b52688="" class="row">
                                     <div  class="col-sm-6 col-md-4 offset-sm-3 offset-md-4 col-12">
-                                        <h2 class="text-center">طلب جديد</h2>
+                                        @if($check_order)
+                                            @if($check_order->payment_status == 2)
+                                            <h2 class="text-center" style="color: blue">تم دفع رسوم توصيل هذا الطلب</h2>
+                                            @else
+                                            <h2 class="text-center">طلب جديد</h2>
+                                            @endif
+                                        @else
+                                            <h2 class="text-center">طلب جديد</h2>
+                                        @endif
                                     </div>
                                     <div data-v-71b52688="" class="py-0 col-sm-6 col-md-4 offset-sm-3 offset-md-4 col-12">
                                         <div data-v-71b52688="" class="d-flex flex-row justify-center">
@@ -1594,8 +1601,6 @@
                                                 <span class="v-btn__content">دفع رسوم التوصيل</span>
                                             </button>
                                         </div>
-                                        @else
-                                            <h5  class="pb-4 col-sm-6 col-md-4 offset-sm-3 offset-md-4 col-12 text-primary" style="text-align: initial; font-style: oblique">تم دفع المستحقات لهذا الطلب بالفعل</h5>
                                         @endif
                                     @else
                                         <div class="mt-3 col-sm-6 col-md-4 offset-sm-3 offset-md-4 col-12">

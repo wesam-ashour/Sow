@@ -10,7 +10,10 @@ use function PHPUnit\Framework\isEmpty;
 
 class QrScan extends Controller
 {
-
+    public function __construct()
+    {
+        $this->middleware(['permission:ScanQR']);
+    }
     public function index(){
         /**/
         return view('scanQr.index');
