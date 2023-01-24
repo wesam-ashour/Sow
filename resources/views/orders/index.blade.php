@@ -61,6 +61,108 @@
                     </div>
                     <!--end::Card title-->
                     <!--begin::Card toolbar-->
+                    <!--begin::Toolbar-->
+                    <div class="card-toolbar">
+                        <!--begin::Menu-->
+                        <button type="button" class="btn btn-sm btn-icon btn-color-primary btn-active-light-primary"
+                                data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                            <!--begin::Svg Icon | path: icons/duotune/general/gen024.svg-->
+                            <span class="svg-icon svg-icon-2">
+																<svg xmlns="http://www.w3.org/2000/svg" width="24px"
+                                                                     height="24px" viewBox="0 0 24 24">
+																	<g stroke="none" stroke-width="1" fill="none"
+                                                                       fill-rule="evenodd">
+																		<rect x="5" y="5" width="5" height="5" rx="1"
+                                                                              fill="currentColor"/>
+																		<rect x="14" y="5" width="5" height="5" rx="1"
+                                                                              fill="currentColor" opacity="0.3"/>
+																		<rect x="5" y="14" width="5" height="5" rx="1"
+                                                                              fill="currentColor" opacity="0.3"/>
+																		<rect x="14" y="14" width="5" height="5" rx="1"
+                                                                              fill="currentColor" opacity="0.3"/>
+																	</g>
+																</svg>
+															</span>
+                            <!--end::Svg Icon-->
+                        </button>
+                        <!--begin::Menu 1-->
+                        <div class="menu menu-sub menu-sub-dropdown w-250px w-md-300px" data-kt-menu="true"
+                             id="kt_menu_63b87e7dc3642">
+                            <!--begin::Header-->
+                            <!--begin::Header-->
+                            <div class="px-7 py-5">
+                                <div class="fs-5 text-dark fw-bold">@lang('web.Export Options')</div>
+                            </div>
+                            <!--end::Header-->
+                            <!--begin::Menu separator-->
+                            <div class="separator border-gray-200"></div>
+                            <!--end::Menu separator-->
+                            <!--begin::Form-->
+                            <div class="px-7 py-5">
+                                <!--begin::Input group-->
+                                <div class="mb-10">
+                                    <!--begin::Label-->
+                                    <label class="form-label fw-semibold">@lang('web.From:')</label>
+                                    <!--end::Label-->
+                                    <!--begin::Input-->
+                                    <div>
+                                        <input class="form-control form-control-solid" type="date" placeholder="From"
+                                               id="start_date" name="start_date"/>
+                                    </div>
+                                    <!--end::Input-->
+                                    <!--begin::Label-->
+                                    <br>
+                                    <label class="form-label fw-semibold">@lang('web.To:')</label>
+                                    <!--end::Label-->
+                                    <!--begin::Input-->
+                                    <div>
+                                        <input class="form-control form-control-solid" type="date" placeholder="To"
+                                               id="end_date" name="end_date"/>
+                                    </div>
+                                    <!--end::Input-->
+                                </div>
+                                <!--end::Input group-->
+                                <div class="mb-10">
+                                    <label class="form-label fw-semibold">@lang('web.type:')</label>
+                                    <div class="mb-5">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" value="excel" id="Check1"
+                                                   name="radio2"/>
+                                            <label class="form-check-label" for="Check1">
+                                                Excel
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-0">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" value="pdf" id="Check2"
+                                                   name="radio2" checked/>
+                                            <label class="form-check-label" for="Check2">
+                                                Pdf
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--begin::Actions-->
+                                <div class="d-flex justify-content-end">
+                                    <button type="reset"
+                                            class="btn btn-sm btn-light btn-active-light-primary me-2 reset"
+                                            data-kt-menu-dismiss="true">@lang('web.Reset')
+                                    </button>
+                                    <button type="submit" class="btn btn-sm btn-primary apply"
+                                            data-kt-menu-dismiss="true">@lang('web.Export')
+                                    </button>
+                                </div>
+                                <!--end::Actions-->
+                            </div>
+                            <!--end::Form-->
+                            <!--end::Form-->
+                        </div>
+                        <!--end::Menu 1-->
+                        <!--end::Menu-->
+                    </div>
+                    <!--end::Toolbar-->
                 </div>
                 <!--end::Card header-->
                 <!--begin::Card body-->
@@ -420,6 +522,128 @@
     <script src="{{asset('assets/js/custom/utilities/modals/users-search.js')}}" defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <!--end::Custom Javascript-->
+    <script type="text/javascript">
+        $('.reset').click(function () {
+            $("#start_date").val("");
+            $("#end_date").val("");
+        });
+        $('.apply').click(function () {
+            var start = $("#start_date").val();
+            var end = $("#end_date").val();
+
+            if (start === "" && end === "") {
+                if ($('input[name="radio2"]:checked').val() === "pdf") {
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    $.ajax({
+                        type: 'GET',
+                        url: '{{ route('downloadPdf') }}',
+                        data: {"start": start, "end": end},
+                        xhrFields: {
+                            responseType: 'blob'
+                        },
+                        success: function (response) {
+                            var blob = new Blob([response]);
+                            var link = document.createElement('a');
+                            link.href = window.URL.createObjectURL(blob);
+                            link.download = "Orders.pdf";
+                            link.click();
+                        },
+                        error: function (blob) {
+                            console.log(blob);
+                        }
+                    });
+                } else if ($('input[name="radio2"]:checked').val() === "excel") {
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+
+                    $.ajax({
+                        type: 'GET',
+                        url: '{{ route('downloadExcel') }}',
+                        data: {"start": start, "end": end},
+                        xhrFields: {
+                            responseType: 'blob'
+                        },
+                        success: function (response) {
+                            var blob = new Blob([response]);
+                            var link = document.createElement('a');
+                            link.href = window.URL.createObjectURL(blob);
+                            link.download = "Orders.xlsx";
+                            link.click();
+                        },
+                        error: function (blob) {
+                            console.log(blob);
+                        }
+                    });
+                }
+            } else if (start === "" || end === "") {
+                Swal.fire({
+                    icon: 'error',
+                    title: '@lang('web.error')',
+                    text: '@lang('web.Something went wrong.. Please!')',
+                    footer: ''
+                });
+            } else if (start !== "" && end !== "") {
+
+                if ($('input[name="radio2"]:checked').val() === "pdf") {
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+                    $.ajax({
+                        type: 'GET',
+                        url: '{{ route('downloadPdf') }}',
+                        data: {"start": start, "end": end},
+                        xhrFields: {
+                            responseType: 'blob'
+                        },
+                        success: function (response) {
+                            var blob = new Blob([response]);
+                            var link = document.createElement('a');
+                            link.href = window.URL.createObjectURL(blob);
+                            link.download = "Orders.pdf";
+                            link.click();
+                        },
+                        error: function (blob) {
+                            console.log(blob);
+                        }
+                    });
+                } else if ($('input[name="radio2"]:checked').val() === "excel") {
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+
+                    $.ajax({
+                        type: 'GET',
+                        url: '{{ route('downloadExcel') }}',
+                        data: {"start": start, "end": end},
+                        xhrFields: {
+                            responseType: 'blob'
+                        },
+                        success: function (response) {
+                            var blob = new Blob([response]);
+                            var link = document.createElement('a');
+                            link.href = window.URL.createObjectURL(blob);
+                            link.download = "Orders.xlsx";
+                            link.click();
+                        },
+                        error: function (blob) {
+                            console.log(blob);
+                        }
+                    });
+                }
+            }
+        });
+    </script>
     <script>
         $(function () {
 
@@ -439,7 +663,7 @@
                 $.ajax({
                     type: 'GET',
                     url: "/orders/" + id,
-                    data: {"id":id},
+                    data: {"id": id},
                     success: function (response) {
                         $("#order_number_show").html(response.order.order_number);
                         $("#name_show").html(response.order.name);
@@ -467,78 +691,78 @@
 
 
         function ChangeSelect(el) {
-                var id = el.id;
-                var value = el.value;
-                if (value == 4) {
-                    jQuery("#" + id).attr('disabled', true);
+            var id = el.id;
+            var value = el.value;
+            if (value == 4) {
+                jQuery("#" + id).attr('disabled', true);
+            }
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
                 }
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+            });
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                url: $('#app_url').val() + '/' + $('#language').val() + '/changeStatus/order/',
+                data: {"id": id, "value": value},
+                success: function (data) {
+                    if (data.success) {
+                        Swal.fire(
+                            '@lang('web.Status changed successfully')',
+                            '',
+                            'success'
+                        );
+                        $('#kt_orders_table').DataTable().ajax.reload();
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: '@lang('web.error')',
+                            text: '@lang('web.Something went wrong!')',
+                            footer: ''
+                        });
+                        $('#kt_orders_table').DataTable().ajax.reload();
                     }
-                });
-                $.ajax({
-                    type: "GET",
-                    dataType: "json",
-                    url: $('#app_url').val() + '/' + $('#language').val() + '/changeStatus/order/',
-                    data: {"id": id, "value": value},
-                    success: function (data) {
-                        if (data.success){
-                            Swal.fire(
-                                '@lang('web.Status changed successfully')',
-                                '',
-                                'success'
-                            );
-                            $('#kt_orders_table').DataTable().ajax.reload();
-                        }else{
-                            Swal.fire({
-                                icon: 'error',
-                                title: '@lang('web.error')',
-                                text: '@lang('web.Something went wrong!')',
-                                footer: ''
-                            });
-                            $('#kt_orders_table').DataTable().ajax.reload();
-                        }
 
-                    }
-                });
+                }
+            });
         }
 
         function ChangeSelectUser(el) {
-                var id = el.id;
-                var value = el.value;
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+            var id = el.id;
+            var value = el.value;
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                url: $('#app_url').val() + '/' + $('#language').val() + '/changeUser/order/',
+                data: {"id": id, "value": value},
+                success: function (data) {
+                    if (data.success) {
+                        Swal.fire(
+                            '@lang('web.Driver assigned successfully')',
+                            '',
+                            'success'
+                        );
+                        $('#kt_orders_table').DataTable().ajax.reload();
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: '@lang('web.error')',
+                            text: '@lang('web.Something went wrong!')',
+                            footer: ''
+                        });
+                        $('#kt_orders_table').DataTable().ajax.reload();
                     }
-                });
-                $.ajax({
-                    type: "GET",
-                    dataType: "json",
-                    url: $('#app_url').val() + '/' + $('#language').val() + '/changeUser/order/',
-                    data: {"id": id, "value": value},
-                    success: function (data) {
-                        if (data.success){
-                            Swal.fire(
-                                '@lang('web.Driver assigned successfully')',
-                                '',
-                                'success'
-                            );
-                            $('#kt_orders_table').DataTable().ajax.reload();
-                        }else{
-                            Swal.fire({
-                                icon: 'error',
-                                title: '@lang('web.error')',
-                                text: '@lang('web.Something went wrong!')',
-                                footer: ''
-                            });
-                            $('#kt_orders_table').DataTable().ajax.reload();
-                        }
-                    }
-                });
+                }
+            });
         }
 
-        function delivery_date(el){
+        function delivery_date(el) {
             var id = el.id;
             var value = el.value;
             $.ajaxSetup({
@@ -552,14 +776,14 @@
                 url: $('#app_url').val() + '/' + $('#language').val() + '/delivery_date',
                 data: {"id": id, "value": value},
                 success: function (data) {
-                    if (data.success){
+                    if (data.success) {
                         Swal.fire(
                             '@lang('web.Delivery date added successfully')',
                             '',
                             'success'
                         );
                         $('#kt_orders_table').DataTable().ajax.reload();
-                    }else{
+                    } else {
                         Swal.fire({
                             icon: 'error',
                             title: '@lang('web.error')',

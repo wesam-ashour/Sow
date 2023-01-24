@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\OrdersBetweenExport;
+use App\Exports\OrdersExport;
 use App\Models\Order;
 use App\Models\User;
 use Dflydev\DotAccessData\Data;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
+use niklasravnsborg\LaravelPdf\Facades\Pdf;
 use Yajra\DataTables\Facades\DataTables;
 
 class TransportationController extends Controller
@@ -194,6 +198,35 @@ class TransportationController extends Controller
         $order->delivery_date = $request->value;
         $order->save();
             return response()->json(['success' => $order]);
+        }
+
+    }
+
+    public function downloadPdf(Request $request)
+    {
+        if ($request->start == null && $request->end == null){
+            $pd = Order::all();
+            $pdf = PDF::loadView('orders.pdf', compact('pd'));
+            return $pdf->download('Orders.pdf');
+        }elseif ($request->start !== null && $request->end !== null){
+            $pd = DB::table('orders')->whereBetween('created_at', [$request->start, $request->end])->get();
+            $pdf = PDF::loadView('orders.pdf', compact('pd'));
+            return $pdf->download('Orders.pdf');
+        }
+
+    }
+
+    public function downloadExcel(Request $request)
+    {
+        if ($request->start == null && $request->end == null){
+            $pd = Order::all();
+            $start = $request->start;
+            $end = $request->end;
+            return Excel::download(new OrdersExport($start,$end), 'Orders.xlsx');
+        }elseif ($request->start !== null && $request->end !== null){
+            $start = $request->start;
+            $end = $request->end;
+            return Excel::download(new OrdersBetweenExport($start,$end), 'Orders.xlsx');
         }
 
     }

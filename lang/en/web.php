@@ -58,6 +58,13 @@ return [
     'transportations' => 'orders',
     'error' => 'error',
     'Something went wrong!' => 'Something went wrong!',
+    'Something went wrong.. Please!' => 'Something went wrong.. Please enter start date and end date!',
+    'Reset' => 'Reset',
+    'Export' => 'Export',
+    'Export Options' => 'Export Options',
+    'From:' => 'From:',
+    'To:' => 'To:',
+    'type:' => 'Type file:',
 
     'Unpaid' => 'Unpaid',
     'paid' => 'paid',
@@ -215,4 +222,8 @@ return [
     'Delivered' => 'Delivered',
     'Throwback' => 'Throwback',
     'Cancelled' => 'Cancelled',
+    'No Driver yet' => 'No Driver yet',
+    'Not delivered yet' => 'Not delivered yet',
+    'Not payments yet' => 'Not payments yet',
+
 ];

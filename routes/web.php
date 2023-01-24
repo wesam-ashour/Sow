@@ -75,6 +75,8 @@ Route::group(['middleware' => ['auth', 'verified', 'localeSessionRedirect', 'loc
     Route::resource('orders', TransportationController::class);
     Route::get('/changeStatus/order/', [TransportationController::class, 'changeStatus']);
     Route::get('/changeUser/order/', [TransportationController::class, 'changeUserOrder']);
+    Route::get('/download/pdf/', [TransportationController::class, 'downloadPdf'])->name('downloadPdf');
+    Route::get('/download/excel/', [TransportationController::class, 'downloadExcel'])->name('downloadExcel');
 
     Route::post('delivery_date',[TransportationController::class,'delivery_date']);
 

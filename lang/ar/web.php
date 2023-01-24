@@ -58,7 +58,13 @@ return [
     'transportations' => 'طلبات',
     'error' => 'خطأ',
     'Something went wrong!' => 'هناك خطأ ما!',
-
+    'Something went wrong.. Please!' => 'حدث خطأ .. الرجاء إدخال تاريخ البدء وتاريخ الانتهاء!',
+    'Reset' => 'إعادة ضبط',
+    'Export' => 'تصدير',
+    'Export Options' => 'خيارات التصدير',
+    'From:' => 'من:',
+    'To:' => 'الى:',
+    'type:' => 'نوع الملف:',
 
     'Unpaid' => 'غير مدفوع',
     'paid' => 'مدفوع',
@@ -217,5 +223,8 @@ return [
     'Delivered' => 'تم التوصيل',
     'Throwback' => 'مرجع',
     'Cancelled' => 'ألغيت',
+    'No Driver yet' => 'لا سائق حتى الان',
+    'Not delivered yet' => 'لم تصل بعد',
+    'Not payments yet' => 'لا يوجد دفعات بعد',
 
 ];
