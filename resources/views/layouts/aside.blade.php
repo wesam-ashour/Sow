@@ -200,7 +200,7 @@
 											</span>
                         <span class="menu-title">@lang('web.manage_locations')</span>
                     </a>
-                    <!--end:Menu link-->
+                    <!--end:Menu link.-->
                 </div>
                 <br>
                 <br>
