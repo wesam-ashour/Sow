@@ -89,6 +89,7 @@ Route::group(['middleware' => ['auth', 'verified', 'localeSessionRedirect', 'loc
     Route::get('drivers/edit/{id}',[DriverController::class, 'edit']);
     Route::post('drivers/update',[DriverController::class, 'update'])->name('drivers.update');
     Route::delete('drivers/delete/{id}',[DriverController::class, 'destroy'])->name('destroy.delete');
+    Route::get('/changeStatus/drivers/', [DriverController::class, 'changeStatus']);
 
     Route::resource('locations', ManageLocationsController::class);
 

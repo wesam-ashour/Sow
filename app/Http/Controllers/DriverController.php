@@ -98,4 +98,18 @@ class DriverController extends Controller
         return response()->json(['success' => $driver]);
 
     }
+    public function changeStatus(Request $request)
+    {
+        if ($request->ajax()){
+            $data = User::find($request->id);
+            if ($request->isChecked == "true"){
+                $data->user_status = 1;
+                $data->save();
+            }else{
+                $data->user_status = 2;
+                $data->save();
+            }
+            return response()->json('success');
+        }
+    }
 }

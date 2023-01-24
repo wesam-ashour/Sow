@@ -79,6 +79,7 @@ return [
     'Settings' => 'إعدادات',
     'Orders' => 'الطلبات',
     'ScanQR' => 'مسح رمز الاستجابة السريع',
+    'Total system drivers' => 'عدد السائقيين',
 
 
     /*dashboard*/
