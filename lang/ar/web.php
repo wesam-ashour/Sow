@@ -229,7 +229,7 @@ return [
     'fail' => 'فشل الدفع',
     'Status changed' => 'تم تغير الحالة',
     'Order status changed successfully' => 'تم تغيير حالة الطلب بنجاح',
-    'The order of the request has already changed by ' => 'تم تغيير ترتيب الطلب من قبل ',
+    'The order of the request has already changed by ' => 'تم تغيير حالة الطلب من قبل ',
     'Order unpaid yet!' => 'الطلب غير مدفوع حتى الآن!',
     'The order not found!' => 'الطلب غير موجود!',
 

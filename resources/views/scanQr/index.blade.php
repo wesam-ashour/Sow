@@ -105,8 +105,8 @@
                     if (data.success){
                         document.getElementById('stop').click();
                         Swal.fire(
-                            @lang('web.Status changed'),
-                            @lang('web.Order status changed successfully'),
+                            '@lang('web.Status changed')',
+                            '@lang('web.Order status changed successfully')',
                             'success'
                         ).then((result) => {
                             if (result.isConfirmed) {
@@ -127,7 +127,7 @@
                     }else if(data.unpaid){
                         document.getElementById('stop').click();
                         Swal.fire(
-                            @lang('web.Order unpaid yet!'),
+                            '@lang('web.Order unpaid yet!')',
                             '',
                             'info'
                         ).then((result) => {
@@ -139,8 +139,8 @@
                         document.getElementById('stop').click();
                         Swal.fire({
                             icon: 'error',
-                            title: @lang('web.error'),
-                            text: @lang('web.The order not found!'),
+                            title: '@lang('web.error')',
+                            text: '@lang('web.The order not found!')',
                             footer: ''
                         }).then((result) => {
                             if (result.isConfirmed) {
