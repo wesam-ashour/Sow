@@ -75,6 +75,8 @@ return [
     'Pages' => 'Pages',
     'Settings' => 'Settings',
     'Orders' => 'Orders',
+    'Dashboard Admin Panel' => 'Dashboard Admin Panel',
+
 
     /*dashboard*/
     'Total system users' => 'System users',

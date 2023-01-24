@@ -13,7 +13,7 @@
         <div class="aside-logo flex-column-auto" id="kt_aside_logo">
             <!--begin::Logo-->
             <a href="{{route('dashboard.index')}}" style="color: white;font-size: 20px;">
-                Dashboard Admin Panel
+                {{trans('web.Dashboard Admin Panel')}}
             </a>
             <!--end::Logo-->
         </div>

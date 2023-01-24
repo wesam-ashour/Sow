@@ -74,6 +74,7 @@ return [
     'Settings' => 'إعدادات',
     'Orders' => 'الطلبات',
     'ScanQR' => 'مسح رمز الاستجابة السريع',
+    'Dashboard Admin Panel' => 'لوحة الإدارة',
 
 
     /*dashboard*/
