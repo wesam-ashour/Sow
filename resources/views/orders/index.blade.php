@@ -483,12 +483,23 @@
                     url: $('#app_url').val() + '/' + $('#language').val() + '/changeStatus/order/',
                     data: {"id": id, "value": value},
                     success: function (data) {
-                        Swal.fire(
-                            '@lang('web.Status changed successfully')',
-                            '',
-                            'success'
-                        );
-                        $('#kt_orders_table').DataTable().ajax.reload();
+                        if (data.success){
+                            Swal.fire(
+                                '@lang('web.Status changed successfully')',
+                                '',
+                                'success'
+                            );
+                            $('#kt_orders_table').DataTable().ajax.reload();
+                        }else{
+                            Swal.fire({
+                                icon: 'error',
+                                title: '@lang('web.error')',
+                                text: '@lang('web.Something went wrong!')',
+                                footer: ''
+                            });
+                            $('#kt_orders_table').DataTable().ajax.reload();
+                        }
+
                     }
                 });
         }
@@ -507,12 +518,22 @@
                     url: $('#app_url').val() + '/' + $('#language').val() + '/changeUser/order/',
                     data: {"id": id, "value": value},
                     success: function (data) {
-                        Swal.fire(
-                            '@lang('web.Driver assigned successfully')',
-                            '',
-                            'success'
-                        );
-                        $('#kt_orders_table').DataTable().ajax.reload();
+                        if (data.success){
+                            Swal.fire(
+                                '@lang('web.Driver assigned successfully')',
+                                '',
+                                'success'
+                            );
+                            $('#kt_orders_table').DataTable().ajax.reload();
+                        }else{
+                            Swal.fire({
+                                icon: 'error',
+                                title: '@lang('web.error')',
+                                text: '@lang('web.Something went wrong!')',
+                                footer: ''
+                            });
+                            $('#kt_orders_table').DataTable().ajax.reload();
+                        }
                     }
                 });
         }
@@ -531,12 +552,22 @@
                 url: $('#app_url').val() + '/' + $('#language').val() + '/delivery_date',
                 data: {"id": id, "value": value},
                 success: function (data) {
-                    Swal.fire(
-                        '@lang('web.Delivery date added successfully')',
-                        '',
-                        'success'
-                    );
-                    $('#kt_orders_table').DataTable().ajax.reload();
+                    if (data.success){
+                        Swal.fire(
+                            '@lang('web.Delivery date added successfully')',
+                            '',
+                            'success'
+                        );
+                        $('#kt_orders_table').DataTable().ajax.reload();
+                    }else{
+                        Swal.fire({
+                            icon: 'error',
+                            title: '@lang('web.error')',
+                            text: '@lang('web.Something went wrong!')',
+                            footer: ''
+                        });
+                        $('#kt_orders_table').DataTable().ajax.reload();
+                    }
                 }
             });
         }

@@ -33,21 +33,21 @@ class TransportationController extends Controller
                     return $transportations_all->email;
                 })
                 ->addColumn('status', function ($transportations_all) {
-                    $select = '<select style="height: auto;line-height: 14px;width:170px;" class="form-select form-control-solid cc" id="'.$transportations_all->id.'" '.disableSelect($transportations_all->status).' onchange="ChangeSelect(this)">';
-                        foreach (Order::STATUS as $status){
-                           $select = $select . '<option '.disableOption($status).' value="'.$status.'" '.selected($status,$transportations_all->status).'>'. Select($status) .'</option>';
-                        }
-                        return $select . '</select>';
+                    $select = '<select style="height: auto;line-height: 14px;width:170px;" class="form-select form-control-solid cc" id="' . $transportations_all->id . '" ' . disableSelect($transportations_all->status) . ' onchange="ChangeSelect(this)">';
+                    foreach (Order::STATUS as $status) {
+                        $select = $select . '<option ' . disableOption($status) . ' value="' . $status . '" ' . selected($status, $transportations_all->status) . '>' . Select($status) . '</option>';
+                    }
+                    return $select . '</select>';
                 })
                 ->addColumn('assign_driver', function ($transportations_all) {
-                    $select = '<select style="height: auto;line-height: 14px;width:170px;" class="form-select form-control-solid dd" id="'.$transportations_all->id.'" '.disableSelectDriver($transportations_all->status).' onchange="ChangeSelectUser(this)"><option></option>';
-                    foreach (User::where('user_type',1)->get() as $user){
-                        $select = $select . '<option value="'.$user->id.'" '.selectedUser($user->id,$transportations_all->user_id).'>'. $user->full_name .'</option>';
+                    $select = '<select style="height: auto;line-height: 14px;width:170px;" class="form-select form-control-solid dd" id="' . $transportations_all->id . '" ' . disableSelectDriver($transportations_all->status) . ' onchange="ChangeSelectUser(this)"><option></option>';
+                    foreach (User::where('user_type', 1)->get() as $user) {
+                        $select = $select . '<option value="' . $user->id . '" ' . selectedUser($user->id, $transportations_all->user_id) . '>' . $user->full_name . '</option>';
                     }
                     return $select . '</select>';
                 })
                 ->addColumn('delivery_date', function ($transportations_all) {
-                    return '<input style="height: 34px;width:170px;" class="form-select form-control-solid dd" value="'. $transportations_all->delivery_date .'" type="date" id="'.$transportations_all->id.'" onchange="delivery_date(this)" '.disableSelectDriver($transportations_all->status).'></option>';
+                    return '<input style="height: 34px;width:170px;" class="form-select form-control-solid dd" value="' . $transportations_all->delivery_date . '" type="date" id="' . $transportations_all->id . '" onchange="delivery_date(this)" ' . disableSelectDriver($transportations_all->status) . '></option>';
                 })
                 ->addColumn('payment_status', function ($transportations_all) {
                     return payment_status($transportations_all->payment_status);
@@ -135,7 +135,7 @@ class TransportationController extends Controller
             $assigned_status = User::find($order->assigned_status)->full_name;
             $assigned_driver = User::find($order->assigned_driver)->full_name;
             $payment_status = payment_status($order->payment_status);
-            return response()->json(['order'=>$order,'driver'=>$driver,'status'=>$status,'assigned_status'=>$assigned_status,'assigned_driver'=>$assigned_driver,'payment_status'=>$payment_status]);
+            return response()->json(['order' => $order, 'driver' => $driver, 'status' => $status, 'assigned_status' => $assigned_status, 'assigned_driver' => $assigned_driver, 'payment_status' => $payment_status]);
         }
     }
 
@@ -156,31 +156,45 @@ class TransportationController extends Controller
 
     public function changeStatus(Request $request)
     {
+
         $order = Order::find($request->id);
-        $order->status = $request->value;
-        $order->assigned_status = Auth::user()->id;
-        $order->save();
-        return response()->json(['success']);
+        if ($order->status == 1 || $order->status == 4) {
+            return response()->json(['error' => $order]);
+        } else {
+            $order->status = $request->value;
+            $order->assigned_status = Auth::user()->id;
+            $order->save();
+            return response()->json(['success' => $order]);
+        }
 
     }
 
     public function changeUserOrder(Request $request)
     {
+
         $order = Order::find($request->id);
-        $order->user_id = $request->value;
-        $order->assigned_driver =  Auth::user()->id;
-        $order->save();
-        return response()->json(['success']);
+        if ($order->status == 1 || $order->status == 4) {
+            return response()->json(['error' => $order]);
+        } else {
+            $order->user_id = $request->value;
+            $order->assigned_driver = Auth::user()->id;
+            $order->save();
+            return response()->json(['success' => $order]);
+        }
 
     }
 
-    public function delivery_date(Request $request){
+    public function delivery_date(Request $request)
+    {
 
-       $order = Order::query()->where('id','=',$request->id)->get()->first();
-       $order->delivery_date = $request->value;
-
-       $order->save();
-        return response()->json(['success']);
+        $order = Order::query()->where('id', '=', $request->id)->get()->first();
+        if ($order->status == 1 || $order->status == 4) {
+            return response()->json(['error' => $order]);
+        } else {
+        $order->delivery_date = $request->value;
+        $order->save();
+            return response()->json(['success' => $order]);
+        }
 
     }
 

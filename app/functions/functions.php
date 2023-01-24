@@ -74,17 +74,17 @@ function selectedUser($value,$status){
 
 function Select($value){
     if ($value == 1) {
-        return "New Order";
+        return trans('web.New Order');
     } elseif ($value == 2) {
-        return "Inside the Library";
+        return trans('web.Inside the Library');
     } elseif ($value == 3) {
-        return "Delivery in progress";
+        return trans('web.Delivery in progress');
     } elseif ($value == 4) {
-        return "Delivered";
+        return trans('web.Delivered');
     } elseif ($value == 5) {
-        return "Throwback";
+        return trans('web.Throwback');
     } elseif ($value == 6) {
-        return "Cancelled";
+        return trans('web.Cancelled');
     }
 }
 

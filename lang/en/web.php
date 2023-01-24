@@ -52,7 +52,12 @@ return [
     'emaillEnter' => 'Enter email',
     'passwordEnter' => 'Enter password',
     'Home' => 'Home',
-
+    'others' => 'others',
+    'admins' => 'admins',
+    'roles' => 'roles',
+    'transportations' => 'orders',
+    'error' => 'error',
+    'Something went wrong!' => 'Something went wrong!',
 
     'Unpaid' => 'Unpaid',
     'paid' => 'paid',
@@ -202,9 +207,12 @@ return [
     /*manage_locations*/
     'Scan' => 'Scan Qrcode',
     'Scan_Management' => 'Scan Management',
-    'nothing' => 'Nothing',
-    'nothing' => 'Nothing',
 
-
-
+    /*orders_status*/
+    'New Order' => 'New Order',
+    'Inside the Library' => 'Inside the Library',
+    'Delivery in progress' => 'Delivery in progress',
+    'Delivered' => 'Delivered',
+    'Throwback' => 'Throwback',
+    'Cancelled' => 'Cancelled',
 ];

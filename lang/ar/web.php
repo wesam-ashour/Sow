@@ -8,6 +8,7 @@ return [
     'Please wait...' => 'يرجى الانتظار...',
     'Users Assigned' => 'المستخدمون',
     'Search Here' => 'ابحث هنا',
+    'Search' => 'ابحث هنا',
     'Joined Date' => 'تاريخ الانضمام',
     'User' => 'المستخدم',
     'ID' => 'ID',
@@ -51,6 +52,13 @@ return [
     'emaillEnter' => 'أدخل البريد الإلكتروني',
     'passwordEnter' => 'أدخل كلمة المرور',
     'Home' => 'الرئيسيه',
+    'others' => 'اخرى',
+    'admins' => 'المشرفين',
+    'roles' => 'الأدوار',
+    'transportations' => 'طلبات',
+    'error' => 'خطأ',
+    'Something went wrong!' => 'هناك خطأ ما!',
+
 
     'Unpaid' => 'غير مدفوع',
     'paid' => 'مدفوع',
@@ -201,5 +209,13 @@ return [
     /*manage_locations*/
     'Scan' => 'مسح رمز الاستجابة السريعة',
     'Scan_Management' => 'إدارة المسح',
+
+    /*orders_status*/
+    'New Order' => 'طلب جديد',
+    'Inside the Library' => 'داخل المكتبة',
+    'Delivery in progress' => 'التسليم قيد التقدم',
+    'Delivered' => 'تم التوصيل',
+    'Throwback' => 'مرجع',
+    'Cancelled' => 'ألغيت',
 
 ];
