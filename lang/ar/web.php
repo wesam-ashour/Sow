@@ -158,6 +158,7 @@ return [
     'Delivery date added successfully' => 'تم اضافة تاريخ التوصيل بنجاح',
     'governorate_fk_city' => 'المحافظة التابعة لها',
     'orders' => 'الطلبات',
+    'print' => 'تصدير pdf',
 
 
 

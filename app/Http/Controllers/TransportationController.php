@@ -231,6 +231,11 @@ class TransportationController extends Controller
 
     }
 
+    public function downloadPdfByid(Request $request , $id){
+        $pd = Order::query()->find($id);
+        $pdf = PDF::loadView('orders.printOrder', compact('pd'));
+        return $pdf->download('Orders.printOrder');
+    }
     public function downloadExcel(Request $request)
     {
         if ($request->start == null && $request->end == null){

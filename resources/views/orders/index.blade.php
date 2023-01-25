@@ -488,9 +488,12 @@
                                         </div>
                                     </div>
                                 </div>
+                                <input type="hidden" value="" id="order_id" name="order_id">
                                 <div class="text-center pt-15">
                                     <button type="button" class="btn btn-light me-3"
                                             id="close_modal">@lang('web.Discard')</button>
+                                    <button type="button" class="btn btn-light me-3"
+                                            id="print_modal">@lang('web.print')</button>
                                 </div>
                                 <!--end::Actions-->
 
@@ -648,6 +651,32 @@
                 }
             }
         });
+        $('#print_modal').click(function (){
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            let id = $('#order_id').val();
+            $.ajax({
+                type: 'GET',
+                url: "/download/pdf/" + id,
+                xhrFields: {
+                    responseType: 'blob'
+                },
+                success: function (response) {
+                    var blob = new Blob([response]);
+                    var link = document.createElement('a');
+                    link.href = window.URL.createObjectURL(blob);
+                    link.download = "Orders.pdf";
+                    link.click();
+                },
+                error: function (blob) {
+                    console.log(blob);
+                }
+            });
+        })
+
     </script>
     <script>
         $(function () {
@@ -688,6 +717,7 @@
                         $("#date_payment_show").html(response.order.date_payment);
                         $("#TrackID_show").html(response.order.TrackID);
                         $("#PaymentID_show").html(response.order.PaymentID);
+                        $("#order_id").val(response.order.id);
                     },
                 });
 

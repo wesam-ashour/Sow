@@ -157,6 +157,7 @@ return [
     'payment_status' => 'Payment status',
     'delivery_date' => 'Delivery Date',
     'Delivery date added successfully' => 'Delivery date added successfully',
+    'print' => 'Export pdf',
 
 
     /*messages*/

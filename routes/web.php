@@ -77,6 +77,7 @@ Route::group(['middleware' => ['auth', 'verified', 'localeSessionRedirect', 'loc
     Route::get('/changeStatus/order/', [TransportationController::class, 'changeStatus']);
     Route::get('/changeUser/order/', [TransportationController::class, 'changeUserOrder']);
     Route::get('/download/pdf/', [TransportationController::class, 'downloadPdf'])->name('downloadPdf');
+    Route::get('/download/pdf/{id}', [TransportationController::class, 'downloadPdfByid'])->name('downloadPdfByid');
     Route::get('/download/excel/', [TransportationController::class, 'downloadExcel'])->name('downloadExcel');
 
     Route::post('delivery_date',[TransportationController::class,'delivery_date']);
