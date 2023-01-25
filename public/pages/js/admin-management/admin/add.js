@@ -57,12 +57,7 @@ $(function () {
                                 let name = name_input.val(),
                                     email = email_input.val(),
                                     password = password_input.val(),
-                                    mobile = mobile_input.val(),
-                                    password_confirm = password_confirmation_input.val(),
-                                    customer_image = prepare_image_base64(uploaded_image.css('background-image'));
-                                if (customer_image == "none") {
-                                    customer_image = "";
-                                }
+                                    password_confirm = password_confirmation_input.val();
                                 console.log("validated!"), "Valid" == t ?
                                     $.ajax({
                                         headers: {
@@ -75,11 +70,9 @@ $(function () {
                                             email: email,
                                             password: password,
                                             password_confirmation: password_confirm,
-                                            customer_image: customer_image,
                                             image_updated: image_updated,
                                             roles_id: role_id,
                                             roles_name: role_name,
-                                            mobile: mobile,
                                         },
                                         success: function (response) {
                                             if ($.isEmptyObject(response.error)) {

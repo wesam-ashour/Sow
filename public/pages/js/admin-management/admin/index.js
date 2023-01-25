@@ -39,10 +39,6 @@ $(function () {
                                 name: 'created_at'
                             },
                             {
-                                data: 'mobile_number',
-                                name: 'mobile_number'
-                            },
-                            {
                                 data: 'status',
                                 name: 'status'
                             },

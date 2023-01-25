@@ -30,15 +30,7 @@ class AdminController extends Controller
             $data = User::query()->orderBy('id', 'DESC')->where('id', '!=', 1)->where('user_type', '=', 0)->get();
             return Datatables::of($data)->addIndexColumn()
                 ->editColumn('full_name', function ($data) {
-                    return '<div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
-                                    <a>
-                                        <div class="symbol-label">
-                                            <img src="' . asset('images/users/' . $data->personalphoto) . '" alt="" class="w-100" />
-                                        </div>
-                                    </a>
-                                </div>
-                                <!--end::Avatar-->
-                                <!--begin::User details-->
+                    return '
                                 <div class="d-flex flex-column">
                                     <a class="text-gray-800 text-hover-primary mb-1">' . $data->full_name . '</a>
                                     <span>' . $data->email . '</span>
@@ -90,7 +82,18 @@ class AdminController extends Controller
 																</span>
                                     <!--end::Svg Icon-->
                                 </button>
-                                </a>    <!--end::Update-->
+                                </a>
+                                   <button id="delete" data-id="' . $data->id . '" class="btn btn-icon btn-active-light-primary w-30px h-30px" data-kt-permissions-table-filter="delete_row">
+                                    <!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
+                                    <span class="svg-icon svg-icon-3">
+																	<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+																		<path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="currentColor" />
+																		<path opacity="0.5" d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z" fill="currentColor" />
+																		<path opacity="0.5" d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z" fill="currentColor" />
+																	</svg>
+																</span>
+                                    <!--end::Svg Icon-->
+                                </button><!--end::Update-->
                                 ';
 
                         return $actions;
@@ -129,8 +132,6 @@ class AdminController extends Controller
                 'password_confirmation' => 'min:8',
                 'roles_id' => 'required',
                 'roles_name' => 'required',
-                'mobile' => 'required|numeric',
-                'customer_image' => 'required',
             ], [
                 'name.required' => trans("web.required"),
                 'name.string' => trans("web.string"),
@@ -147,29 +148,15 @@ class AdminController extends Controller
                 'password.required_with' => trans("web.required_with"),
                 'password_confirmation.min' => trans("web.min"),
 
-                'mobile.required' => trans("web.required"),
-                'mobile.numeric' => trans("web.numeric"),
-
                 'roles_id.required' => trans("web.required"),
                 'roles_name.required' => trans("web.required"),
 
-                'customer_image.required' => trans("web.required"),
-                'customer_image.mimes' => trans("web.mimes"),
+
             ]);
             if ($validator->passes()) {
                 $data = new User();
-                if (!File::exists('images/users')) {
-                    File::makeDirectory('images/users');
-                }
-                $file = base64_decode($request['customer_image']);
-                $folderName = 'images/users/';
-                $safeName = uniqid() . '.' . 'png';
-                $destinationPath = $folderName;
-                file_put_contents('images/users/' . $safeName, $file);
-                $data->personalphoto = $safeName;
                 $data->full_name = $request->name;
                 $data->email = $request->email;
-                $data->mobile_number = $request->mobile;
                 $data->password = Hash::make($request->password);
                 $data->user_type = 0;
                 $data->user_status = 1;
@@ -205,8 +192,6 @@ class AdminController extends Controller
                 'password_confirmation' => $request->password_confirmation != null ? 'min:8' : '',
                 'roles_id' => 'required',
                 'roles_name' => 'required',
-                'mobile' => 'required|numeric',
-//                'user_image' => 'required',
             ], [
                 'name.required' => trans("web.required"),
                 'name.string' => trans("web.string"),
@@ -223,57 +208,14 @@ class AdminController extends Controller
                 'password.required_with' => trans("web.required_with"),
                 'password_confirmation.min' => trans("web.min"),
 
-                'mobile.required' => trans("web.required"),
-                'mobile.numeric' => trans("web.numeric"),
-
                 'roles_id.required' => trans("web.required"),
                 'roles_name.required' => trans("web.required"),
-
-                'customer_image.required' => trans("web.required"),
-                'customer_image.mimes' => trans("web.mimes"),
             ]);
             if ($validator->passes()) {
                 $data = User::query()->find($id);
-                $old_email = $data->email;
-                $old_mobile = $data->mobile;
-//                $validator = [];
-                $image = uniqid() . '.jpg';
-                $image_path = "images/users/$image";
-                file_put_contents($image_path, base64_decode($request->user_image));
-                if ($request->image_updated == 1) {
-                    $data->personalphoto = $request->user_image;
-                }
-                if ($request->image_updated == 1)
-                    $data->personalphoto = $image;
                 $data->full_name = $request->name;
                 $data->email = $request->email;
-                $data->mobile_number = $request->mobile;
-                $type = 0;
-                switch ($request->roles_id) {
-                    case 67: //Admin
-                        $type = 0;
-                        break;
-                    case 68: //Case Manager
-                        $type = 1;
-                        break;
-                    case 69: //Specialists
-                        $type = 2;
-                        break;
-                    case 70: //Facilitators
-                        $type = 3;
-                        break;
-                    case 71: //Supervisors
-                        $type = 4;
-                        break;
-                    case 72: //Case Managers Supervisors
-                        $type = 5;
-                        break;
-                    case 73: //Specialist Supervisors
-                        $type = 6;
-                        break;
-                }
-                $data->user_type = $type;
-                $data->user_status = 1;
+                $data->user_type = 0;
                 $data->roles_id = $request->roles_id;
                 $data->updated_at = Carbon::now();
                 if ($request->password) {
@@ -307,7 +249,6 @@ class AdminController extends Controller
                 'email' => 'required|email|regex:/(.+)@(.+)\.(.+)/i|max:255|unique:users,email,' . $id,
                 'password' => $request->password != null ? 'min:8|required_with:password_confirmation|same:password_confirmation' : '',
                 'password_confirmation' => $request->password_confirmation != null && $request->password != null ? 'min:8' : '',
-                'mobile' => 'required|numeric',
             ], [
                 'name.required' => trans("web.required"),
                 'name.string' => trans("web.string"),
@@ -323,28 +264,11 @@ class AdminController extends Controller
                 'password.same' => trans("web.same"),
                 'password.required_with' => trans("web.required_with"),
                 'password_confirmation.min' => trans("web.min"),
-
-                'mobile.required' => trans("web.required"),
-                'mobile.numeric' => trans("web.numeric"),
-
-                'customer_image.required' => trans("web.required"),
-                'customer_image.mimes' => trans("web.mimes"),
             ]);
             if ($validator->passes()) {
                 $data = User::query()->find($id);
-                $old_email = $data->email;
-                $old_mobile = $data->mobile;
-                $image = uniqid() . '.jpg';
-                $image_path = "images/users/$image";
-                file_put_contents($image_path, base64_decode($request->user_image));
-                if ($request->image_updated == 1) {
-                    $data->personalphoto = $request->user_image;
-                }
-                if ($request->image_updated == 1)
-                    $data->personalphoto = $image;
                 $data->full_name = $request->name;
                 $data->email = $request->email;
-                $data->mobile_number = $request->mobile;
                 $data->user_status = 1;
                 $data->roles_id = $request->roles_id;
                 $data->updated_at = Carbon::now();

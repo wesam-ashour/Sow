@@ -124,44 +124,7 @@
                                             <!--begin::Scroll-->
                                             <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_user_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header" data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
                                                 <!--begin::Input group-->
-                                                <div class="fv-row mb-7">
-                                                    <!--begin::Label-->
-                                                    <label class="d-block fw-semibold fs-6 mb-5">@lang('web.Avatar')</label>
-                                                    <!--end::Label-->
-                                                    <!--begin::Image placeholder-->
-                                                    <!--end::Image placeholder-->
-                                                    <!--begin::Image input-->
-                                                    <div class="image-input image-input-outline image-input-placeholder" data-kt-image-input="true">
-                                                        <!--begin::Preview existing avatar-->
-                                                        <div id="uploaded_image" class="image-input-wrapper w-125px h-125px" ></div>
-                                                        <!--end::Preview existing avatar-->
-                                                        <!--begin::Label-->
-                                                        <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="@lang('web.Change avatar')">
-                                                            <i class="bi bi-pencil-fill fs-7"></i>
-                                                            <!--begin::Inputs-->
-                                                            <input type="file" name="avatar" accept=".png, .jpg, .jpeg" />
-                                                            <input type="hidden" name="avatar_remove" />
-                                                            <!--end::Inputs-->
-                                                        </label>
-                                                        <!--end::Label-->
-                                                        <!--begin::Cancel-->
-                                                        <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="@lang('web.Cancel avatar')">
-																					<i class="bi bi-x fs-2"></i>
-																				</span>
-                                                        <!--end::Cancel-->
-                                                        <!--begin::Remove-->
-                                                        <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="@lang('web.Remove avatar')">
-																					<i class="bi bi-x fs-2"></i>
-																				</span>
-                                                        <!--end::Remove-->
-                                                    </div>
-                                                    <!--end::Image input-->
-                                                    <!--begin::Hint-->
-                                                    <div class="form-text">@lang('web.Allowed file types: png, jpg, jpeg.')</div>
-                                                    <strong id="customer_image_error" class="errors text-danger" role="alert">
-                                                    </strong>
-                                                    <!--end::Hint-->
-                                                </div>
+
                                                 <!--end::Input group-->
                                                 <!--begin::Input group-->
                                                 <div class="fv-row mb-7">
@@ -172,18 +135,6 @@
                                                     <input id="name" type="text" name="name" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="@lang('web.Full Name')" />
                                                     <strong id="name_error" class="errors text-danger" role="alert"></strong>
 
-                                                    <!--end::Input-->
-                                                </div>
-                                                <!--end::Input group-->
-                                                <!--begin::Input group-->
-                                                <div class="fv-row mb-7">
-                                                    <!--begin::Label-->
-                                                    <label class="required fw-semibold fs-6 mb-2">@lang('web.Mobile')</label>
-                                                    <!--end::Label-->
-                                                    <!--begin::Input-->
-                                                    <input id="mobile" type="number" name="mobile" placeholder="@lang('web.Mobile')" class="form-control form-control-solid mb-3 mb-lg-0" @if(\Illuminate\Support\Facades\App::getLocale() == "ar") style="direction: rtl;" @endif />
-                                                    <strong id="mobile_error" class="errors text-danger" role="alert">
-                                                    </strong>
                                                     <!--end::Input-->
                                                 </div>
                                                 <!--end::Input group-->
@@ -302,13 +253,12 @@
                         <thead>
                         <!--begin::Table row-->
                         <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
-                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") min-w-125px @else text-start @endif">@lang('web.ID')</th>
-                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") min-w-125px @else text-start @endif">@lang('web.UserDetails')</th>
-                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") min-w-125px @else text-start @endif">@lang('web.Roles')</th>
-                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") min-w-125px @else text-start @endif">@lang('web.Created Date')</th>
-                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") min-w-125px @else text-start @endif">@lang('web.phone_number')</th>
-                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") min-w-125px @else text-start @endif">@lang('web.status')</th>
-                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") min-w-125px @else text-start @endif">@lang('web.others')</th>
+                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900  min-w-125px @else text-start @endif">@lang('web.ID')</th>
+                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900  min-w-125px @else text-start @endif">@lang('web.UserDetails')</th>
+                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900  min-w-125px @else text-start @endif">@lang('web.Roles')</th>
+                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900  min-w-125px @else text-start @endif">@lang('web.Created Date')</th>
+                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900  min-w-125px @else text-start @endif">@lang('web.status')</th>
+                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900  min-w-125px @else text-start @endif">@lang('web.others')</th>
                         </tr>
                         <!--end::Table row-->
                         </thead>

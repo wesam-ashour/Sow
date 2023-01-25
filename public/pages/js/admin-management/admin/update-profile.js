@@ -40,16 +40,8 @@ $(function () {
             $(".errors").html("");
             let name = name_input.val(),
                 email = email_input.val(),
-                mobile = mobile_input.val(),
                 password = password_input.val(),
-                password_confirm = password_confirmation_input.val(),
-                user_image = prepare_image_base64(uploaded_image.css('background-image'));
-            /*let user_image = uploaded_image.css('background-image');
-            if (uploaded_image.css('background-image').length > 30)
-                user_image = prepare_image_base64(uploaded_image.css('background-image'));*/
-            if (user_image == "none") {
-                user_image = "";
-            }
+                password_confirm = password_confirmation_input.val();
             $.ajax({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -59,10 +51,8 @@ $(function () {
                 data: {
                     name: name,
                     email: email,
-                    mobile: mobile,
                     password: password,
                     password_confirmation: password_confirm,
-                    user_image: user_image,
                     image_updated: image_updated,
                 },
                 success: function (response) {
