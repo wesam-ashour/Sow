@@ -15,7 +15,7 @@ class QrScan extends Controller
         $this->middleware(['permission:ScanQR']);
     }
     public function index(){
-        /**/
+        /*.*/
         return view('scanQr.index');
     }
 
