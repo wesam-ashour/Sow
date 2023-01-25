@@ -134,12 +134,27 @@ class TransportationController extends Controller
 
         if ($request->ajax()) {
             $order = Order::find($request->id);
+            $governorate = getGovernorateByid($order->governorate);
+            $city = getCiteByid($order->city)->name;
+            if (!User::find($order->user_id)){
+                $driver = "";
+            }else{
             $driver = User::find($order->user_id)->full_name;
+            }
+
             $status = Select($order->status);
-            $assigned_status = User::find($order->assigned_status)->full_name;
-            $assigned_driver = User::find($order->assigned_driver)->full_name;
+            if (!User::find($order->assigned_status)){
+                $assigned_status = "";
+            }else{
+                $assigned_status = User::find($order->assigned_status)->full_name;
+            }
+            if (!User::find($order->assigned_driver)){
+                $assigned_driver = "";
+            }else{
+                $assigned_driver = User::find($order->assigned_driver)->full_name;
+            }
             $payment_status = payment_status($order->payment_status);
-            return response()->json(['order' => $order, 'driver' => $driver, 'status' => $status, 'assigned_status' => $assigned_status, 'assigned_driver' => $assigned_driver, 'payment_status' => $payment_status]);
+            return response()->json(['order' => $order,'governorate'=> $governorate,'city' => $city, 'driver' => $driver, 'status' => $status, 'assigned_status' => $assigned_status, 'assigned_driver' => $assigned_driver, 'payment_status' => $payment_status]);
         }
     }
 

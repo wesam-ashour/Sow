@@ -669,8 +669,8 @@
                         $("#name_show").html(response.order.name);
                         $("#phone_show").html(response.order.phone);
                         $("#email_show").html(response.order.email);
-                        $("#governorate_show").html(response.order.governorate);
-                        $("#city_show").html(response.order.city);
+                        $("#governorate_show").html(response.governorate);
+                        $("#city_show").html(response.city);
                         $("#block_show").html(response.order.block);
                         $("#jadda_show").html(response.order.jadda);
                         $("#street_show").html(response.order.street);
