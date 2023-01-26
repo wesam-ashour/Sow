@@ -31,18 +31,16 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 | contains the "web" middleware group. Now create something greats!
 |
 */
-Route::get('/new-request', [NewRequest::class, 'index2'])->name('new-request');
-Route::get('/new-request/{order_number}', [NewRequest::class, 'index'])->name('new-request.order_number');
-Route::post('/new-request/add', [NewRequest::class, 'store'])->name('new-request.store');
-Route::get('/Cities_within_governorate/{id}', [NewRequest::class, 'Cities_within_governorate'])->name('new-request.Cities_within_governorate');
-
 Route::group(['middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath'], 'prefix' => LaravelLocalization::setLocale()], function () {
     /** ADD ALL LOCALIZED ROUTES INSIDE THIS GROUP **/
     Route::get('/', function () {
         return redirect(route('new-request'));
     });
     require __DIR__ . '/auth.php';
-
+    Route::get('/new-request', [NewRequest::class, 'index2'])->name('new-request');
+    Route::get('/new-request/{order_number}', [NewRequest::class, 'index'])->name('new-request.order_number');
+    Route::post('/new-request/add', [NewRequest::class, 'store'])->name('new-request.store');
+    Route::get('/Cities_within_governorate/{id}', [NewRequest::class, 'Cities_within_governorate'])->name('new-request.Cities_within_governorate');
 });
 
 Route::group(['middleware' => ['auth', 'verified', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath'], 'prefix' => LaravelLocalization::setLocale()], function () {
