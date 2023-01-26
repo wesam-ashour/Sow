@@ -145,7 +145,7 @@ class NewRequest extends Controller
             $order->TrackID = $request->TrackID;
             $order->PaymentID = $request->PaymentID;
             $order->save();
-            return redirect()->back()->with('failed', 'New payment failed');
+            return redirect()->route('new-request', [$id])->with('failed', trans('web.New payment failed'));
 /*            return redirect()->route('new-request', [$id])->with('failed','There is an error');*/
         }
     }
