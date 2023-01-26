@@ -237,4 +237,8 @@ return [
     'Order unpaid yet!' => 'The order unpaid yet!',
     'The order not found!' => 'The order not found!',
 
+    'New payment done' => 'New payment done',
+    'New payment failed' => 'New payment failed',
+
+
 ];

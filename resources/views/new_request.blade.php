@@ -1317,8 +1317,7 @@
                                         </div>
                                     </div>
                                     <div data-v-71b52688="" class="pb-4 col-sm-6 col-md-4 offset-sm-3 offset-md-4 col-12">
-                                        <span
-                                            data-v-71b52688="">
+                                        <span data-v-71b52688="">
                                             <div class="v-input rounded-lg overLap v-input--is-label-active v-input--is-dirty v-input--is-readonly theme--light v-text-field v-text-field--filled v-text-field--is-booted v-text-field--enclosed v-text-field--rounded"><div
                                                     class="v-input__control">
                                                     @error('order_number')
@@ -1340,9 +1339,10 @@
                                         </span>
                                     </div>
                                     <div data-v-71b52688="" class="pb-4 col-sm-6 col-md-4 offset-sm-3 offset-md-4 col-12">
-                                            <div class="v-input rounded-lg overLap v-input--is-label-active v-input--is-dirty theme--light v-text-field v-text-field--filled v-text-field--is-booted v-text-field--enclosed v-text-field--rounded">
+                                        <span data-v-71b52688="">
+                                            <div data-v-71b52688="" class="v-input rounded-lg overLap v-input--is-label-active v-input--is-dirty theme--light v-text-field v-text-field--filled v-text-field--is-booted v-text-field--enclosed v-text-field--rounded">
                                                 <div class="v-input__control">
-                                                    @error('name')
+                                                     @error('name')
                                                     <span class="text-danger" style="text-align: initial">{{$message}}</span>
                                                     @enderror
                                                     <div class="v-input__slot">
@@ -1363,10 +1363,12 @@
                                                     </div>
                                                 </div>
                                             </div>
-
+                                        </span>
                                     </div>
-                                    <div data-v-71b52688="" class="pb-4 col-sm-6 col-md-4 offset-sm-3 offset-md-4 col-12">
-                                            <div class="v-input rounded-lg overLap v-input--is-label-active v-input--is-dirty theme--light v-text-field v-text-field--filled v-text-field--is-booted v-text-field--enclosed v-text-field--rounded">
+
+                                    <div class="pb-4 col-sm-6 col-md-4 offset-sm-3 offset-md-4 col-12">
+                                        <span data-v-71b52688="">
+                                            <div data-v-71b52688="" class="v-input rounded-lg overLap v-input--is-label-active v-input--is-dirty theme--light v-text-field v-text-field--filled v-text-field--is-booted v-text-field--enclosed v-text-field--rounded">
                                                 <div class="v-input__control">
                                                     @error('phone')
                                                     <span class="text-danger" style="text-align: initial">{{$message}}</span>
@@ -1391,8 +1393,9 @@
                                             </div>
                                         </span>
                                     </div>
-                                    <div class="pb-4 col-sm-6 col-md-4 offset-sm-3 offset-md-4 col-12">
-                                            <div class="v-input rounded-lg overLap v-input--is-label-active v-input--is-dirty theme--light v-text-field v-text-field--filled v-text-field--is-booted v-text-field--enclosed v-text-field--rounded">
+                                    <div data-v-71b52688="" class="pb-4 col-sm-6 col-md-4 offset-sm-3 offset-md-4 col-12">
+                                        <span data-v-71b52688="">
+                                            <div data-v-71b52688="" class="v-input rounded-lg overLap v-input--is-label-active v-input--is-dirty theme--light v-text-field v-text-field--filled v-text-field--is-booted v-text-field--enclosed v-text-field--rounded">
                                                 <div class="v-input__control">
                                                     @error('email')
                                                     <span class="text-danger" style="text-align: initial">{{$message}}</span>
@@ -1404,18 +1407,19 @@
                                                             </div>
                                                         </div>
                                                         <div class="v-text-field__slot">
-                                                            <label for="input-29" class="v-label v-label--active theme--light" style="left: auto; right: 0px; position: absolute;">البريد الإلكتروني/E-mail</label>
-                                                            <input readonly id="input-29" type="email" name="email" value="@if($check_order){{$check_order->email}}@else {{$email}}@endif">
+                                                           <label for="input-29" class="v-label v-label--active theme--light" style="left: auto; right: 0px; position: absolute;">البريد الإلكتروني/E-mail</label>
+                                                            <input id="input-29" type="email" name="email" value="@if($check_order){{$check_order->email}}@else {{$email}}@endif">
                                                         </div>
-                                                    </div>
-                                                    <div class="v-text-field__details">
+                                                    </div><div class="v-text-field__details">
                                                         <div class="v-messages theme--light">
                                                             <div class="v-messages__wrapper"></div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                        </span>
                                     </div>
+
                                     <div data-v-71b52688="" class="py-4 col-sm-6 col-md-4 offset-sm-3 offset-md-4 col-12" style="z-index: 900;">
                                         <h3 class="primary--text text-center" style="margin-top: 1rem">العنوان</h3>
                                     </div>

@@ -26,6 +26,7 @@ class QrScan extends Controller
                 if ($order->payment_status == 2) {
                     $order->status = 2;
                     $order->user_id = Auth::user()->id;
+                    $order->assigned_status = Auth::user()->id;
                     $order->save();
                     return response()->json(['success' => 'Order status changed successfully']);
                 }else{

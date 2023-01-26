@@ -241,4 +241,7 @@ return [
     'Order unpaid yet!' => 'الطلب غير مدفوع حتى الآن!',
     'The order not found!' => 'الطلب غير موجود!',
 
+    'New payment done' => 'تم الدفع بنجاح',
+    'New payment failed' => ' عمليت الدفع فشلت',
+
 ];

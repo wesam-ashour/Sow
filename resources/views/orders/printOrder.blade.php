@@ -37,7 +37,6 @@
     </tr>
     </thead>
     <tbody>
-
         <tr>
             <th scope="row">Order number/رقم الطلب</th>
             <td>{{$pd->order_number}}</td>
@@ -81,6 +80,14 @@
         <tr>
             <th scope="row">floor/الطابق</th>
             <td>{{$pd->floor}}</td>
+        </tr>
+        <tr>
+            <th scope="row">driver's name/اسم السائق</th>
+            <td>{{getUserName($pd->user_id)}}</td>
+        </tr>
+        <tr>
+            <th scope="row">delivery date/تاريخ التوصيل</th>
+            <td>{{$pd->delivery_date}}</td>
         </tr>
     </tbody>
 </table>
