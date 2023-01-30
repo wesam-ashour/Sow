@@ -139,7 +139,7 @@ class TransportationController extends Controller
             if (!User::find($order->user_id)){
                 $driver = "";
             }else{
-            $driver = User::find($order->user_id)->full_name;
+                $driver = User::find($order->user_id)->full_name;
             }
 
             $status = Select($order->status);
@@ -156,6 +156,7 @@ class TransportationController extends Controller
             $payment_status = payment_status($order->payment_status);
             return response()->json(['order' => $order,'governorate'=> $governorate,'city' => $city, 'driver' => $driver, 'status' => $status, 'assigned_status' => $assigned_status, 'assigned_driver' => $assigned_driver, 'payment_status' => $payment_status]);
         }
+
     }
 
     public function edit(Order $transportation)
@@ -210,8 +211,8 @@ class TransportationController extends Controller
         if ($order->status == 1 || $order->status == 4) {
             return response()->json(['error' => $order]);
         } else {
-        $order->delivery_date = $request->value;
-        $order->save();
+            $order->delivery_date = $request->value;
+            $order->save();
             return response()->json(['success' => $order]);
         }
 
@@ -230,12 +231,12 @@ class TransportationController extends Controller
         }
 
     }
-
     public function downloadPdfByid(Request $request , $id){
         $pd = Order::query()->find($id);
         $pdf = PDF::loadView('orders.printOrder', compact('pd'));
         return $pdf->download('Orders.printOrder');
     }
+
     public function downloadExcel(Request $request)
     {
         if ($request->start == null && $request->end == null){

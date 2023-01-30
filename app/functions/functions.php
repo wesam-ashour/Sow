@@ -35,7 +35,12 @@ function firebaseNotification($fcmNotification)
 
 function getUserName($id){
     $user = User::query()->find($id);
-    return $user->full_name;
+    if ($user)
+        return $user->full_name;
+    else{
+        return '';
+
+    }
 }
 
 function getGovernorate(){
