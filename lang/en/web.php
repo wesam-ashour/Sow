@@ -160,7 +160,7 @@ return [
     'print' => 'Export pdf',
 
 
-    /*messages*/
+    /*messages.*/
     'required' => 'This filed is required',
     'string' => 'This field must be string',
     'max' => 'This field must not be greater than 255 characters',

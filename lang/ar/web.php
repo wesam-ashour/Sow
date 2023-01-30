@@ -224,7 +224,7 @@ return [
     'Scan_Management' => 'إدارة المسح',
     'locations' => 'أدارة المحافظات والمدن',
 
-    /*orders_status*/
+    /*orders_status.*/
     'New Order' => 'طلب جديد',
     'Inside the Library' => 'داخل المكتبة',
     'Delivery in progress' => 'جاري التوصيل',
