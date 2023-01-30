@@ -136,15 +136,18 @@ class NewRequest extends Controller
             $order->TrackID = $request->TrackID;
             $order->PaymentID = $request->PaymentID;
             $order->save();
-            return redirect()->route('new-request', [$id])->with('success','New payment done');
+            $order_number = $order->order_number;
+            return redirect()->route('new-request.order_number', [$order_number])->with('success',trans('web.New payment done'));
 
         }else{
             $order = Order::find($id);
             $order->payment_status = 3;
+            $order->date_payment = now();
             $order->TrackID = $request->TrackID;
             $order->PaymentID = $request->PaymentID;
             $order->save();
-            return redirect()->route('new-request', [$id])->with('failed','There is an error');
+            $order_number = $order->order_number;
+            return redirect()->route('new-request.order_number', [$order_number])->with('failed',trans('web.New payment failed'));
         }
     }
 

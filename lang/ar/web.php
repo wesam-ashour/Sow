@@ -242,6 +242,6 @@ return [
     'The order not found!' => 'الطلب غير موجود!',
 
     'New payment done' => 'تم الدفع بنجاح',
-    'New payment failed' => ' عمليت الدفع فشلت',
+    'New payment failed' => 'فشلت عملية الدفع ، الرجاء المحاولة مرة اخرى',
 
 ];

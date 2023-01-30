@@ -40,6 +40,8 @@ Route::group(['middleware' => [ 'localeSessionRedirect', 'localizationRedirect',
     Route::get('/new-request/{order_number}', [NewRequest::class, 'index'])->name('new-request.order_number');
     Route::post('/new-request/add', [NewRequest::class, 'store'])->name('new-request.store');
     Route::get('/Cities_within_governorate/{id}', [NewRequest::class, 'Cities_within_governorate'])->name('new-request.Cities_within_governorate');
+    Route::get('/receive/response/{id}', [NewRequest::class, 'response']);
+
 });
 
 Route::group(['middleware' => ['auth', 'verified', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath'], 'prefix' => LaravelLocalization::setLocale()], function () {
@@ -47,7 +49,6 @@ Route::group(['middleware' => ['auth', 'verified', 'localeSessionRedirect', 'loc
 
     Route::get('/ScanQR', [QrScan::class, 'index'])->name('ScanQR.index');
     Route::get('/scanner/handle-scan', [QrScan::class, 'handleScan'])->name('ScanQR.handleScan');
-    Route::get('/receive/response/{id}', [NewRequest::class, 'response']);
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
     Route::get('/admins', [AdminController::class, 'index'])->name('admins.index');

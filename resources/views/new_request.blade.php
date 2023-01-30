@@ -1289,7 +1289,7 @@
                                 </div>
                             @endif
                             @if(\Illuminate\Support\Facades\Session::has('failed'))
-                                <div class="alert alert-success">
+                                <div class="alert alert-danger">
                                     {{\Illuminate\Support\Facades\Session::get('failed')}}
                                 </div>
                             @endif
