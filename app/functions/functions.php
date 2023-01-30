@@ -52,7 +52,7 @@ function getGovernorateByid($id){
     if ($governorate)
         return $governorate->name;
     else
-        return '---';
+        return '----';
 }
 
 function getCiteByid($id){
