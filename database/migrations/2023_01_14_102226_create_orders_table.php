@@ -16,16 +16,16 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->string('order_number')->unique();
-            $table->string('name');
-            $table->string('phone');
-            $table->string('email');
-            $table->integer('governorate');
-            $table->integer('city');
-            $table->integer('block');
-            $table->string('jadda');
-            $table->string('street');
-            $table->string('house');
-            $table->string('floor');
+            $table->string('name')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('email')->nullable();
+            $table->integer('governorate')->nullable();
+            $table->integer('city')->nullable();
+            $table->integer('block')->nullable();
+            $table->string('jadda')->nullable();
+            $table->string('street')->nullable();
+            $table->string('house')->nullable();
+            $table->string('floor')->nullable();
             $table->date('delivery_date')->nullable();
             $table->foreignId('user_id')->nullable()->constrained('users')->cascadeOnDelete();
             $table->integer('status')->comment('1-new order / 2-inside the library / ');

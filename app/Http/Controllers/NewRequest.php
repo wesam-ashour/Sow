@@ -22,6 +22,21 @@ class NewRequest extends Controller
         $floor = request()->input('floor');
 
         $check_order = Order::query()->where('order_number' , '=' , $order_number)->get()->first();
+        if (!$check_order){
+            $order = new Order();
+            $order->order_number = $order_number;
+            $order->name = $name;
+            $order->phone = $phone;
+            $order->email = $email;
+            $order->house = $house;
+            $order->jadda = $jadda;
+            $order->street = $street;
+            $order->block = $block;
+            $order->floor = $floor;
+            $order->status = 1;
+            $order->payment_status = 1;
+            $order->save();
+        }
         return view('new_request',compact('order_number','name','phone','email','address','house','jadda','street','block','city','check_order','floor'));
     }
     public function index2(){

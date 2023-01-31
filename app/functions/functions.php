@@ -52,12 +52,16 @@ function getGovernorateByid($id){
     if ($governorate)
         return $governorate->name;
     else
-        return '----';
+        return '';
 }
 
 function getCiteByid($id){
     $city = \App\Models\Lookups::query()->find($id);
-    return $city;
+    if ($city)
+        return $city;
+    else
+        return 0;
+
 }
 function payment_status($value){
     if ($value == 1){

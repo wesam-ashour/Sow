@@ -1467,7 +1467,7 @@
                                                         <div class="v-select__slot custom-selector">
                                                            {{-- <label for="input-34" class="v-label theme--light" style="left: auto; right: 0px; position: absolute;">محافظة</label>--}}
                                                             <select id="city" data-mce-placeholder=""  name="city" {{--style="width: 100%; height: 100%; outline: none;max-height: 304px; min-width: 91%; top: 455px; left: 672px; transform-origin: left top; z-index: 1001;"--}}>
-                                                                @if($check_order)
+                                                                @if($check_order && $check_order->city)
                                                                     <option selected value="{{getCiteByid($check_order->city)->id}}">{{getCiteByid($check_order->city)->name}}</option>
                                                                 @else
                                                                     <option disabled selected value="0">المدينة/City</option>
