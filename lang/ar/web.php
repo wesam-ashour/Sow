@@ -164,9 +164,9 @@ return [
     'Payment status:' => 'حالة الدفع:',
     'order status:' => 'حالة الطلب:',
     'driver:' => 'سائق:',
-    'no payment' => 'لا دفع',
-    'success' => 'النجاح',
-    'failed' => 'فشلت',
+    'no payment' => 'لم يتم الدفع',
+    'success' => 'تم الدفع',
+    'failed' => 'فشل الدفع',
     'Filter' => 'فلتر',
 
 

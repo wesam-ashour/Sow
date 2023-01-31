@@ -273,15 +273,15 @@
                         <thead>
                         <!--begin::Table row-->
                         <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
-                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900  min-w-125px @else text-start @endif">@lang('web.order_number')</th>
-                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900  min-w-125px @else text-start @endif">@lang('web.name')</th>
-                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900  min-w-125px @else text-start @endif">@lang('web.email')</th>
-                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900  min-w-125px @else text-start @endif">@lang('web.city')</th>
-                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900  min-w-125px @else text-start @endif">@lang('web.status')</th>
-                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900  min-w-125px @else text-start @endif">@lang('web.driver')</th>
-                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900  min-w-125px @else text-start @endif">@lang('web.delivery_date')</th>
-                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900  min-w-125px @else text-start @endif">@lang('web.payment_status')</th>
-                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900  min-w-125px @else text-start @endif">@lang('web.Actions')</th>
+                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900  min-w-125px @else text-center @endif">@lang('web.order_number')</th>
+                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900  min-w-125px @else text-center @endif">@lang('web.name')</th>
+                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900  min-w-125px @else text-center @endif">@lang('web.email')</th>
+                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900  min-w-125px @else text-center @endif">@lang('web.city')</th>
+                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900  min-w-125px @else text-center @endif">@lang('web.status')</th>
+                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900  min-w-125px @else text-center @endif">@lang('web.driver')</th>
+                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900  min-w-125px @else text-center @endif">@lang('web.delivery_date')</th>
+                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900  min-w-125px @else text-center @endif">@lang('web.payment_status')</th>
+                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900  min-w-125px @else text-center @endif">@lang('web.Actions')</th>
                         </tr>
                         <!--end::Table row-->
                         </thead>
