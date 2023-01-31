@@ -54,7 +54,7 @@
             <td>{{$p->order_number}}</td>
             <td>{{$p->name}}</td>
             <td>{{$p->email}}</td>
-            <td>{{getCiteByid($p->city)->name}}</td>
+            <td>@if($p->city){{getCiteByid($p->city)->name}}@endif </td>
             <td>
                 {{Select($p->status)}}
             </td>

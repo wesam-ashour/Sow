@@ -59,7 +59,7 @@
     </tr>
     <tr>
         <th scope="row">City/المدينة</th>
-        <td>{{getCiteByid($pd->city)->name}}</td>
+        <td>@if($p->city){{getCiteByid($p->city)->name}}@endif </td>
     </tr>
     <tr>
         <th scope="row">block/قطعة</th>
