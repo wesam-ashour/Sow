@@ -65,6 +65,7 @@ return [
     'From:' => 'From:',
     'To:' => 'To:',
     'type:' => 'Type file:',
+    'Apply:' => 'Apply',
 
     'Unpaid' => 'Unpaid',
     'paid' => 'paid',
@@ -157,7 +158,15 @@ return [
     'payment_status' => 'Payment status',
     'delivery_date' => 'Delivery Date',
     'Delivery date added successfully' => 'Delivery date added successfully',
-    'print' => 'Export pdf',
+    'Filter Options' => 'Filter Options',
+    'city:' => 'City:',
+    'Payment status:' => 'Payment status:',
+    'order status:' => 'Order status:',
+    'driver:' => 'driver:',
+    'no payment' => 'No payment',
+    'success' => 'Success',
+    'failed' => 'Failed',
+    'Filter' => 'Filter',
 
 
     /*messages.*/

@@ -38,6 +38,7 @@
         <th scope="col">{{ __('web.order_number') }}</th>
         <th scope="col">{{ __('web.name') }}</th>
         <th scope="col">{{ __('web.email') }}</th>
+        <th scope="col">{{ __('web.city') }}</th>
         <th scope="col">{{ __('web.status') }}</th>
         <th scope="col">{{ __('web.driver') }}</th>
         <th scope="col">{{ __('web.delivery_date') }}</th>
@@ -53,6 +54,7 @@
             <td>{{$p->order_number}}</td>
             <td>{{$p->name}}</td>
             <td>{{$p->email}}</td>
+            <td>{{getCiteByid($p->city)->name}}</td>
             <td>
                 {{Select($p->status)}}
             </td>

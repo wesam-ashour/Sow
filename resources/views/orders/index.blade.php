@@ -63,6 +63,111 @@
                     <!--begin::Card toolbar-->
                     <!--begin::Toolbar-->
                     <div class="card-toolbar">
+                        <div class="d-flex justify-content-end" data-kt-docs-table-toolbar="base">
+                            <!--begin::Filter-->
+                            <button type="button" class="btn btn-light-primary me-3" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                                <!--begin::Svg Icon | path: icons/duotune/general/gen031.svg-->
+                                <span class="svg-icon svg-icon-2"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M19.0759 3H4.72777C3.95892 3 3.47768 3.83148 3.86067 4.49814L8.56967 12.6949C9.17923 13.7559 9.5 14.9582 9.5 16.1819V19.5072C9.5 20.2189 10.2223 20.7028 10.8805 20.432L13.8805 19.1977C14.2553 19.0435 14.5 18.6783 14.5 18.273V13.8372C14.5 12.8089 14.8171 11.8056 15.408 10.964L19.8943 4.57465C20.3596 3.912 19.8856 3 19.0759 3Z" fill="currentColor"/>
+                                </svg>
+                                </span>
+                                <!--end::Svg Icon-->       @lang('web.Filter')
+                            </button>
+                            <!--begin::Menu 1-->
+                            <div class="menu menu-sub menu-sub-dropdown w-300px w-md-325px" data-kt-menu="true" id="kt-toolbar-filter">
+                                <!--begin::Header-->
+                                <div class="px-7 py-5">
+                                    <div class="fs-4 text-dark fw-bold">@lang('web.Filter Options')</div>
+                                </div>
+                                <!--end::Header-->
+
+                                <!--begin::Separator-->
+                                <div class="separator border-gray-200"></div>
+                                <!--end::Separator-->
+
+                                <!--begin::Content-->
+                                <div class="px-7 py-5">
+                                    <!--begin::Input group-->
+                                    <div class="mb-10">
+                                        <!--begin::Label-->
+                                        <label class="form-label fs-5 fw-semibold mb-3">@lang('web.city:')</label>
+                                        <!--end::Label-->
+
+                                        <!--begin::Options-->
+                                        <div class="d-flex flex-column flex-wrap fw-semibold" data-kt-docs-table-filter="payment_type">
+                                            <!--begin::Option-->
+                                            <label class="form-check form-check-sm form-check-custom form-check-solid mb-3 me-5">
+                                                <select class="form-select" id="city">
+                                                    <option></option>
+                                                    @foreach($cities as $city)
+                                                    <option value="{{$city->id}}">{{$city->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </label>
+                                            <!--end::Option-->
+                                        </div>
+
+                                        <label class="form-label fs-5 fw-semibold mb-3">@lang('web.Payment status:')</label>
+
+                                        <div class="d-flex flex-column flex-wrap fw-semibold" data-kt-docs-table-filter="payment_type">
+                                            <!--begin::Option-->
+                                            <label class="form-check form-check-sm form-check-custom form-check-solid mb-3 me-5">
+                                                <select class="form-select" id="payment_status">
+                                                    <option></option>
+                                                    <option value="1">@lang('web.no payment')</option>
+                                                    <option value="2">@lang('web.success')</option>
+                                                    <option value="3">@lang('web.failed')</option>
+                                                </select>
+                                            </label>
+                                            <!--end::Option-->
+                                        </div>
+
+                                        <label class="form-label fs-5 fw-semibold mb-3">@lang('web.order status:')</label>
+
+                                        <div class="d-flex flex-column flex-wrap fw-semibold" data-kt-docs-table-filter="payment_type">
+                                            <!--begin::Option-->
+                                            <label class="form-check form-check-sm form-check-custom form-check-solid mb-3 me-5">
+                                                <select class="form-select" id="order_status">
+                                                    <option></option>
+                                                    @foreach (\App\Models\Order::STATUS as $status)
+                                                        <option value="{{$status}}">{{Select($status)}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </label>
+                                            <!--end::Option-->
+                                        </div>
+
+                                        <label class="form-label fs-5 fw-semibold mb-3">@lang('web.driver:')</label>
+
+                                        <div class="d-flex flex-column flex-wrap fw-semibold" data-kt-docs-table-filter="payment_type">
+                                            <!--begin::Option-->
+                                            <label class="form-check form-check-sm form-check-custom form-check-solid mb-3 me-5">
+                                                <select class="form-select" id="driver">
+                                                    <option></option>
+                                                    @foreach($drivers as $driver)
+                                                    <option value="{{$driver->id}}">{{$driver->full_name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </label>
+                                            <!--end::Option-->
+                                        </div>
+                                        <!--end::Options-->
+                                    </div>
+                                    <!--end::Input group-->
+
+                                    <!--begin::Actions-->
+                                    <div class="d-flex justify-content-end">
+                                        <button type="reset" class="btn btn-light btn-active-light-primary me-2 ResetFilter" data-kt-menu-dismiss="true" data-kt-docs-table-filter="reset">@lang('web.Reset')</button>
+
+                                        <button type="submit" class="btn btn-primary ApplyFilter" data-kt-menu-dismiss="true" data-kt-docs-table-filter="filter">@lang('web.Apply:')</button>
+                                    </div>
+                                    <!--end::Actions-->
+                                </div>
+                                <!--end::Content-->
+                            </div>
+                            <!--end::Menu-->
+                        </div>
+
                         <!--begin::Menu-->
                         <button type="button" class="btn btn-sm btn-icon btn-color-primary btn-active-light-primary"
                                 data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
@@ -73,20 +178,20 @@
                                                                      xmlns="http://www.w3.org/2000/svg"
                                                                      xmlns:xlink="http://www.w3.org/1999/xlink"
                                                                      viewBox="0 0 493.525 493.525" xml:space="preserve">
-<g id="XMLID_30_">
-	<path id="XMLID_32_" d="M430.557,79.556H218.44c21.622,12.688,40.255,29.729,54.859,49.906h157.258
-		c7.196,0,13.063,5.863,13.063,13.06v238.662c0,7.199-5.866,13.064-13.063,13.064H191.894c-7.198,0-13.062-5.865-13.062-13.064
-		V222.173c-6.027-3.1-12.33-5.715-18.845-7.732c-3.818,11.764-12.105,21.787-23.508,27.781c-2.39,1.252-4.987,2.014-7.554,2.844
-		v136.119c0,34.717,28.25,62.971,62.968,62.971h238.663c34.718,0,62.969-28.254,62.969-62.971V142.522
-		C493.525,107.806,465.275,79.556,430.557,79.556z"/>
-	<path id="XMLID_31_" d="M129.037,175.989c51.419,1.234,96.388,28.283,122.25,68.865c2.371,3.705,6.434,5.848,10.657,5.848
-		c1.152,0,2.322-0.162,3.46-0.486c5.377-1.545,9.114-6.418,9.179-12.006c0-0.504,0-1.01,0-1.51
-		c0-81.148-64.853-147.023-145.527-148.957V64.155c0-5.492-3.038-10.512-7.879-13.078c-2.16-1.139-4.533-1.707-6.889-1.707
-		c-2.94,0-5.848,0.88-8.35,2.584L5.751,120.526C2.162,122.98,0.018,127.041,0,131.394c-0.017,4.338,2.113,8.418,5.687,10.902
-		l100.17,69.451c2.518,1.753,5.459,2.631,8.414,2.631c2.355,0,4.696-0.553,6.857-1.676c4.855-2.549,7.909-7.6,7.909-13.092V175.989z
-		"/>
-</g>
-</svg>
+                    <g id="XMLID_30_">
+                        <path id="XMLID_32_" d="M430.557,79.556H218.44c21.622,12.688,40.255,29.729,54.859,49.906h157.258
+                            c7.196,0,13.063,5.863,13.063,13.06v238.662c0,7.199-5.866,13.064-13.063,13.064H191.894c-7.198,0-13.062-5.865-13.062-13.064
+                            V222.173c-6.027-3.1-12.33-5.715-18.845-7.732c-3.818,11.764-12.105,21.787-23.508,27.781c-2.39,1.252-4.987,2.014-7.554,2.844
+                            v136.119c0,34.717,28.25,62.971,62.968,62.971h238.663c34.718,0,62.969-28.254,62.969-62.971V142.522
+                            C493.525,107.806,465.275,79.556,430.557,79.556z"/>
+                        <path id="XMLID_31_" d="M129.037,175.989c51.419,1.234,96.388,28.283,122.25,68.865c2.371,3.705,6.434,5.848,10.657,5.848
+                            c1.152,0,2.322-0.162,3.46-0.486c5.377-1.545,9.114-6.418,9.179-12.006c0-0.504,0-1.01,0-1.51
+                            c0-81.148-64.853-147.023-145.527-148.957V64.155c0-5.492-3.038-10.512-7.879-13.078c-2.16-1.139-4.533-1.707-6.889-1.707
+                            c-2.94,0-5.848,0.88-8.35,2.584L5.751,120.526C2.162,122.98,0.018,127.041,0,131.394c-0.017,4.338,2.113,8.418,5.687,10.902
+                            l100.17,69.451c2.518,1.753,5.459,2.631,8.414,2.631c2.355,0,4.696-0.553,6.857-1.676c4.855-2.549,7.909-7.6,7.909-13.092V175.989z
+                            "/>
+                    </g>
+                    </svg>
 															</span>
                             <!--end::Svg Icon-->
                         </button>
@@ -129,16 +234,6 @@
                                 <!--end::Input group-->
                                 <div class="mb-10">
                                     <label class="form-label fw-semibold">@lang('web.type:')</label>
-                                    <div class="mb-5">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="radio" value="excel" id="Check1"
-                                                   name="radio2"/>
-                                            <label class="form-check-label" for="Check1">
-                                                Excel
-                                            </label>
-                                        </div>
-                                    </div>
-
                                     <div class="mb-0">
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" value="pdf" id="Check2"
@@ -181,6 +276,7 @@
                             <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900  min-w-125px @else text-start @endif">@lang('web.order_number')</th>
                             <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900  min-w-125px @else text-start @endif">@lang('web.name')</th>
                             <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900  min-w-125px @else text-start @endif">@lang('web.email')</th>
+                            <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900  min-w-125px @else text-start @endif">@lang('web.city')</th>
                             <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900  min-w-125px @else text-start @endif">@lang('web.status')</th>
                             <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900  min-w-125px @else text-start @endif">@lang('web.driver')</th>
                             <th class="@if(\Illuminate\Support\Facades\App::getLocale() == "en") text-gray-900  min-w-125px @else text-start @endif">@lang('web.delivery_date')</th>
@@ -531,6 +627,81 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <!--end::Custom Javascript-->
     <script type="text/javascript">
+
+        $('.ResetFilter').click(function () {
+            var city = $("#city").val("");
+            var order_status =  $("#order_status").val("");
+            var payment_status = $("#payment_status").val("");
+            var driver = $("#driver").val("");
+            $('#kt_orders_table').DataTable().ajax.reload();
+        });
+
+        $('.ApplyFilter').click(function () {
+            var city = $("#city").val();
+            var order_status =  $("#order_status").val();
+            var payment_status = $("#payment_status").val();
+            var driver = $("#driver").val();
+            const language = $('#language').val();
+            $.ajax({
+                type: 'POST',
+                url: '{{ route('filter_orders') }}',
+                data: {"_token": "{{ csrf_token() }}","city": city, "order_status": order_status,"payment_status": payment_status, "driver": driver},
+                success: function (response) {
+                    var table = $('#kt_orders_table').DataTable();
+                    table.destroy();
+                    $('#kt_orders_table').DataTable({
+                        data: response.data,
+                        searchable: true,
+                        columns: [
+                            {
+                                data: 'order_number',
+                                name: 'order_number'
+                            },
+                            {
+                                data: 'name',
+                                name: 'name'
+                            },
+                            {
+                                data: 'email',
+                                name: 'email'
+                            },
+                            {
+                                data: 'city',
+                                name: 'city'
+                            },
+                            {
+                                data: 'status',
+                                name: 'status'
+                            },
+                            {
+                                data: 'assign_driver',
+                                name: 'assign_driver'
+                            },
+                            {
+                                data: 'delivery_date',
+                                name: 'delivery_date'
+                            },
+                            {
+                                data: 'payment_status',
+                                name: 'payment_status'
+                            },
+                            {
+                                data: 'actions',
+                                name: 'actions'
+                            },
+                        ], language: {
+                            url: language === "en" ? "//cdn.datatables.net/plug-ins/1.13.1/i18n/en-GB.json" : "//cdn.datatables.net/plug-ins/1.13.1/i18n/ar.json",
+                        },
+                    }).on("draw", (function () {
+
+                    }));
+                    // $('#kt_orders_table').DataTable().ajax.reload();
+                },
+                error: function (blob) {
+                    console.log(blob);
+                }
+            });
+        });
         $('.reset').click(function () {
             $("#start_date").val("");
             $("#end_date").val("");
@@ -538,6 +709,10 @@
         $('.apply').click(function () {
             var start = $("#start_date").val();
             var end = $("#end_date").val();
+            var city = $("#city").val();
+            var order_status =  $("#order_status").val();
+            var payment_status = $("#payment_status").val();
+            var driver = $("#driver").val();
 
             if (start === "" && end === "") {
                 if ($('input[name="radio2"]:checked').val() === "pdf") {
@@ -549,7 +724,7 @@
                     $.ajax({
                         type: 'GET',
                         url: '{{ route('downloadPdf') }}',
-                        data: {"start": start, "end": end},
+                        data: {"start": start, "end": end,"city": city, "order_status": order_status,"payment_status": payment_status, "driver": driver},
                         xhrFields: {
                             responseType: 'blob'
                         },
@@ -608,7 +783,7 @@
                     $.ajax({
                         type: 'GET',
                         url: '{{ route('downloadPdf') }}',
-                        data: {"start": start, "end": end},
+                        data: {"start": start, "end": end,"city": city, "order_status": order_status,"payment_status": payment_status, "driver": driver},
                         xhrFields: {
                             responseType: 'blob'
                         },

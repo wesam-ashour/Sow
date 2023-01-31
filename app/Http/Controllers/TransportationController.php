@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exports\OrdersBetweenExport;
 use App\Exports\OrdersExport;
+use App\Models\Lookups;
 use App\Models\Order;
 use App\Models\User;
 use Dflydev\DotAccessData\Data;
@@ -25,6 +26,8 @@ class TransportationController extends Controller
     public function index(Request $request)
     {
         $transportations_all = Order::query()->latest();
+        $cities = Lookups::query()->whereNotNull('fk_relationships')->get();
+        $drivers = User::query()->where('user_type', '=', 1)->get()->all();
         if ($request->ajax()) {
             return Datatables::of($transportations_all)->addIndexColumn()
                 ->addColumn('order_number', function ($transportations_all) {
@@ -35,6 +38,10 @@ class TransportationController extends Controller
                 })
                 ->addColumn('email', function ($transportations_all) {
                     return $transportations_all->email;
+                })
+                ->addColumn('city', function ($transportations_all) {
+                    $data = Lookups::query()->where('id', '=', $transportations_all->city)->first('name');
+                    return $data->name;
                 })
                 ->addColumn('status', function ($transportations_all) {
                     $select = '<select style="height: auto;line-height: 14px;width:170px;" class="form-select form-control-solid cc" id="' . $transportations_all->id . '" ' . disableSelect($transportations_all->status) . ' onchange="ChangeSelect(this)">';
@@ -77,7 +84,7 @@ class TransportationController extends Controller
                     , ['floor' => 'floor'], ['status' => 'status'], ['payment_status' => 'payment_status'])
                 ->make(true);
         }
-        return view('orders.index');
+        return view('orders.index', compact('cities', 'drivers'));
     }
 
     function fetch_data(Request $request)
@@ -136,25 +143,25 @@ class TransportationController extends Controller
             $order = Order::find($request->id);
             $governorate = getGovernorateByid($order->governorate);
             $city = getCiteByid($order->city)->name;
-            if (!User::find($order->user_id)){
+            if (!User::find($order->user_id)) {
                 $driver = "";
-            }else{
+            } else {
                 $driver = User::find($order->user_id)->full_name;
             }
 
             $status = Select($order->status);
-            if (!User::find($order->assigned_status)){
+            if (!User::find($order->assigned_status)) {
                 $assigned_status = "";
-            }else{
+            } else {
                 $assigned_status = User::find($order->assigned_status)->full_name;
             }
-            if (!User::find($order->assigned_driver)){
+            if (!User::find($order->assigned_driver)) {
                 $assigned_driver = "";
-            }else{
+            } else {
                 $assigned_driver = User::find($order->assigned_driver)->full_name;
             }
             $payment_status = payment_status($order->payment_status);
-            return response()->json(['order' => $order,'governorate'=> $governorate,'city' => $city, 'driver' => $driver, 'status' => $status, 'assigned_status' => $assigned_status, 'assigned_driver' => $assigned_driver, 'payment_status' => $payment_status]);
+            return response()->json(['order' => $order, 'governorate' => $governorate, 'city' => $city, 'driver' => $driver, 'status' => $status, 'assigned_status' => $assigned_status, 'assigned_driver' => $assigned_driver, 'payment_status' => $payment_status]);
         }
 
     }
@@ -220,18 +227,70 @@ class TransportationController extends Controller
 
     public function downloadPdf(Request $request)
     {
-        if ($request->start == null && $request->end == null){
-            $pd = Order::all();
+        if ($request->start == null && $request->end == null) {
+//            $pd = Order::all();
+            $city = $request->city;
+            $paymentStatus = $request->payment_status;
+            $orderStatus = $request->order_status;
+            $driverName = $request->driver;
+            $pd = Order::where(function ($query) use ($city) {
+                if ($city) {
+                    $query->where('city', $city);
+                }
+            })
+                ->where(function ($query) use ($paymentStatus) {
+                    if ($paymentStatus) {
+                        $query->where('payment_status', $paymentStatus);
+                    }
+                })
+                ->where(function ($query) use ($orderStatus) {
+                    if ($orderStatus) {
+                        $query->where('status', $orderStatus);
+                    }
+                })
+                ->where(function ($query) use ($driverName) {
+                    if ($driverName) {
+                        $query->where('user_id', $driverName);
+                    }
+                })
+                ->get();
             $pdf = PDF::loadView('orders.pdf', compact('pd'));
             return $pdf->download('Orders.pdf');
-        }elseif ($request->start !== null && $request->end !== null){
-            $pd = DB::table('orders')->whereBetween('created_at', [$request->start, $request->end])->get();
+        } elseif ($request->start !== null && $request->end !== null) {
+//            $pd = DB::table('orders')->whereBetween('created_at', [$request->start, $request->end])->get();
+            $city = $request->city;
+            $paymentStatus = $request->payment_status;
+            $orderStatus = $request->order_status;
+            $driverName = $request->driver;
+            $pd = DB::table('orders')->whereBetween('created_at', [$request->start, $request->end])->where(function ($query) use ($city) {
+                if ($city) {
+                    $query->where('city', $city);
+                }
+            })
+                ->where(function ($query) use ($paymentStatus) {
+                    if ($paymentStatus) {
+                        $query->where('payment_status', $paymentStatus);
+                    }
+                })
+                ->where(function ($query) use ($orderStatus) {
+                    if ($orderStatus) {
+                        $query->where('status', $orderStatus);
+                    }
+                })
+                ->where(function ($query) use ($driverName) {
+                    if ($driverName) {
+                        $query->where('user_id', $driverName);
+                    }
+                })
+                ->get();
             $pdf = PDF::loadView('orders.pdf', compact('pd'));
             return $pdf->download('Orders.pdf');
         }
 
     }
-    public function downloadPdfByid(Request $request , $id){
+
+    public function downloadPdfByid(Request $request, $id)
+    {
         $pd = Order::query()->find($id);
         $pdf = PDF::loadView('orders.printOrder', compact('pd'));
         return $pdf->download('Orders.printOrder');
@@ -239,17 +298,102 @@ class TransportationController extends Controller
 
     public function downloadExcel(Request $request)
     {
-        if ($request->start == null && $request->end == null){
+        if ($request->start == null && $request->end == null) {
             $pd = Order::all();
             $start = $request->start;
             $end = $request->end;
-            return Excel::download(new OrdersExport($start,$end), 'Orders.xlsx');
-        }elseif ($request->start !== null && $request->end !== null){
+            return Excel::download(new OrdersExport($start, $end), 'Orders.xlsx');
+        } elseif ($request->start !== null && $request->end !== null) {
             $start = $request->start;
             $end = $request->end;
-            return Excel::download(new OrdersBetweenExport($start,$end), 'Orders.xlsx');
+            return Excel::download(new OrdersBetweenExport($start, $end), 'Orders.xlsx');
         }
 
+    }
+
+    public function filter_orders(Request $request)
+    {
+        if ($request->ajax()) {
+            $city = $request->city;
+            $paymentStatus = $request->payment_status;
+            $orderStatus = $request->order_status;
+            $driverName = $request->driver;
+            $orders = Order::where(function ($query) use ($city) {
+                if ($city) {
+                    $query->where('city', $city);
+                }
+            })
+                ->where(function ($query) use ($paymentStatus) {
+                    if ($paymentStatus) {
+                        $query->where('payment_status', $paymentStatus);
+                    }
+                })
+                ->where(function ($query) use ($orderStatus) {
+                    if ($orderStatus) {
+                        $query->where('status', $orderStatus);
+                    }
+                })
+                ->where(function ($query) use ($driverName) {
+                    if ($driverName) {
+                        $query->where('user_id', $driverName);
+                    }
+                })
+                ->get();
+            return Datatables::of($orders)->addIndexColumn()
+                ->editColumn('order_number', function ($orders) {
+                    return $orders->order_number;
+                })
+                ->editColumn('name', function ($orders) {
+                    return $orders->name;
+                })
+                ->editColumn('email', function ($orders) {
+                    return $orders->email;
+                })
+                ->editColumn('city', function ($orders) {
+                    $data = Lookups::query()->where('fk_relationships', '=', 1)->first('name');
+                    return $data->name;
+                })
+                ->editColumn('status', function ($orders) {
+                    $select = '<select style="height: auto;line-height: 14px;width:170px;" class="form-select form-control-solid cc" id="' . $orders->id . '" ' . disableSelect($orders->status) . ' onchange="ChangeSelect(this)">';
+                    foreach (Order::STATUS as $status) {
+                        $select = $select . '<option ' . disableOption($status) . ' value="' . $status . '" ' . selected($status, $orders->status) . '>' . Select($status) . '</option>';
+                    }
+                    return $select . '</select>';
+                })
+                ->editColumn('assign_driver', function ($orders) {
+                    $select = '<select style="height: auto;line-height: 14px;width:170px;" class="form-select form-control-solid dd" id="' . $orders->id . '" ' . disableSelectDriver($orders->status) . ' onchange="ChangeSelectUser(this)"><option></option>';
+                    foreach (User::where('user_type', 1)->get() as $user) {
+                        $select = $select . '<option value="' . $user->id . '" ' . selectedUser($user->id, $orders->user_id) . '>' . $user->full_name . '</option>';
+                    }
+                    return $select . '</select>';
+                })
+                ->editColumn('delivery_date', function ($orders) {
+                    return '<input style="height: 34px;width:170px;" class="form-select form-control-solid dd" value="' . $orders->delivery_date . '" type="date" id="' . $orders->id . '" onchange="delivery_date(this)" ' . disableSelectDriver($orders->status) . '></option>';
+                })
+                ->editColumn('payment_status', function ($orders) {
+                    return payment_status($orders->payment_status);
+                })
+                ->editColumn('actions', function ($orders) {
+                    $action = '<button id="show" data-id="' . $orders->id . '" class="btn btn-icon btn-active-light-primary w-30px h-30px me-3" data-bs-toggle="modal" data-bs-target="#kt_modal_show_orders">
+                                    <!--begin::Svg Icon | path: icons/duotune/general/gen019.svg-->
+                                    <span class="svg-icon svg-icon-3">
+																	<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor"/>
+                                                                    <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor"/>
+                                                                    </svg>
+																</span>
+                                    <!--end::Svg Icon-->
+                                </button>';
+                    return $action;
+                })
+                ->rawColumns(['order_number'], ['name'], ['email'],
+                    ['governorate'], ['city'], ['pieces_number'], ['avenue'], ['street'], ['building_number'], ['floor'], ['status'], ['payment_status'])
+                ->escapeColumns(['order_number' => 'order_number'], ['name' => 'name'], ['phone_number' => 'phone_number']
+                    , ['email' => 'email'], ['governorate' => 'governorate'], ['city' => 'city']
+                    , ['pieces_number' => 'pieces_number'], ['avenue' => 'avenue'], ['street' => 'street'], ['building_number' => 'building_number']
+                    , ['floor' => 'floor'], ['status' => 'status'], ['payment_status' => 'payment_status'])
+                ->make(true);
+        }
     }
 
 

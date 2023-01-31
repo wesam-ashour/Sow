@@ -35,6 +35,10 @@ $(function () {
                                 name: 'email'
                             },
                             {
+                                data: 'city',
+                                name: 'city'
+                            },
+                            {
                                 data: 'status',
                                 name: 'status'
                             },

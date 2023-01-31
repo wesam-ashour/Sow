@@ -79,6 +79,7 @@ Route::group(['middleware' => ['auth', 'verified', 'localeSessionRedirect', 'loc
     Route::get('/download/pdf/', [TransportationController::class, 'downloadPdf'])->name('downloadPdf');
     Route::get('/download/pdf/{id}', [TransportationController::class, 'downloadPdfByid'])->name('downloadPdfByid');
     Route::get('/download/excel/', [TransportationController::class, 'downloadExcel'])->name('downloadExcel');
+    Route::post('/filter/orders/', [TransportationController::class, 'filter_orders'])->name('filter_orders');
 
     Route::post('delivery_date',[TransportationController::class,'delivery_date']);
 
@@ -91,6 +92,8 @@ Route::group(['middleware' => ['auth', 'verified', 'localeSessionRedirect', 'loc
     Route::post('drivers/update',[DriverController::class, 'update'])->name('drivers.update');
     Route::delete('drivers/delete/{id}',[DriverController::class, 'destroy'])->name('destroy.delete');
     Route::get('/changeStatus/drivers/', [DriverController::class, 'changeStatus']);
+
+
 
     Route::resource('locations', ManageLocationsController::class);
 

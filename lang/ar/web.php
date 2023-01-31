@@ -65,7 +65,7 @@ return [
     'From:' => 'من:',
     'To:' => 'الى:',
     'type:' => 'نوع الملف:',
-
+    'Apply:' => 'تطبيق',
     'Unpaid' => 'غير مدفوع',
     'paid' => 'مدفوع',
     'new request' => 'طلب جديد',
@@ -159,8 +159,15 @@ return [
     'governorate_fk_city' => 'المحافظة التابعة لها',
     'orders' => 'الطلبات',
     'print' => 'تصدير pdf',
-
-
+    'Filter Options' => 'خيارات التصفية',
+    'city:' => 'مدينة:',
+    'Payment status:' => 'حالة الدفع:',
+    'order status:' => 'حالة الطلب:',
+    'driver:' => 'سائق:',
+    'no payment' => 'لا دفع',
+    'success' => 'النجاح',
+    'failed' => 'فشلت',
+    'Filter' => 'فلتر',
 
 
     /*messages*/
