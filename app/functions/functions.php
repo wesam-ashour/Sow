@@ -60,7 +60,7 @@ function getCiteByid($id){
     if ($city)
         return $city;
     else
-        return 0;
+        return null;
 
 }
 function payment_status($value){

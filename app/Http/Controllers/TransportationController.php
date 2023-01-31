@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 use niklasravnsborg\LaravelPdf\Facades\Pdf;
 use Yajra\DataTables\Facades\DataTables;
+use function Symfony\Component\Translation\t;
 
 class TransportationController extends Controller
 {
@@ -40,8 +41,11 @@ class TransportationController extends Controller
                     return $transportations_all->email;
                 })
                 ->addColumn('city', function ($transportations_all) {
-                    $data = Lookups::query()->where('id', '=', $transportations_all->city)->first('name');
-                    return $data->name;
+                    $data = getCiteByid($transportations_all->city);
+                    if ($data)
+                        return $data->name;
+                    else
+                        return '---';
                 })
                 ->addColumn('status', function ($transportations_all) {
                     $select = '<select style="height: auto;line-height: 14px;width:170px;" class="form-select form-control-solid cc" id="' . $transportations_all->id . '" ' . disableSelect($transportations_all->status) . ' onchange="ChangeSelect(this)">';
