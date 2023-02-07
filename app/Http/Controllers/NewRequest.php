@@ -50,10 +50,8 @@ class NewRequest extends Controller
             'phone' => 'required',
             'email' => 'required',
             'block' => 'required',
-            'jadda' => 'required',
             'house' => 'required',
             'street' => 'required',
-            'floor' => 'required',
             'governorate' => 'required',
             'city' => 'required',
         ], [
@@ -62,10 +60,8 @@ class NewRequest extends Controller
             'phone.required' => trans("web.required"),
             'email.required' => trans("web.required"),
             'block.required' => trans("web.required"),
-            'jadda.required' => trans("web.required"),
             'house.required' => trans("web.required"),
             'street.required' => trans("web.required"),
-            'floor.required' => trans("web.required"),
             'governorate.required' => trans("web.required"),
             'city.required' => trans("web.required"),
         ]);

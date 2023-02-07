@@ -71,6 +71,26 @@
                     <h3 class="card-title">@lang('web.Scan')</h3>
                 </div>
                 <div class="card-body">
+                   {{-- <div class="row">
+                        <div class="fv-row col-12 mb-7">
+                            <!--begin::Label-->
+                            <label class="fs-6 fw-semibold form-label mb-2">
+                                <span class="required">@lang('web.order_number)</span>
+                            </label>
+                            <!--end::Label-->
+                            <!--begin::Input-->
+                            <input id="full_name" type="text" class="form-control form-control-solid"
+                                   placeholder="@lang('web.Enter Here')" name="full_name">
+                            <button  class="btn btn-primary mt-2">Send</button>
+                            <!--end::Input-->
+                        </div>
+                    </div>--}}
+                    <div class="row">
+                        <label class="fs-6 fw-semibold form-label mb-2">@lang('web.order_number')</label>
+                        <input class="form-control form-control-solid" style="padding: 1rem 1rem" placeholder="@lang('web.Enter Here')" id="order_number" name="order_number">
+                        <button  class="btn btn-primary mt-2" onclick="send_order_number()">Send</button>
+                    </div>
+                    <hr>
                     <div class="row">
                         <div style="width: 30%;" id="scanner">
                             <div style="width:300px; margin-top: 20px;" id="reader"></div>
@@ -155,6 +175,64 @@
 
         function onScanError(errorMessage) {
             //handle scan error
+        }
+
+        function send_order_number(){
+            var order_number = document.getElementById("order_number").value
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                type: 'GET',
+                url: "{{ route('ScanQR.handleScan') }}",
+                data: {"scan":order_number},
+                success: function (data) {
+                    if (data.success){
+                        Swal.fire(
+                            '@lang('web.Status changed')',
+                            '@lang('web.Order status changed successfully')',
+                            'success'
+                        ).then((result) => {
+                            if (result.isConfirmed) {
+                                document.getElementById('start').click();
+                            }
+                        })
+                    }else if(data.done){
+                        Swal.fire(
+                            data.done,
+                            '',
+                            'info'
+                        ).then((result) => {
+                            if (result.isConfirmed) {
+                                document.getElementById('start').click();
+                            }
+                        })
+                    }else if(data.unpaid){
+                        Swal.fire(
+                            '@lang('web.Order unpaid yet!')',
+                            '',
+                            'info'
+                        ).then((result) => {
+                            if (result.isConfirmed) {
+                                document.getElementById('start').click();
+                            }
+                        })
+                    }else{
+                        Swal.fire({
+                            icon: 'error',
+                            title: '@lang('web.error')',
+                            text: '@lang('web.The order not found!')',
+                            footer: ''
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                document.getElementById('start').click();
+                            }
+                        })
+                    }
+                }
+            });
         }
 
     </script>
