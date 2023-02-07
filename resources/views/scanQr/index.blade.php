@@ -103,7 +103,7 @@
 @endsection
 @section('js')
     <script>
-        // A $( document ).ready() block.
+        // A $( document ).ready() block
         $( document ).ready(function() {
             document.getElementById('order_number').focus();
         });
