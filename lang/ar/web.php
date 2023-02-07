@@ -8,7 +8,7 @@ return [
     'Please wait...' => 'يرجى الانتظار...',
     'Users Assigned' => 'المستخدمون',
     'Search Here' => 'ابحث هنا',
-    'Search' => 'ابحث هنا',
+    'Search' => 'ابحث',
     'Joined Date' => 'تاريخ الانضمام',
     'User' => 'المستخدم',
     'ID' => 'ID',
@@ -228,6 +228,7 @@ return [
 
     /*manage_locations*/
     'Scan' => 'مسح رمز الاستجابة السريعة',
+    'Search by order number' => 'بحث من خلال رقم الطلب',
     'Scan_Management' => 'إدارة المسح',
     'locations' => 'أدارة المحافظات والمدن',
 

@@ -8,7 +8,7 @@ return [
     'Please wait...' => 'Please wait...',
     'Users Assigned' => 'Users Assigned',
     'Search Here' => 'Search Here',
-    'Search' => 'Search Here',
+    'Search' => 'Search',
     'Joined Date' => 'Joined Date',
     'User' => 'User',
     'ID' => 'ID',
@@ -71,6 +71,7 @@ return [
     'paid' => 'paid',
     'new request' => 'new request',
     'ScanQR' => 'Scan QR',
+    'Search by order number' => 'Search by order number',
     'Total system drivers' => 'Total system drivers',
 
 

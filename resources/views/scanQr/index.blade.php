@@ -68,29 +68,28 @@
 
             <div class="card card-bordered">
                 <div class="card-header">
+                    <h3 class="card-title">@lang('web.Search by order number')</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row col-lg-4 col-md-5">
+                        <label class="fs-6 fw-semibold form-label mb-2">@lang('web.order_number')</label>
+                        <input class="form-control form-control-solid" style="padding: 1rem 1rem" placeholder="@lang('web.Enter Here')" id="order_number" name="order_number">
+                        <button  class="btn btn-primary mt-2" onclick="send_order_number()">{{trans('web.Search')}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="kt_app_content" class="app-content flex-column-fluid">
+        <!--begin::Content container-->
+        <div id="kt_app_content_container" class="app-container container-xxl">
+
+            <div class="card card-bordered">
+                <div class="card-header">
                     <h3 class="card-title">@lang('web.Scan')</h3>
                 </div>
                 <div class="card-body">
-                   {{-- <div class="row">
-                        <div class="fv-row col-12 mb-7">
-                            <!--begin::Label-->
-                            <label class="fs-6 fw-semibold form-label mb-2">
-                                <span class="required">@lang('web.order_number)</span>
-                            </label>
-                            <!--end::Label-->
-                            <!--begin::Input-->
-                            <input id="full_name" type="text" class="form-control form-control-solid"
-                                   placeholder="@lang('web.Enter Here')" name="full_name">
-                            <button  class="btn btn-primary mt-2">Send</button>
-                            <!--end::Input-->
-                        </div>
-                    </div>--}}
-                    <div class="row">
-                        <label class="fs-6 fw-semibold form-label mb-2">@lang('web.order_number')</label>
-                        <input class="form-control form-control-solid" style="padding: 1rem 1rem" placeholder="@lang('web.Enter Here')" id="order_number" name="order_number">
-                        <button  class="btn btn-primary mt-2" onclick="send_order_number()">Send</button>
-                    </div>
-                    <hr>
                     <div class="row">
                         <div style="width: 30%;" id="scanner">
                             <div style="width:300px; margin-top: 20px;" id="reader"></div>
@@ -103,8 +102,15 @@
     </div>
 @endsection
 @section('js')
+    <script>
+        // A $( document ).ready() block.
+        $( document ).ready(function() {
+            document.getElementById('order_number').focus();
+        });
+    </script>
 
     <script type="text/javascript">
+
         var html5QrCode = new Html5QrcodeScanner(
             "reader", {fps: 100, qrbox: 250});
         html5QrCode.render(onScanSuccess, onScanError);
