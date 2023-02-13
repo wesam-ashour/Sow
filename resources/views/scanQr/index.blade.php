@@ -24,6 +24,11 @@
     /*.row{*/
     /*    display:flex;*/
     /*}*/
+    @media (max-width: 530px) {
+        #qr_driver_and_date{
+            display: block !important;
+        }
+    }
 </style>
 @section('content')
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
@@ -56,7 +61,15 @@
                 <!--end::Breadcrumb-->
             </div>
             <!--end::Page title-->
-
+            <div id="qr_driver_and_date" style="display: flex">
+                <select id="driver_id" name="driver_id" style="height: auto;line-height: 14px;width:170px;" class="form-select form-control-solid dd">
+                    <option value="">choose driver</option>
+                    @foreach($drivers as $driver)
+                        <option  value="{{$driver->id}}">{{$driver->full_name}}</option>
+                    @endforeach
+                </select>
+                <input style="height: 34px;width:170px;" class="form-select form-control-solid" type="date" name="delivery_date" id="delivery_date">
+            </div>
         </div>
         <!--end::Toolbar container-->
     </div>
@@ -118,6 +131,8 @@
             if (qrCodeMessage !== null){
                 document.getElementById('stop').click();
             }
+            var driver = document.getElementById("driver_id").value;
+            var delivery_date = document.getElementById("delivery_date").value;
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -126,7 +141,11 @@
             $.ajax({
                 type: 'GET',
                 url: "{{ route('ScanQR.handleScan') }}",
-                data: {"scan":qrCodeMessage},
+                data: {
+                    "scan":qrCodeMessage,
+                    "driver_id":driver,
+                    "delivery_date":delivery_date
+                },
                 success: function (data) {
                     if (data.success){
                         document.getElementById('stop').click();
@@ -185,6 +204,9 @@
 
         function send_order_number(){
             var order_number = document.getElementById("order_number").value
+            var driver = document.getElementById("driver_id").value;
+            var delivery_date = document.getElementById("delivery_date").value;
+
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -193,7 +215,13 @@
             $.ajax({
                 type: 'GET',
                 url: "{{ route('ScanQR.handleScan') }}",
-                data: {"scan":order_number},
+                data: {
+                    "scan":order_number,
+                    "driver_id":driver,
+                    "delivery_date":delivery_date
+
+
+                },
                 success: function (data) {
                     if (data.success){
                         Swal.fire(

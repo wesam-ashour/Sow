@@ -16,7 +16,8 @@ class QrScan extends Controller
     }
     public function index(){
         /*.*/
-        return view('scanQr.index');
+        $drivers = User::query()->where('user_type', '=', 1)->get()->all();
+        return view('scanQr.index',compact('drivers'));
     }
 
     public function handleScan(Request $request){
@@ -27,6 +28,9 @@ class QrScan extends Controller
                     $order->status = 2;
                     $order->user_id = Auth::user()->id;
                     $order->assigned_status = Auth::user()->id;
+                    if ($request->driver_id)
+                        $order->assigned_driver = $request->driver_id;
+                    $order->delivery_date = $request->delivery_date;
                     $order->save();
                     return response()->json(['success' => 'Order status changed successfully']);
                 }else{
